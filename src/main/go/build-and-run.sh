@@ -19,8 +19,8 @@
 
 
 # Avoid 'unbound variable' errors in pipeline
-# readonly LOG_ERROR="[\e[1;31mERROR\e[0m]"
-# readonly LOG_INFO="[\e[34mINFO\e[0m]"
+readonly LOG_ERROR="[\e[1;31mERROR\e[0m]"
+readonly LOG_INFO="[\e[34mINFO\e[0m]"
 
 
 set -o errexit

@@ -1,0 +1,20 @@
+.idea
+target
+node_modules
+.target
+.vagrant
+logs
+*.log
+
+# terraform
+.terraform
+.terraform.lock*
+*.tfstate*
+
+# secrets
+*.token
+*.pass
+*.user
+
+# sonarcloud.io
+.scannerwork
