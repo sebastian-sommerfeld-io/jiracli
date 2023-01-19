@@ -77,7 +77,7 @@ jobs:
       - name: Build and run
         run: |
           (
-            cd /src/main/go || exit
+            cd src/main/go || exit
             ./build-and-run.sh
           )
         shell: bash
