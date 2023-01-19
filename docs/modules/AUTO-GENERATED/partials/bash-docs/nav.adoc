@@ -1,1 +1,1 @@
-* `xref:AUTO-GENERATED:bash-docs/src/cli-sh.adoc[src/cli.sh]`
+* `xref:AUTO-GENERATED:bash-docs/src/run-sh.adoc[src/run.sh]`
