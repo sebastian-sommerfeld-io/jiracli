@@ -1,0 +1,7 @@
+Sebastian Sommerfeld <sebastian@sommerfeld.io>
+:project-name: jira-ops-cli
+:url-project: https://github.com/sebastian-sommerfeld-io/{project-name}
+:github-actions-url: {url-project}/actions/workflows
+:job-cicd: cicd.yml
+:job-generate-docs: auto-generate-docs.yml
+:badge: badge.svg

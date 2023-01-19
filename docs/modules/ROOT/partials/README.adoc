@@ -1,0 +1,28 @@
+19+1 project to learn about Go and TDD plus start automating some jira-tasks through a CLI. 
+
+image:{github-actions-url}/{job-generate-docs}/{badge}[Github Badge, link={github-actions-url}/{job-generate-docs}]
+image:{github-actions-url}/{job-ci}/{badge}[Github Badge, link={github-actions-url}/{job-cicd}]
+
+* Github Repository -> {url-project}
+* Documentation -> https://www.sommerfeld.io/docs/docker-images/{project-name}-docs/main
+* Where to file issues -> {url-project}/issues
+
+== About this project
+Jira Ops CLI is a command line interface to automate tasks otherwise done through the Jira web interface. The project encapsulates the link:https://developer.atlassian.com/server/jira/platform/rest-apis[Jira Rest API] through a command line and provides simple ways to automate (or at least dramatically speed up) recurring tasks.
+
+To develop and run the application you need a Linux environment with Docker installed. A local Go installation is not needed because everything related to go is delegated to a Docker container. Development takes place on Ubuntu.
+
+== How to use this project
+Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+
+== Risks and Technical Debts
+Scale for Probability and Impact: Low, Medium and High
+
+[cols="^1,2,5a,1,1,5a", options="header"]
+|===
+|# |Title |Description |Probability |Impact |Response
+|{counter:usage} |- |- |- |- |-
+|===
+
+== Contact
+Feel free to contact me via sebastian@sommerfeld.io or visit my website https://www.sommerfeld.io.

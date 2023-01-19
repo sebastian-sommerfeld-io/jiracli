@@ -1,0 +1,19 @@
+= 02 - Architecture Constraints
+
+To develop and run the application you need a Linux environment with Docker installed. A local link:https://go.dev[Go] installation is not needed because everything related to go is delegated to a Docker container. So a link:https://docs.docker.com/engine/install/ubuntu/[Docker and Docker Compose installation] is mandatory. Development takes place on link:https://www.ubuntu.com[Ubuntu].
+
+// .Contents
+// Any requirement that constraints software architects in their freedom of design and implementation decisions or decision about the development process. These constraints sometimes go beyond individual systems and are valid for whole organizations and companies.
+
+// .Motivation
+// Architects should know exactly where they are free in their design decisions and where they must adhere to constraints.
+// Constraints must always be dealt with; they may be negotiable, though.
+
+// .Form
+// Simple tables of constraints with explanations.
+// If needed you can subdivide them into
+// technical constraints, organizational and political constraints and
+// conventions (e.g. programming or versioning guidelines, documentation or naming conventions)
+
+// .Further Information
+// See https://docs.arc42.org/section-2/[Architecture Constraints] in the arc42 documentation.

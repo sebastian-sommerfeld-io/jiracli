@@ -1,0 +1,1 @@
+* `xref:AUTO-GENERATED:bash-docs/src/main/go/build-and-run-sh.adoc[src/main/go/build-and-run.sh]`
