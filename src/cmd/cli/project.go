@@ -4,7 +4,7 @@
 package cli
 
 import (
-    "sebastian-sommerfeld-io/jira-ops-cli/pkg/cli"
+    "sebastian-sommerfeld-io/jira-ops-cli/services/dummy"
 	"github.com/spf13/cobra"
 )
 
@@ -14,7 +14,7 @@ var projectCmd = &cobra.Command{
     Short:  "Handle Jira projects",
     Args:  cobra.ExactArgs(1),
     Run: func(cmd *cobra.Command, args []string) {
-        cli.Echo(args[0])
+        dummy.Echo(args[0])
     },
 }
 
