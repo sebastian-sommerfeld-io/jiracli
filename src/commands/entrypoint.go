@@ -1,7 +1,7 @@
 /*
  * Root-command. Entrypoint into the CLI app.
  */
-package cli
+package commands
 
 import (
 	"fmt"

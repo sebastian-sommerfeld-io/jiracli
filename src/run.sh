@@ -1,5 +1,5 @@
 #!/bin/bash
-# @file cli.sh
+# @file run.sh
 # @brief Build and run Jira Ops CLI locally.
 #
 # @description The script builds and runs the ``jira-ops-cli`` locally. Testcases are run as well. Every thin go-related is delegated
@@ -71,7 +71,7 @@ if [ ! -f go.mod ]; then
 fi
 
 echo -e "$LOG_INFO Run tests"
-go test .
+go test ./...
 
 echo -e "$LOG_INFO Run app"
 #go build .

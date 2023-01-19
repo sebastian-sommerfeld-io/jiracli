@@ -1,7 +1,7 @@
 package main
 
-import "sebastian-sommerfeld-io/jira-ops-cli/cmd/cli"
+import "sebastian-sommerfeld-io/jira-ops-cli/commands"
 
 func main() {
-    cli.Execute()
+    commands.Execute()
 }

@@ -1,9 +1,6 @@
 package dummy
 
-import (
-    "fmt"
-)
-
-func Echo(in string) {
-    fmt.Println(in + " from dummy")
+func Dummy(in string) (out string) {
+    out = in + " from dummy"
+    return out
 }
