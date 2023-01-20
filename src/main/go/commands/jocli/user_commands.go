@@ -11,33 +11,22 @@ var userCmd = &cobra.Command{
 	Use:   "user",
 	Short: "Work with Jira users",
 	Args:  cobra.ExactArgs(1),
+
 	Run: func(cmd *cobra.Command, args []string) {
 		fmt.Println("todo ...")
 	},
 }
 
-var userListCmd = &cobra.Command{
-	Use:   "list",
-	Short: "List all users",
-	Args:  cobra.ExactArgs(1),
-	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("todo ...")
-	},
-}
-
-var userCountCmd = &cobra.Command{
-	Use:   "count",
-	Short: "Count all users",
-	Args:  cobra.ExactArgs(1),
-	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("todo ...")
-	},
-}
+const (
+	BY_EMAIL    string = "email"
+	BY_USERNAME        = "username"
+)
 
 var userViewCmd = &cobra.Command{
 	Use:   "view",
 	Short: "Display Name, Email and other information about a user. Pass username as string.",
 	Args:  cobra.ExactArgs(1),
+
 	Run: func(cmd *cobra.Command, args []string) {
 		fmt.Println(viewUser(args[0]))
 	},
@@ -47,8 +36,6 @@ func init() {
 	log.SetPrefix("user_commands - ")
 
 	rootCmd.AddCommand(userCmd)
-	userCmd.AddCommand(userListCmd)
-	userCmd.AddCommand(userCountCmd)
 	userCmd.AddCommand(userViewCmd)
 }
 

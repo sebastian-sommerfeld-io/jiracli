@@ -22,12 +22,6 @@ func findByAssertions(t *testing.T, user User, e error) {
 	assert.Equal(t, verificationUser.Email, user.Email)
 }
 
-func Test_FindById(t *testing.T) {
-	in := 2
-	user, e := FindById(in)
-	findByAssertions(t, user, e)
-}
-
 func Test_FindByUsername(t *testing.T) {
 	in := "jim.panse"
 	user, e := FindByUsername(in)

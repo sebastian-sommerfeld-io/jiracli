@@ -40,16 +40,6 @@ func init() {
 	}
 }
 
-func FindById(id int) (User, error) {
-	for _, user := range users {
-		if user.Id == id {
-			return user, nil
-		}
-	}
-	user := User{}
-	return user, errors.New("No user found")
-}
-
 func FindByUsername(username string) (User, error) {
 	for _, user := range users {
 		if user.Username == username {
