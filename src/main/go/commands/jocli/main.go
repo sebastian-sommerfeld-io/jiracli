@@ -2,16 +2,16 @@ package jocli
 
 import (
 	"fmt"
-	"os"
 	"github.com/spf13/cobra"
+	"os"
 )
 
 var rootCmd = &cobra.Command{
-	Use:  "jocli",
+	Use:   "jocli",
 	Short: "Interact with a Jira instance through the command line",
-	Long: "Jira Ops CLI interacts with a Jira instance through the command line. The app allows some automation of recurring tasks.",
+	Long:  "Jira Ops CLI interacts with a Jira instance through the command line. The app allows some automation of recurring tasks.",
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("Print help texts")
+		fmt.Println("Use --help flag for CLI docs")
 	},
 }
 

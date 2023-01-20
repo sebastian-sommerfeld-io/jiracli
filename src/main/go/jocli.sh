@@ -50,7 +50,7 @@ function go() {
 
   mkdir -p "/tmp/$USER/.cache"
 
-  docker run --rm \
+  docker run -it --rm \
     --volume /etc/passwd:/etc/passwd:ro \
     --volume /etc/group:/etc/group:ro \
     --user "$(id -u):$(id -g)" \
@@ -70,6 +70,9 @@ if [ ! -f go.mod ]; then
 
   go get -u github.com/spf13/cobra@latest
 fi
+
+echo -e "$LOG_INFO Format code"
+go fmt ./...
 
 echo -e "$LOG_INFO Run tests"
 go test ./...
