@@ -9,13 +9,14 @@ import (
 
 var userCmd = &cobra.Command{
 	Use:   "user",
-	Short: "Work with Jira users",
+	Short: "Work with Jira users.",
 	Args:  cobra.ExactArgs(1),
 }
 
 var userViewCmd = &cobra.Command{
 	Use:   "view",
-	Short: "Show Username, Email and other information about a user. Pass username as string.",
+	Short: "Show Username, Email and other information about a user.",
+	Long:  "Show Username, Email and other information about a user. Find user by passing a username.",
 	Args:  cobra.ExactArgs(1),
 
 	Run: func(cmd *cobra.Command, args []string) {
