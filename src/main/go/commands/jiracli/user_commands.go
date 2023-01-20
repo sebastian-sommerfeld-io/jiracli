@@ -11,15 +11,11 @@ var userCmd = &cobra.Command{
 	Use:   "user",
 	Short: "Work with Jira users",
 	Args:  cobra.ExactArgs(1),
-
-	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("todo ...")
-	},
 }
 
 var userViewCmd = &cobra.Command{
 	Use:   "view",
-	Short: "Display Name, Email and other information about a user. Pass username as string.",
+	Short: "Show Username, Email and other information about a user. Pass username as string.",
 	Args:  cobra.ExactArgs(1),
 
 	Run: func(cmd *cobra.Command, args []string) {
