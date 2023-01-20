@@ -50,7 +50,7 @@ function go() {
 
   mkdir -p "/tmp/$USER/.cache"
 
-  docker run -it --rm \
+  docker run --rm \
     --volume /etc/passwd:/etc/passwd:ro \
     --volume /etc/group:/etc/group:ro \
     --user "$(id -u):$(id -g)" \

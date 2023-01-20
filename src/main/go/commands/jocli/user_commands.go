@@ -54,8 +54,10 @@ func init() {
 
 func viewUser(needle string) user.User {
 	user, e := user.FindByUsername(needle)
+
 	if e != nil {
 		log.Fatal(e)
 	}
+
 	return user
 }
