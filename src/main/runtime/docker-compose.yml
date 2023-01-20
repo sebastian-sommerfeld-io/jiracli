@@ -1,0 +1,16 @@
+---
+version: "3.3"
+services:
+
+  jira:
+    image: atlassian/jira-software:8.22.6-ubuntu-jdk11
+    container_name: jira
+    restart: unless-stopped
+    ports:
+      - 8080:8080
+    volumes:
+      - jiraVolume:/var/atlassian/application-data/jira
+      - /etc/timezone:/etc/timezone:ro
+
+volumes:
+  jiraVolume:
