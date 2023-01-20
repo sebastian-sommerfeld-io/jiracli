@@ -1,7 +1,7 @@
 ---
 name: jira-ops-cli
 title: Jira Ops CLI
-version: main
+version: feat__jira-runtime
 start_page: ROOT:index.adoc
 nav:
   - modules/ROOT/nav.adoc

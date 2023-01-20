@@ -21,7 +21,9 @@
 # Avoid 'unbound variable' errors in pipeline
 readonly LOG_ERROR="[\e[1;31mERROR\e[0m]"
 readonly LOG_INFO="[\e[34mINFO\e[0m]"
-
+#readonly Y="\e[93m"
+readonly P="\e[35m"
+readonly D="\e[0m"
 
 set -o errexit
 set -o pipefail
@@ -71,9 +73,22 @@ if [ ! -f go.mod ]; then
   go get -u github.com/spf13/cobra@latest
 fi
 
+echo -e "$LOG_INFO ------------------------------------------------------------------------"
+echo -e "$LOG_INFO Format code"
+echo -e "$LOG_INFO ------------------------------------------------------------------------"
+go fmt ./...
+
+echo -e "$LOG_INFO ------------------------------------------------------------------------"
 echo -e "$LOG_INFO Run tests"
+echo -e "$LOG_INFO ------------------------------------------------------------------------"
 go test ./...
 
+echo -e "$LOG_INFO ------------------------------------------------------------------------"
 echo -e "$LOG_INFO Run app"
-#go build .
+echo -e "$LOG_INFO ------------------------------------------------------------------------"
 go run . "$@"
+
+# echo -e "$LOG_INFO ------------------------------------------------------------------------"
+# echo -e "$LOG_INFO Build app"
+# echo -e "$LOG_INFO ------------------------------------------------------------------------"
+# go build .
