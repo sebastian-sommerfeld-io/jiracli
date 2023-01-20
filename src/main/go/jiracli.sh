@@ -21,9 +21,8 @@
 # Avoid 'unbound variable' errors in pipeline
 readonly LOG_ERROR="[\e[1;31mERROR\e[0m]"
 readonly LOG_INFO="[\e[34mINFO\e[0m]"
-#readonly Y="\e[93m"
-readonly P="\e[35m"
-readonly D="\e[0m"
+
+readonly TARGET_DIR="../../../target"
 
 set -o errexit
 set -o pipefail
@@ -73,6 +72,9 @@ if [ ! -f go.mod ]; then
   go get -u github.com/spf13/cobra@latest
 fi
 
+echo -e "$LOG_INFO Prepare"
+mkdir -p "$TARGET_DIR"
+
 echo -e "$LOG_INFO ------------------------------------------------------------------------"
 echo -e "$LOG_INFO Format code"
 echo -e "$LOG_INFO ------------------------------------------------------------------------"
@@ -92,3 +94,4 @@ echo -e "$LOG_INFO -------------------------------------------------------------
 echo -e "$LOG_INFO Build app"
 echo -e "$LOG_INFO ------------------------------------------------------------------------"
 go build .
+mv jiracli "$TARGET_DIR"
