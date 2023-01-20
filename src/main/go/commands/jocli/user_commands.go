@@ -17,11 +17,6 @@ var userCmd = &cobra.Command{
 	},
 }
 
-const (
-	BY_EMAIL    string = "email"
-	BY_USERNAME        = "username"
-)
-
 var userViewCmd = &cobra.Command{
 	Use:   "view",
 	Short: "Display Name, Email and other information about a user. Pass username as string.",
