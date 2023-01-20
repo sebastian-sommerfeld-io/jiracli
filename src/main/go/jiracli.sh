@@ -8,13 +8,13 @@
 #
 # === Script Arguments
 #
-# The script does not accept any parameters.
+# * *$@* (...): The same parameters as ``jiracli`` app (see ``./jiracli.sh --help``)
 #
 # === Script Example
 #
 # [source, bash]
 # ```
-# ./run.sh
+# ./jiracli.sh
 # ```
 
 
