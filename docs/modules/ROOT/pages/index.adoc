@@ -1,4 +1,4 @@
-= Jira Ops CLI
+= Jira CLI
 include::ROOT:partial$vars.adoc[]
 
 include::ROOT:partial$README.adoc[]

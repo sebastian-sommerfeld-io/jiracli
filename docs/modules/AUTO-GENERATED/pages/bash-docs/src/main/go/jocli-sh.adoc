@@ -10,7 +10,7 @@
 // +-----------------------------------------------+
 
 
-Build and run Jira Ops CLI locally.
+Build and run Jira CLI locally.
 
 == Overview
 

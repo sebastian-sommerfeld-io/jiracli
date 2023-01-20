@@ -49,7 +49,7 @@ jobs:
       - name: README.adoc
         uses: sebastian-sommerfeld-io/github-action-generate-readme@main
         with:
-          caption: Jira Ops CLI
+          caption: Jira CLI
       - name: Commit and push
         uses: EndBug/add-and-commit@v9
         with:

@@ -1,4 +1,4 @@
-= Jira Ops CLI
+= Jira CLI
 Sebastian Sommerfeld <sebastian@sommerfeld.io>
 :project-name: jiracli
 :url-project: https://github.com/sebastian-sommerfeld-io/{project-name}
@@ -26,7 +26,7 @@ image:{github-actions-url}/{job-ci}/{badge}[Github Badge, link={github-actions-u
 * Where to file issues -> {url-project}/issues
 
 == About this project
-Jira Ops CLI is a command line interface to automate tasks otherwise done through the Jira web interface. The project encapsulates the link:https://developer.atlassian.com/server/jira/platform/rest-apis[Jira Rest API] through a command line and provides simple ways to automate (or at least dramatically speed up) recurring tasks.
+Jira CLI is a command line interface to automate tasks otherwise done through the Jira web interface. The project encapsulates the link:https://developer.atlassian.com/server/jira/platform/rest-apis[Jira Rest API] through a command line and provides simple ways to automate (or at least dramatically speed up) recurring tasks.
 
 To develop and run the application you need a Linux environment with Docker installed. A local Go installation is not needed because everything related to go is delegated to a Docker container. Development takes place on Ubuntu.
 

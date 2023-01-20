@@ -1,6 +1,6 @@
 #!/bin/bash
 # @file jiracli.sh
-# @brief Build and run Jira Ops CLI locally.
+# @brief Build and run Jira CLI locally.
 #
 # @description The script is a wrapper for the `jiracli` command. The script builds and runs
 # the ``jiracli`` locally. Before building, all tests are run as well. Every thin
