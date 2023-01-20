@@ -72,8 +72,6 @@ if [ ! -f go.mod ]; then
   go get -u github.com/spf13/cobra@latest
 fi
 
-echo -e "$LOG_INFO Prepare"
-mkdir -p "$TARGET_DIR"
 
 echo -e "$LOG_INFO ------------------------------------------------------------------------"
 echo -e "$LOG_INFO Format code"
@@ -94,4 +92,7 @@ echo -e "$LOG_INFO -------------------------------------------------------------
 echo -e "$LOG_INFO Build app"
 echo -e "$LOG_INFO ------------------------------------------------------------------------"
 go build .
+
+echo -e "$LOG_INFO Move binary to target directory"
+mkdir -p "$TARGET_DIR"
 mv jiracli "$TARGET_DIR"
