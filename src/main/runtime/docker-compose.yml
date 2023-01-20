@@ -4,8 +4,8 @@ services:
 
   jira:
     image: atlassian/jira-software:8.22.6-ubuntu-jdk11
-    container_name: node_exporter
-    restart: unless_stopped
+    container_name: jira
+    restart: unless-stopped
     ports:
       - 8080:8080
     volumes:
