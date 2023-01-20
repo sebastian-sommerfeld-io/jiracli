@@ -8,8 +8,8 @@ import (
 
 var rootCmd = &cobra.Command{
 	Use:  "jocli",
-	Short: "jocli - a simple CLI to interact with a Jira instance",
-	Long: "jocli is a simple CLI to interact with a Jira instance. It encapsulates the Jira Rest API and provides easy access to frequently used tasks.",
+	Short: "Interact with a Jira instance through the command line",
+	Long: "Jira Ops CLI interacts with a Jira instance through the command line. The app allows some automation of recurring tasks.",
 	Run: func(cmd *cobra.Command, args []string) {
 		fmt.Println("Print help texts")
 	},

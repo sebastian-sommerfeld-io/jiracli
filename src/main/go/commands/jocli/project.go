@@ -9,7 +9,27 @@ import (
 var projectCmd = &cobra.Command{
     Use:   "project",
     Aliases: []string{"p"},
-    Short:  "Handle Jira projects",
+    Short:  "Work with Jira projects",
+    Args:  cobra.ExactArgs(1),
+    Run: func(cmd *cobra.Command, args []string) {
+        fmt.Println(dummy.Dummy(args[0]))
+    },
+}
+
+var listCmd = &cobra.Command{
+    Use:   "list",
+    Aliases: []string{"p"},
+    Short:  "List all Jira projects",
+    Args:  cobra.ExactArgs(1),
+    Run: func(cmd *cobra.Command, args []string) {
+        fmt.Println(dummy.Dummy(args[0]))
+    },
+}
+
+var countCmd = &cobra.Command{
+    Use:   "list",
+    Aliases: []string{"p"},
+    Short:  "Count all Jira projects",
     Args:  cobra.ExactArgs(1),
     Run: func(cmd *cobra.Command, args []string) {
         fmt.Println(dummy.Dummy(args[0]))
@@ -18,4 +38,6 @@ var projectCmd = &cobra.Command{
 
 func init() {
     rootCmd.AddCommand(projectCmd)
+    projectCmd.AddCommand(listCmd)
+    projectCmd.AddCommand(countCmd)
 }
