@@ -3,8 +3,8 @@
 # @brief Build and run Jira CLI locally.
 #
 # @description The script is a wrapper for the `jiracli` command. The script builds and runs
-# the ``jiracli`` locally. Before building, all tests are run as well. Every thin
-# go-related is delegated to the link:https://hub.docker.com/_/golang[golang] Docker image.
+# the ``jiracli`` locally. Before building, all tests are run as well. Everything go-related
+# is delegated to the link:https://hub.docker.com/_/golang[golang] Docker image.
 #
 # === Script Arguments
 #
