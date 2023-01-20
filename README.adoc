@@ -1,6 +1,6 @@
 = Jira Ops CLI
 Sebastian Sommerfeld <sebastian@sommerfeld.io>
-:project-name: jira-ops-cli
+:project-name: jiracli
 :url-project: https://github.com/sebastian-sommerfeld-io/{project-name}
 :github-actions-url: {url-project}/actions/workflows
 :job-cicd: cicd.yml

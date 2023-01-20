@@ -1,4 +1,4 @@
-module sebastian-sommerfeld-io/jira-ops-cli
+module sebastian-sommerfeld-io/jiracli
 
 go 1.20
 

@@ -1,7 +1,7 @@
 package main
 
-import "sebastian-sommerfeld-io/jira-ops-cli/commands/jocli"
+import "sebastian-sommerfeld-io/jiracli/commands/jiracli"
 
 func main() {
-	jocli.Execute()
+	jiracli.Execute()
 }

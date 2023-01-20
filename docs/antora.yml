@@ -1,6 +1,6 @@
 ---
-name: jira-ops-cli
-title: Jira Ops CLI
+name: jiracli
+title: Jira CLI
 version: main
 start_page: ROOT:index.adoc
 nav:

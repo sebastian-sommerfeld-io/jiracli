@@ -78,7 +78,7 @@ jobs:
         run: |
           (
             cd src/main/go || exit
-            ./jocli.sh
+            ./jiracli.sh
           )
         shell: bash
 
