@@ -1,7 +1,4 @@
-/*
- * Sub-command. Handle everything related to projects.
- */
-package commands
+package jocli
 
 import (
     "fmt"

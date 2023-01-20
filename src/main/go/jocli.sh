@@ -1,10 +1,10 @@
 #!/bin/bash
-# @file build-and-run.sh
+# @file jocli.sh
 # @brief Build and run Jira Ops CLI locally.
 #
-# @description The script builds and runs the ``jira-ops-cli`` locally. Before
-# building, all tests are run as well. Every thin go-related is delegated to
-# the link:https://hub.docker.com/_/golang[golang] Docker image.
+# @description The script is a wrapper for the `jocli` command. The script builds and runs
+# the ``jira-ops-cli`` locally. Before building, all tests are run as well. Every thin
+# go-related is delegated to the link:https://hub.docker.com/_/golang[golang] Docker image.
 #
 # === Script Arguments
 #
