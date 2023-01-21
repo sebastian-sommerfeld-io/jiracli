@@ -33,6 +33,11 @@ is delegated to the link:https://hub.docker.com/_/golang[golang] Docker image.
 == Index
 
 * <<_go,go>>
+* <<_log,LOG>>
+* <<_format,format>>
+* <<_test,test>>
+* <<_run,run>>
+* <<_build,build>>
 
 === go
 
@@ -44,7 +49,7 @@ available to `go`. Paths are preserved. The container runs with the current user
 
 [,bash]
 ----
-goversion
+go version
 ----
 
 ==== Arguments
@@ -54,3 +59,31 @@ goversion
 ==== Exit codes
 
 * *8*: If param with terraform command is missing
+
+=== LOG
+
+Print log output in a header-style.
+
+==== Arguments
+
+* *...* (String): The line to print.
+
+=== format
+
+Format go source code.
+
+=== test
+
+Run all test cases.
+
+=== run
+
+Run the app locally.
+
+==== Arguments
+
+* *...* (String): The go commands (1-n arguments) - $1 is mandatory
+
+=== build
+
+Build the app.
