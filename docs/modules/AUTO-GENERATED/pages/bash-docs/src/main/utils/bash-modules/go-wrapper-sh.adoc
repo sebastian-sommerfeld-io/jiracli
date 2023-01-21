@@ -44,8 +44,8 @@ go version
 
 ==== Arguments
 
-* *...* (String): The go commands (1-n arguments) - $1 is mandatory
+* *...* (String): The `go` commands (1-n arguments) - $1 is mandatory
 
 ==== Exit codes
 
-* *8*: If param with terraform command is missing
+* *8*: If param with `go` command is missing
