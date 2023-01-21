@@ -32,33 +32,11 @@ is delegated to the link:https://hub.docker.com/_/golang[golang] Docker image.
 
 == Index
 
-* <<_go,go>>
 * <<_log,LOG>>
 * <<_format,format>>
 * <<_test,test>>
 * <<_run,run>>
 * <<_build,build>>
-
-=== go
-
-Wrapper function to encapsulate `go` in a docker container. The current working
-directory is mounted into the container and selected as working directory so that all file are
-available to `go`. Paths are preserved. The container runs with the current user.
-
-==== Example
-
-[,bash]
-----
-go version
-----
-
-==== Arguments
-
-* *...* (String): The go commands (1-n arguments) - $1 is mandatory
-
-==== Exit codes
-
-* *8*: If param with terraform command is missing
 
 === LOG
 

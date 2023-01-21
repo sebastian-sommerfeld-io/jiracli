@@ -1,2 +1,3 @@
 * `xref:AUTO-GENERATED:bash-docs/src/main/runtime/runtime-sh.adoc[src/main/runtime/runtime.sh]`
+* `xref:AUTO-GENERATED:bash-docs/src/main/go/.go-wrapper-sh.adoc[src/main/go/.go-wrapper.sh]`
 * `xref:AUTO-GENERATED:bash-docs/src/main/go/jiracli-sh.adoc[src/main/go/jiracli.sh]`
