@@ -12,13 +12,6 @@
 # === Script Arguments
 #
 # The script does not accept any parameters.
-#
-# === Script Example
-#
-# [source, bash]
-# ```
-# ./jiracli.sh
-# ```
 
 
 readonly LOG_ERROR="[\e[1;31mERROR\e[0m]" # Avoid 'unbound variable' errors in pipeline

@@ -18,7 +18,6 @@
 # ```
 
 
-readonly LOG_INFO="[\e[34mINFO\e[0m]" # Avoid 'unbound variable' errors in pipeline
 readonly TARGET_DIR="../../../target"
 
 set -o errexit
@@ -27,32 +26,23 @@ set -o nounset
 # set -o xtrace
 
 # Include local bash modules
-bash .go-wrapper.sh
+source "../bash-modules/log.sh"
+source "../bash-modules/go-wrapper.sh"
 
 
 echo -e "$LOG_INFO Run $0"
-
-
-# @description Print log output in a header-style.
-#
-# @arg $@ String The line to print.
-function LOG() {
-  echo -e "$LOG_INFO ------------------------------------------------------------------------"
-  echo -e "$LOG_INFO $1"
-  echo -e "$LOG_INFO ------------------------------------------------------------------------"
-}
-
+which go
 
 # @description Format go source code.
 function format() {
-  LOG "Format code"
+  LOG_HEADER "Format code"
   go fmt ./...
 }
 
 
 # @description Run all test cases.
 function test() {
-  LOG "Run tests"
+  LOG_HEADER "Run tests"
   go test ./...
 }
 
@@ -61,14 +51,14 @@ function test() {
 #
 # @arg $@ String The go commands (1-n arguments) - $1 is mandatory
 function run() {
-  LOG "Run app locally"
+  LOG_HEADER "Run app locally"
   go run . "$@"
 }
 
 
 # @description Build the app.
 function build() {
-  LOG "Build app"
+  LOG_HEADER "Build app"
   go build .
 
   echo -e "$LOG_INFO Move binary to target directory"
