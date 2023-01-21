@@ -38,7 +38,7 @@ echo -e "$LOG_INFO Run $0"
 # available to ``go``. Paths are preserved. The container runs with the current user.
 #
 # @example
-#    goversion
+#    go version
 #
 # @arg $@ String The go commands (1-n arguments) - $1 is mandatory
 #
@@ -62,6 +62,50 @@ function go() {
 }
 
 
+# @description Print log output in a header-style.
+#
+# @arg $@ String The line to print.
+function LOG() {
+  echo -e "$LOG_INFO ------------------------------------------------------------------------"
+  echo -e "$LOG_INFO $1"
+  echo -e "$LOG_INFO ------------------------------------------------------------------------"
+}
+
+
+# @description Format go source code.
+function format() {
+  LOG "Format code"
+  go fmt ./...
+}
+
+
+# @description Run all test cases.
+function test() {
+  LOG "Run tests"
+  go test ./...
+}
+
+
+# @description Run the app locally.
+#
+# @arg $@ String The go commands (1-n arguments) - $1 is mandatory
+function run() {
+  LOG "Run app locally"
+  go run . "$@"
+}
+
+
+# @description Build the app.
+function build() {
+  LOG "Build app"
+  go build .
+
+  echo -e "$LOG_INFO Move binary to target directory"
+  mkdir -p "$TARGET_DIR"
+  mv jiracli "$TARGET_DIR"
+}
+
+
 if [ ! -f go.mod ]; then
   readonly MODULE="sebastian-sommerfeld-io/jiracli"
 
@@ -73,26 +117,7 @@ if [ ! -f go.mod ]; then
 fi
 
 
-echo -e "$LOG_INFO ------------------------------------------------------------------------"
-echo -e "$LOG_INFO Format code"
-echo -e "$LOG_INFO ------------------------------------------------------------------------"
-go fmt ./...
-
-echo -e "$LOG_INFO ------------------------------------------------------------------------"
-echo -e "$LOG_INFO Run tests"
-echo -e "$LOG_INFO ------------------------------------------------------------------------"
-go test ./...
-
-echo -e "$LOG_INFO ------------------------------------------------------------------------"
-echo -e "$LOG_INFO Run app"
-echo -e "$LOG_INFO ------------------------------------------------------------------------"
-go run . "$@"
-
-echo -e "$LOG_INFO ------------------------------------------------------------------------"
-echo -e "$LOG_INFO Build app"
-echo -e "$LOG_INFO ------------------------------------------------------------------------"
-go build .
-
-echo -e "$LOG_INFO Move binary to target directory"
-mkdir -p "$TARGET_DIR"
-mv jiracli "$TARGET_DIR"
+format
+test
+run "$@"
+build
