@@ -2,13 +2,16 @@
 # @file .go-wrapper.sh.sh
 # @brief Bash module which provides the wrapper function to run Go inside a Docker container.
 #
-# @description The script is a wrapper for the `jiracli` command. The script builds and runs
-# the ``jiracli`` locally. Before building, all tests are run as well. Everything go-related
-# is delegated to the link:https://hub.docker.com/_/golang[golang] Docker image.
+# @description The script is Bash module which provides the wrapper function to run Go inside
+# a Docker container. All go commands run in the link:https://hub.docker.com/_/golang[golang]
+# Docker image.
+#
+# CAUTION: This script is a module an is not intended to run on its own. Include in script and
+# use its functions!.
 #
 # === Script Arguments
 #
-# * *$@* (...): The same parameters as ``jiracli`` app (see ``./jiracli.sh --help``)
+# The script does not accept any parameters.
 #
 # === Script Example
 #
