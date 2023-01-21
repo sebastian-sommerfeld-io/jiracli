@@ -23,13 +23,14 @@ readonly STOP="stop"
 ARG="$1"
 readonly ARG
 
-
-echo -e "$LOG_INFO Run $0"
+# Include local bash modules
+source "../utils/bash-modules/log.sh"
+source "../utils/bash-modules/go-wrapper.sh"
 
 
 if [ -z "$ARG" ]; then
-  echo -e "$LOG_ERROR Param missing: command (start | logs | stop)"
-  echo -e "$LOG_ERROR exit" && exit 0
+  LOG_ERROR "Param missing: command (start | logs | stop)"
+  LOG_ERROR "exit" && exit 0
 fi
 
 
@@ -41,15 +42,15 @@ set -o nounset
 
 case "$ARG" in
     "$START" )
-        echo -e "$LOG_INFO Start stack"
+        LOG_INFO " Start stack"
         docker-compose up -d
     ;;
     "$LOGS" )
-        echo -e "$LOG_INFO Show logs"
+        LOG_INFO " Show logs"
         docker-compose logs -f
     ;;
     "$STOP" )
-        echo -e "$LOG_INFO Stop stack"
+        LOG_INFO " Stop stack"
         docker-compose down -v --rmi all
     ;;
 esac

@@ -13,10 +13,10 @@ The project sorts its source files into several folders:
 |===
 |Directory |Description
 |`docs` |Project documentation in Asciidoc
-|`src/main/bash-modules` |Bash utility modules which are used from other bash scripts (e.g. link:xref:AUTO-GENERATED:bash-docs/src/main/bash-modules/go-wrapper-sh.adoc[the wrapper script to run Go in Docker]).
 |`src/main/go` |The actual source code of the jiracli application
 |`src/main/postman` |Postman collections containing webservice calls
 |`src/main/runtime` |Docker Compose configurations
+|`src/main/utils` |Utility modules which are used from other scripts (e.g. link:https://github.com/spf13/cobra-cli[cobra-cli] or link:xref:AUTO-GENERATED:bash-docs/src/main/bash-modules/go-wrapper-sh.adoc[the wrapper script to run Go in Docker]).
 |===
 
 == Code Styleguide

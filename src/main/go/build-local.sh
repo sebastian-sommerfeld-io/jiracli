@@ -23,8 +23,8 @@ set -o nounset
 # set -o xtrace
 
 # Include local bash modules
-source "../bash-modules/log.sh"
-source "../bash-modules/go-wrapper.sh"
+source "../utils/bash-modules/log.sh"
+source "../utils/bash-modules/go-wrapper.sh"
 
 
 # @description Build the app.

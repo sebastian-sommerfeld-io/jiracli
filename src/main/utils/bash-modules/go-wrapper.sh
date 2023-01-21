@@ -27,9 +27,9 @@ set -o nounset
 # @example
 #    go version
 #
-# @arg $@ String The go commands (1-n arguments) - $1 is mandatory
+# @arg $@ String The ``go`` commands (1-n arguments) - $1 is mandatory
 #
-# @exitcode 8 If param with terraform command is missing
+# @exitcode 8 If param with ``go`` command is missing
 function go() {
   if [ -z "$1" ]; then
     LOG_ERROR "No command passed to the go container"
