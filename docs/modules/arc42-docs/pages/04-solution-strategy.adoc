@@ -1,5 +1,24 @@
 = 04 - Solution Strategy
 
+== Basic principles
+. Everything is written as code!
+. Every deployment etc. is done from a pipeline!
+. Everything is validated by linters / scanners!
+. Everything runs in Docker! This includes build artifacts as well as every tool which is used for development.
+
+== Project Structure
+The project sorts its source files into several folders:
+
+[cols="1,4", options="header"]
+|===
+|Directory |Description
+|`docs` |Project documentation in Asciidoc
+|`src/main/bash-modules` |Bash utility modules which are used from other bash scripts (e.g. link:xref:AUTO-GENERATED:bash-docs/src/main/bash-modules/go-wrapper-sh.adoc[the wrapper script to run Go in Docker]).
+|`src/main/go` |The actual source code of the jiracli application
+|`src/main/postman` |Postman collections containing webservice calls
+|`src/main/runtime` |Docker Compose configurations
+|===
+
 == Code Styleguide
 The source code of this application follows the link:https://go.dev/doc/effective_go[Effective Go] guide from the Go Website.
 
