@@ -25,7 +25,25 @@ The script does not accept any parameters.
 
 == Index
 
+* <<_log_error,LOG_ERROR>>
+* <<_log_info,LOG_INFO>>
 * <<_log_header,LOG_HEADER>>
+
+=== LOG_ERROR
+
+Log message with log level = ERROR.
+
+==== Arguments
+
+* *...* (String): The line to print.
+
+=== LOG_INFO
+
+Log message with log level = INFO.
+
+==== Arguments
+
+* *...* (String): The line to print.
 
 === LOG_HEADER
 
