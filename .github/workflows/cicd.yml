@@ -57,6 +57,26 @@ jobs:
         with:
           ignore_paths: node_modules target
 
+  lint-dockerfile-jiracli:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: hadolint
+        uses: hadolint/hadolint-action@v3.0.0
+        with:
+          dockerfile: src/main/Dockerfile
+
+  lint-dockerfile-cobra-cli:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: hadolint
+        uses: hadolint/hadolint-action@v3.0.0
+        with:
+          dockerfile: src/main/utils/cobra-cli/Dockerfile
+
   sonar:
     runs-on: ubuntu-latest
     steps:
@@ -72,7 +92,7 @@ jobs:
 
   ci:
     runs-on: ubuntu-latest
-    needs: ['lint-yaml', 'lint-env-files', 'lint-folders', 'lint-filenames', 'shellcheck', 'sonar']
+    needs: ['lint-yaml', 'lint-env-files', 'lint-folders', 'lint-filenames', 'shellcheck', 'sonar', 'lint-dockerfile-jiracli', 'lint-dockerfile-cobra-cli']
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -96,7 +116,7 @@ jobs:
 
   on-failure:
     runs-on: ubuntu-latest
-    needs: ['lint-yaml', 'lint-env-files', 'lint-folders', 'lint-filenames', 'shellcheck', 'sonar', 'ci', 'cd']
+    needs: ['lint-yaml', 'lint-env-files', 'lint-folders', 'lint-filenames', 'shellcheck', 'sonar', 'lint-dockerfile-jiracli', 'lint-dockerfile-cobra-cli', 'ci', 'cd']
     if: failure()
     steps:
       - name: Send Pipeline Status to Google Chat
