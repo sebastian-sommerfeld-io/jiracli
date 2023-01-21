@@ -30,7 +30,7 @@ source "../bash-modules/log.sh"
 source "../bash-modules/go-wrapper.sh"
 
 
-echo -e "$LOG_INFO Run $0"
+LOG_INFO "Run $0"
 which go
 
 # @description Format go source code.
@@ -61,7 +61,7 @@ function build() {
   LOG_HEADER "Build app"
   go build .
 
-  echo -e "$LOG_INFO Move binary to target directory"
+  LOG_INFO "Move binary to target directory"
   mkdir -p "$TARGET_DIR"
   mv jiracli "$TARGET_DIR"
 }
@@ -70,7 +70,7 @@ function build() {
 if [ ! -f go.mod ]; then
   readonly MODULE="sebastian-sommerfeld-io/jiracli"
 
-  echo -e "$LOG_INFO Initialize $MODULE"
+  LOG_INFO "Initialize $MODULE"
   go mod init "$MODULE"
   go mod tidy
 

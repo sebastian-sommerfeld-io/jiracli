@@ -12,21 +12,35 @@
 # The script does not accept any parameters.
 
 
-# TODO function LOG_ERROR and LOG_INFO
-# TODO    then remove vars from scripts
-readonly LOG_INFO="[\e[34mINFO\e[0m]" # Avoid 'unbound variable' errors in pipeline
-
 set -o errexit
 set -o pipefail
 set -o nounset
 # set -o xtrace
 
 
+# @description Log message with log level = ERROR.
+#
+# @arg $@ String The line to print.
+function LOG_ERROR() {
+  local LOG_ERROR="[\e[1;31mERROR\e[0m]" 
+  echo -e "$LOG_ERROR $1"
+}
+
+
+# @description Log message with log level = INFO.
+#
+# @arg $@ String The line to print.
+function LOG_INFO() {
+  local LOG_INFO="[\e[34mINFO\e[0m]"
+  echo -e "$LOG_INFO $1"
+}
+
+
 # @description Print log output in a header-style.
 #
 # @arg $@ String The line to print.
 function LOG_HEADER() {
-  echo -e "$LOG_INFO ------------------------------------------------------------------------"
-  echo -e "$LOG_INFO $1"
-  echo -e "$LOG_INFO ------------------------------------------------------------------------"
+  LOG_INFO "------------------------------------------------------------------------"
+  LOG_INFO "$1"
+  LOG_INFO "------------------------------------------------------------------------"
 }

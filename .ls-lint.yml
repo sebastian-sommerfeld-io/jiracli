@@ -23,6 +23,7 @@ ls:
 
   .env: lowercase
   .folderslintrc: lowercase
+  .shellcheckrc: lowercase
   .gitignore: lowercase
   .gitkeep: lowercase
 

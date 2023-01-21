@@ -14,8 +14,6 @@
 # The script does not accept any parameters.
 
 
-readonly LOG_ERROR="[\e[1;31mERROR\e[0m]" # Avoid 'unbound variable' errors in pipeline
-
 set -o errexit
 set -o pipefail
 set -o nounset
@@ -34,8 +32,8 @@ set -o nounset
 # @exitcode 8 If param with terraform command is missing
 function go() {
   if [ -z "$1" ]; then
-    echo -e "$LOG_ERROR No command passed to the go container"
-    echo -e "$LOG_ERROR exit" && exit 8
+    LOG_ERROR "No command passed to the go container"
+    LOG_ERROR "exit" && exit 8
   fi
 
   mkdir -p "/tmp/$USER/.cache"
