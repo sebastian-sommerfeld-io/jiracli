@@ -1,4 +1,4 @@
-= .go-wrapper.sh
+= go-wrapper.sh
 
 // +-----------------------------------------------+
 // |                                               |
@@ -24,14 +24,6 @@ use its functions!.
 === Script Arguments
 
 The script does not accept any parameters.
-
-=== Script Example
-
-[source, bash]
-
-----
-./jiracli.sh
-----
 
 == Index
 
