@@ -1,4 +1,4 @@
-= jiracli.sh
+= build-local.sh
 
 // +-----------------------------------------------+
 // |                                               |
@@ -10,13 +10,12 @@
 // +-----------------------------------------------+
 
 
-Run Jira CLI locally.
+Build Jira CLI locally.
 
 == Overview
 
-The script is a wrapper for the `jiracli` command. The script runs the
-`jiracli` app locally. Before building, all tests are run as well. Everything related
-to go is delegated to the link:https://hub.docker.com/_/golang[golang] Docker image.
+The script builds the `jiracli` locally. Before building, first run the app by
+invoking `xref:AUTO-GENERATED:bash-docs/src/main/go/jiracli-sh.adoc[src/main/go/jiracli.sh]`.
 
 === Script Arguments
 
@@ -32,22 +31,8 @@ to go is delegated to the link:https://hub.docker.com/_/golang[golang] Docker im
 
 == Index
 
-* <<_format,format>>
-* <<_test,test>>
-* <<_run,run>>
+* <<_build,build>>
 
-=== format
+=== build
 
-Format go source code.
-
-=== test
-
-Run all test cases.
-
-=== run
-
-Run the app locally.
-
-==== Arguments
-
-* *...* (String): The go commands (1-n arguments) - $1 is mandatory
+Build the app.

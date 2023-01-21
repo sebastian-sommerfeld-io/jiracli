@@ -1,4 +1,5 @@
 * `xref:AUTO-GENERATED:bash-docs/src/main/runtime/runtime-sh.adoc[src/main/runtime/runtime.sh]`
 * `xref:AUTO-GENERATED:bash-docs/src/main/bash-modules/go-wrapper-sh.adoc[src/main/bash-modules/go-wrapper.sh]`
 * `xref:AUTO-GENERATED:bash-docs/src/main/bash-modules/log-sh.adoc[src/main/bash-modules/log.sh]`
+* `xref:AUTO-GENERATED:bash-docs/src/main/go/build-local-sh.adoc[src/main/go/build-local.sh]`
 * `xref:AUTO-GENERATED:bash-docs/src/main/go/jiracli-sh.adoc[src/main/go/jiracli.sh]`
