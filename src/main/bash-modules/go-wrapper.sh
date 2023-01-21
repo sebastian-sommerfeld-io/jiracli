@@ -1,5 +1,5 @@
 #!/bin/bash
-# @file .go-wrapper.sh.sh
+# @file go-wrapper.sh.sh
 # @brief Bash module which provides the wrapper function to run Go inside a Docker container.
 #
 # @description The script is Bash module which provides the wrapper function to run Go inside
