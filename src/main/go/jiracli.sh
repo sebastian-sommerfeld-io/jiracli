@@ -1,10 +1,10 @@
 #!/bin/bash
 # @file jiracli.sh
-# @brief Build and run Jira CLI locally.
+# @brief Run Jira CLI locally.
 #
-# @description The script is a wrapper for the `jiracli` command. The script builds and runs
-# the ``jiracli`` locally. Before building, all tests are run as well. Everything go-related
-# is delegated to the link:https://hub.docker.com/_/golang[golang] Docker image.
+# @description The script is a wrapper for the `jiracli` command. The script runs the
+# ``jiracli`` app locally. Before building, all tests are run as well. Everything related
+# to go is delegated to the link:https://hub.docker.com/_/golang[golang] Docker image.
 #
 # === Script Arguments
 #
@@ -18,8 +18,6 @@
 # ```
 
 
-readonly TARGET_DIR="../../../target"
-
 set -o errexit
 set -o pipefail
 set -o nounset
@@ -29,9 +27,6 @@ set -o nounset
 source "../bash-modules/log.sh"
 source "../bash-modules/go-wrapper.sh"
 
-
-LOG_INFO "Run $0"
-which go
 
 # @description Format go source code.
 function format() {
@@ -56,17 +51,6 @@ function run() {
 }
 
 
-# @description Build the app.
-function build() {
-  LOG_HEADER "Build app"
-  go build .
-
-  LOG_INFO "Move binary to target directory"
-  mkdir -p "$TARGET_DIR"
-  mv jiracli "$TARGET_DIR"
-}
-
-
 if [ ! -f go.mod ]; then
   readonly MODULE="sebastian-sommerfeld-io/jiracli"
 
@@ -81,4 +65,3 @@ fi
 format
 test
 run "$@"
-build
