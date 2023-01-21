@@ -32,19 +32,10 @@ is delegated to the link:https://hub.docker.com/_/golang[golang] Docker image.
 
 == Index
 
-* <<_log,LOG>>
 * <<_format,format>>
 * <<_test,test>>
 * <<_run,run>>
 * <<_build,build>>
-
-=== LOG
-
-Print log output in a header-style.
-
-==== Arguments
-
-* *...* (String): The line to print.
 
 === format
 
