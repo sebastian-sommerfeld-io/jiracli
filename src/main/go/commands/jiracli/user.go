@@ -5,10 +5,12 @@ import (
 	"log"
 )
 
-var userCmd = &cobra.Command{
-	Use:   "user",
-	Short: "Work with Jira users.",
-	Args:  cobra.ExactArgs(1),
+var (
+	userCmd = &cobra.Command{
+		Use:   "user",
+		Short: "Work with Jira users.",
+		Args:  cobra.ExactArgs(1),
+	)
 }
 
 func init() {
