@@ -1,7 +1,7 @@
 ---
 name: jiracli
 title: Jira CLI
-version: main
+version: feat__28-test-commands
 start_page: ROOT:index.adoc
 nav:
   - modules/ROOT/nav.adoc
