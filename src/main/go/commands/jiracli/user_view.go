@@ -2,16 +2,11 @@ package jiracli
 
 import (
 	"fmt"
-	"github.com/sebastian-sommerfeld-io/jiracli/services/user"
 	"github.com/spf13/cobra"
 	"log"
-)
 
-var userCmd = &cobra.Command{
-	Use:   "user",
-	Short: "Work with Jira users.",
-	Args:  cobra.ExactArgs(1),
-}
+	"github.com/sebastian-sommerfeld-io/jiracli/services/user"
+)
 
 var userViewCmd = &cobra.Command{
 	Use:   "view",
@@ -27,7 +22,6 @@ var userViewCmd = &cobra.Command{
 func init() {
 	log.SetPrefix("user_commands - ")
 
-	rootCmd.AddCommand(userCmd)
 	userCmd.AddCommand(userViewCmd)
 }
 
