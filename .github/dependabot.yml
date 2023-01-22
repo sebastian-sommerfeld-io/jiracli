@@ -9,7 +9,3 @@ updates:
     directory: "src/main"
     schedule:
       interval: "weekly"
-  - package-ecosystem: "docker"
-    directory: "src/main/utils/cobra-cli"
-    schedule:
-      interval: "weekly"
