@@ -1,7 +1,7 @@
 ---
 name: jiracli
 title: Jira CLI
-version: main
+version: feat__commands-from-cobra-cli
 start_page: ROOT:index.adoc
 nav:
   - modules/ROOT/nav.adoc

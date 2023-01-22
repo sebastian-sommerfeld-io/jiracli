@@ -4,7 +4,7 @@ import (
 	"github.com/stretchr/testify/assert"
 	"testing"
 
-	"sebastian-sommerfeld-io/jiracli/services/user"
+	"github.com/sebastian-sommerfeld-io/jiracli/services/user"
 )
 
 func Test_viewUser(t *testing.T) {

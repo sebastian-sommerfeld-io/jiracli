@@ -38,6 +38,8 @@ source "../utils/bash-modules/go-wrapper.sh"
 readonly OPTION_INIT="init"
 readonly OPTION_ADD_COMMAND="add_command"
 
+readonly APP_NAME="jiracli"
+
 
 # @description Wrapper function to encapsulate ``cobra-cli`` in a docker container.
 # The current working directory is mounted into the container and selected as working
@@ -73,13 +75,8 @@ function cobra-cli() {
 function init() {
   LOG_HEADER "Initialize application"
 
-  LOG_INFO "Enter application name ..."
-  read -r name
-  readonly name
-
-  LOG_INFO "Initialize $name"
-  # cobra-cli init "$name"
-  cobra-cli --help
+  LOG_INFO "Initialize $APP_NAME"
+  cobra-cli init "$APP_NAME"
 }
 
 
@@ -91,10 +88,10 @@ function add_command() {
   LOG_INFO "Enter command name to add to project - e.g."
   LOG_INFO "    - cobra-cli add [NAME]"
   LOG_INFO "    - cobra-cli add [NAME] -p '[PARENTNAME]Cmd'"
-  read -r name
-  readonly name
+  # read -r name
+  # readonly name
 
-  LOG_INFO "Initialize $name"
+  LOG_INFO "Initialize"
   # cobra-cli add "$name"
   cobra-cli --help
 }

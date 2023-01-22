@@ -2,9 +2,9 @@ package jiracli
 
 import (
 	"fmt"
+	"github.com/sebastian-sommerfeld-io/jiracli/services/user"
 	"github.com/spf13/cobra"
 	"log"
-	"sebastian-sommerfeld-io/jiracli/services/user"
 )
 
 var userCmd = &cobra.Command{
