@@ -18,8 +18,8 @@ var (
 		Run: func(cmd *cobra.Command, args []string) {
 			fmt.Println(viewUser(args[0]))
 		},
-	)
-}
+	}
+)
 
 func init() {
 	log.SetPrefix("user_commands - ")
