@@ -35,6 +35,27 @@ function format() {
 }
 
 
+# @description Run local linters.
+function linters() {
+  LOG_HEADER "Run local linters"
+
+  # (
+  #   cd ../../../ || exit
+
+  #   mkdir -p target/cache/.m2
+
+  #   docker run --rm -it \
+  #     --volume /etc/passwd:/etc/passwd:ro \
+  #     --volume /etc/group:/etc/group:ro \
+  #     --user "$(id -u):$(id -g)" \
+  #     --volume "$(pwd)/src/main/go:/data/project" \
+  #     --volume "$(pwd)/target:/data/results" \
+  #     --volume "$(pwd)/target/cache:/data/cache" \
+  #     jetbrains/qodana-go:2022.3-eap --save-report --user "$(id -u):$(id -g)"
+  # )
+}
+
+
 # @description Run all test cases.
 function test() {
   LOG_HEADER "Run tests"
@@ -63,5 +84,6 @@ fi
 
 
 format
+linters
 test
 run "$@"
