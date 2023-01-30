@@ -24,35 +24,14 @@ set -o nounset
 # set -o xtrace
 
 # Include local bash modules
-source "../utils/bash-modules/log.sh"
-source "../utils/bash-modules/go-wrapper.sh"
+source "../../utils/bash-modules/log.sh"
+source "../../utils/bash-modules/go-wrapper.sh"
 
 
 # @description Format go source code.
 function format() {
   LOG_HEADER "Format code"
   go fmt ./...
-}
-
-
-# @description Run local linters.
-function linters() {
-  LOG_HEADER "Run local linters"
-
-  # (
-  #   cd ../../../ || exit
-
-  #   mkdir -p target/cache/.m2
-
-  #   docker run --rm -it \
-  #     --volume /etc/passwd:/etc/passwd:ro \
-  #     --volume /etc/group:/etc/group:ro \
-  #     --user "$(id -u):$(id -g)" \
-  #     --volume "$(pwd)/src/main/go:/data/project" \
-  #     --volume "$(pwd)/target:/data/results" \
-  #     --volume "$(pwd)/target/cache:/data/cache" \
-  #     jetbrains/qodana-go:2022.3-eap --save-report --user "$(id -u):$(id -g)"
-  # )
 }
 
 
@@ -84,6 +63,5 @@ fi
 
 
 format
-linters
 test
 run "$@"

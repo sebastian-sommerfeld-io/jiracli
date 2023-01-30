@@ -23,16 +23,16 @@ set -o nounset
 # set -o xtrace
 
 # Include local bash modules
-source "../utils/bash-modules/log.sh"
-source "../utils/bash-modules/go-wrapper.sh"
+source "../../utils/bash-modules/log.sh"
+source "../../utils/bash-modules/go-wrapper.sh"
 
 
 # @description Build the app.
-function build() {
+function buildGoApp() {
   local TARGET_DIR="../../../target"
   readonly TARGET_DIR
 
-  LOG_HEADER "Build app"
+  LOG_HEADER "Build go app"
   go build .
 
   LOG_INFO "Move binary to target directory"
@@ -47,4 +47,4 @@ if [ ! -f go.mod ]; then
 fi
 
 
-build
+buildGoApp

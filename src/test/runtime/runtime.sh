@@ -2,7 +2,8 @@
 # @file runtime.sh
 # @brief Start or stop the docker stack.
 #
-# @description The script starts and stops the docker stack used for the local jira instance.
+# @description The script starts and stops the docker compose stack used for the local jira
+# instance. This stack is used for automated tests against a running Jira system.
 #
 # === Script Arguments
 #
@@ -24,8 +25,8 @@ ARG="$1"
 readonly ARG
 
 # Include local bash modules
-source "../utils/bash-modules/log.sh"
-source "../utils/bash-modules/go-wrapper.sh"
+source "../../utils/bash-modules/log.sh"
+source "../../utils/bash-modules/go-wrapper.sh"
 
 
 if [ -z "$ARG" ]; then
@@ -41,16 +42,16 @@ set -o nounset
 
 
 case "$ARG" in
-    "$START" )
-        LOG_INFO " Start stack"
-        docker-compose up -d
-    ;;
-    "$LOGS" )
-        LOG_INFO " Show logs"
-        docker-compose logs -f
-    ;;
-    "$STOP" )
-        LOG_INFO " Stop stack"
-        docker-compose down -v --rmi all
-    ;;
+  "$START" )
+    LOG_HEADER "Start stack"
+    docker-compose up -d
+  ;;
+  "$LOGS" )
+    LOG_HEADER "Show logs"
+    docker-compose logs -f
+  ;;
+  "$STOP" )
+    LOG_HEADER "Stop stack"
+    docker-compose down -v --rmi all
+  ;;
 esac
