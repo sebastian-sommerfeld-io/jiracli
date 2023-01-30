@@ -39,18 +39,17 @@ source "../bash-modules/log.sh"
     --workdir "$(pwd)" \
     cytopia/yamllint:latest .
 
-
-  LOG_HEADER "Run jetbrains/qodana"
   readonly TARGET="target/qodana"
-  
+  readonly PORT="9080"
+  LOG_HEADER "Run jetbrains/qodana on http://localhost:$PORT"
   mkdir -p "$TARGET"
 
-#   docker run --rm -it -p 8080:8080 \
+#   docker run --rm -it -p 9080:8080 \
 #     --volume "$(pwd):/data/project" \
 #     --volume "$(pwd)/$TARGET:/data/results" \
 #     --volume "$(pwd)/$TARGET/cache:/data/cache" \
 #     jetbrains/qodana:2022.2-eap --show-report
-  docker run --rm -it -p 8080:8080 \
+  docker run --rm -it -p 9080:8080 \
     --volume "$(pwd):/data/project" \
     --volume "$(pwd)/$TARGET:/data/results" \
     --volume "$(pwd)/$TARGET/cache:/data/cache" \

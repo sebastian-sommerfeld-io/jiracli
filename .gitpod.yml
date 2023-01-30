@@ -1,4 +1,10 @@
 ---
+ports:
+  - name: Qodana report
+    description: Prepare port to expose Qodana report
+    port: 9080
+    onOpen: open-browser
+
 tasks:
   - name: Install yamllint
     init: sudo apt-get install -y yamllint
