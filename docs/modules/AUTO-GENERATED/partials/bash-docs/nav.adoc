@@ -1,6 +1,6 @@
-* `xref:AUTO-GENERATED:bash-docs/src/utils/code-analyzer/analyze-sh.adoc[src/utils/code-analyzer/analyze.sh]`
-* `xref:AUTO-GENERATED:bash-docs/src/utils/bash-modules/go-wrapper-sh.adoc[src/utils/bash-modules/go-wrapper.sh]`
-* `xref:AUTO-GENERATED:bash-docs/src/utils/bash-modules/log-sh.adoc[src/utils/bash-modules/log.sh]`
+* `xref:AUTO-GENERATED:bash-docs/src/util/code-analyzer/analyze-sh.adoc[src/util/code-analyzer/analyze.sh]`
+* `xref:AUTO-GENERATED:bash-docs/src/util/bash-modules/go-wrapper-sh.adoc[src/util/bash-modules/go-wrapper.sh]`
+* `xref:AUTO-GENERATED:bash-docs/src/util/bash-modules/log-sh.adoc[src/util/bash-modules/log.sh]`
 * `xref:AUTO-GENERATED:bash-docs/src/test/runtime/runtime-sh.adoc[src/test/runtime/runtime.sh]`
 * `xref:AUTO-GENERATED:bash-docs/src/main/go/build-local-sh.adoc[src/main/go/build-local.sh]`
 * `xref:AUTO-GENERATED:bash-docs/src/main/go/jiracli-sh.adoc[src/main/go/jiracli.sh]`

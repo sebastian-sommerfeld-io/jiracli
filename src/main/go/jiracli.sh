@@ -24,8 +24,8 @@ set -o nounset
 # set -o xtrace
 
 # Include local bash modules
-source "../../utils/bash-modules/log.sh"
-source "../../utils/bash-modules/go-wrapper.sh"
+source "../../util/bash-modules/log.sh"
+source "../../util/bash-modules/go-wrapper.sh"
 
 
 # @description Format go source code.
