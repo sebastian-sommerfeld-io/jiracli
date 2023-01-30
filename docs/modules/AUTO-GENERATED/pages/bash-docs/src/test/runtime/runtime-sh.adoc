@@ -14,7 +14,8 @@ Start or stop the docker stack.
 
 == Overview
 
-The script starts and stops the docker stack used for the local jira instance.
+The script starts and stops the docker compose stack used for the local jira
+instance. This stack is used for automated tests against a running Jira system.
 
 === Script Arguments
 

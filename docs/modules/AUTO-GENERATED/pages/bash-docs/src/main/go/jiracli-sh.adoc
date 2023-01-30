@@ -33,17 +33,12 @@ to go is delegated to the link:https://hub.docker.com/_/golang[golang] Docker im
 == Index
 
 * <<_format,format>>
-* <<_linters,linters>>
 * <<_test,test>>
 * <<_run,run>>
 
 === format
 
 Format go source code.
-
-=== linters
-
-Run local linters.
 
 === test
 
