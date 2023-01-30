@@ -1,4 +1,4 @@
-= build-local.sh
+= analyze.sh
 
 // +-----------------------------------------------+
 // |                                               |
@@ -10,29 +10,27 @@
 // +-----------------------------------------------+
 
 
-Build Jira CLI locally.
+Analyze this projects source code locally by running some linters and analyzers.
 
 == Overview
 
-The script builds the `jiracli` locally. Before building, first run the app by
-invoking `xref:AUTO-GENERATED:bash-docs/src/main/go/jiracli-sh.adoc[src/main/go/jiracli.sh]`.
+This script analyzes this projects source code by running some linters and
+analyzers. The script is intended to run on your local machine.
+
+TODO * Sonarlint
+
+* link:https://www.jetbrains.com/de-de/qodana[Qodana] \-> Docker image `+link:https://hub.docker.com/r/jetbrains/qodana[jetbrains/qodana]+`
 
 === Script Arguments
 
-* _$@_ (...): The same parameters as `jiracli` app (see `./jiracli.sh --help`)
+The script does not accept any parameters.
+
+* _$1_ (string): Some var
 
 === Script Example
 
 [source, bash]
 
 ----
-./jiracli.sh
+./analyze.sh
 ----
-
-== Index
-
-* <<_buildgoapp,buildGoApp>>
-
-=== buildGoApp
-
-Build the app.
