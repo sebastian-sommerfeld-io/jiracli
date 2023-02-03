@@ -18,7 +18,7 @@ FROM alpine:3.17.1 AS run
 LABEL maintainer="sebastian@sommerfeld.io"
 
 # To run integration tests with a proper shell
-RUN apk add --no-cache bash
+RUN apk add --no-cache bash=5.2.15-r0
 
 COPY --from=build /app/target/jiracli /usr/bin/jiracli
 
