@@ -3,7 +3,8 @@
 # @brief Start or stop the docker stack.
 #
 # @description The script starts and stops the docker compose stack used for the local jira
-# instance. This stack is used for automated tests against a running Jira system.
+# instance. This stack is used for automated tests against a running Jira system. This stack
+# also builds the ``local/jiracli:dev`` image to run tests based on ``src/main/Dockerfile``.
 #
 # === Script Arguments
 #
