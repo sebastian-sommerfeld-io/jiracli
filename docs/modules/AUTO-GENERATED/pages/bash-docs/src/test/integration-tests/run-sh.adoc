@@ -1,4 +1,4 @@
-= runtime.sh
+= run.sh
 
 // +-----------------------------------------------+
 // |                                               |
@@ -10,7 +10,7 @@
 // +-----------------------------------------------+
 
 
-Start or stop the docker stack.
+Start the docker stack and run tests or stop the docker stack.
 
 == Overview
 
