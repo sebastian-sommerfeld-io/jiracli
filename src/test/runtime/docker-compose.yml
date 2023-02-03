@@ -11,14 +11,14 @@ services:
     volumes:
       - jiraVolume:/var/atlassian/application-data/jira
       - /etc/timezone:/etc/timezone:ro
-  
+
   jiracli_builder:
     build: ../../main
     image: local/jiracli:dev
     container_name: cli_builder
     depends_on:
       - jira
-  
+
   jiracli_1:
     image: local/jiracli:dev
     container_name: jiracli_1
@@ -32,7 +32,7 @@ services:
     command: user view admin.admin
     depends_on:
       - jiracli_builder
-  
+
   jiracli_2:
     image: local/jiracli:dev
     container_name: jiracli_2
