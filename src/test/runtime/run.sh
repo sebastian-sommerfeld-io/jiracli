@@ -1,5 +1,5 @@
 #!/bin/bash
-# @file runtime.sh
+# @file run.sh
 # @brief Start or stop the docker stack.
 #
 # @description The script starts and stops the docker compose stack used for the local jira

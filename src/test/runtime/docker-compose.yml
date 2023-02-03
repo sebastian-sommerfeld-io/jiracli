@@ -11,6 +11,20 @@ services:
     volumes:
       - jiraVolume:/var/atlassian/application-data/jira
       - /etc/timezone:/etc/timezone:ro
+  
+  jiracli:
+    depends_on:
+      - jira
+    build: ../../main
+    container_name: jiracli
+    environment:
+       # todo ------------------------------------------------------------
+       # not yet used ... still todo (connect to jira instance from above)
+       # make sure jira is up and running completely (not just port up and
+       # listening but server still starting)
+       # todo ------------------------------------------------------------
+      - JIRA_HOST=localhost:8080
+    command: user view jim.panse
 
 volumes:
   jiraVolume:
