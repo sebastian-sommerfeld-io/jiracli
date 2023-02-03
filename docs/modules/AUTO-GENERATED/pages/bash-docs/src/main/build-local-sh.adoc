@@ -31,8 +31,8 @@ invoking `xref:AUTO-GENERATED:bash-docs/src/main/go/jiracli-sh.adoc[src/main/go/
 
 == Index
 
-* <<_buildgoapp,buildGoApp>>
+* <<_builddockerimage,buildDockerImage>>
 
-=== buildGoApp
+=== buildDockerImage
 
-Build the app.
+Build the app inside a Docker image.
