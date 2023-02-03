@@ -1,5 +1,5 @@
 #!/bin/bash
-# @file run.sh
+# @file runtime.sh
 # @brief Start or stop the docker stack.
 #
 # @description The script starts and stops the docker compose stack used for the local jira
@@ -44,7 +44,7 @@ set -o nounset
 case "$ARG" in
   "$START" )
     LOG_HEADER "Start stack"
-    docker-compose up -d
+    docker-compose up --build -d
   ;;
   "$LOGS" )
     LOG_HEADER "Show logs"
@@ -52,6 +52,6 @@ case "$ARG" in
   ;;
   "$STOP" )
     LOG_HEADER "Stop stack"
-    docker-compose down -v --rmi all
+    docker-compose down -v --rmi all --remove-orphans
   ;;
 esac
