@@ -17,11 +17,14 @@ RUN go mod download \
 FROM alpine:3.17.1 AS run
 LABEL maintainer="sebastian@sommerfeld.io"
 
-COPY --from=build /app/target/jiracli /bin/jiracli
+# To run integration tests with a proper shell
+RUN apk add --no-cache bash
 
-ARG USER=jiracli_user
+COPY --from=build /app/target/jiracli /usr/bin/jiracli
+
+ARG USER=jiracli
 RUN adduser -D $USER
 
 USER $USER
 
-ENTRYPOINT [ "/bin/jiracli" ]
+ENTRYPOINT [ "/usr/bin/jiracli" ]

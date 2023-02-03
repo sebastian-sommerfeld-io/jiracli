@@ -11,17 +11,18 @@ services:
     volumes:
       - jiraVolume:/var/atlassian/application-data/jira
       - /etc/timezone:/etc/timezone:ro
+    healthcheck:
+      # test: ["CMD", "curl", "--fail", "http://localhost:8080"]
+      test: curl --fail http://localhost:8080 || exit 1
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 60s
 
-  jiracli_builder:
+  jiracli:
     build: ../../main
     image: local/jiracli:dev
-    container_name: cli_builder
-    depends_on:
-      - jira
-
-  jiracli_1:
-    image: local/jiracli:dev
-    container_name: jiracli_1
+    container_name: jiracli
     environment:
        # todo ------------------------------------------------------------
        # not yet used ... still todo (connect to jira instance from above)
@@ -29,23 +30,12 @@ services:
        # listening but server still starting)
        # todo ------------------------------------------------------------
       - JIRA_HOST=localhost:8080
-    command: user view admin.admin
+    volumes:
+      - ./testcases.sh:/testcases.sh
+    entrypoint: bash /testcases.sh
     depends_on:
-      - jiracli_builder
-
-  jiracli_2:
-    image: local/jiracli:dev
-    container_name: jiracli_2
-    environment:
-       # todo ------------------------------------------------------------
-       # not yet used ... still todo (connect to jira instance from above)
-       # make sure jira is up and running completely (not just port up and
-       # listening but server still starting)
-       # todo ------------------------------------------------------------
-      - JIRA_HOST=localhost:8080
-    command: user view jim.panse
-    depends_on:
-      - jiracli_builder
+      jira:
+        condition: service_healthy
 
 volumes:
   jiraVolume:
