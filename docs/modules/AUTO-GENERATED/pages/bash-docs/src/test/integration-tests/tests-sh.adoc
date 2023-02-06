@@ -1,4 +1,4 @@
-= build-local.sh
+= tests.sh
 
 // +-----------------------------------------------+
 // |                                               |
@@ -10,29 +10,22 @@
 // +-----------------------------------------------+
 
 
-Build Jira CLI locally.
+Start the docker stack and run tests or stop the docker stack.
 
 == Overview
 
-The script builds the `jiracli` locally. Before building, first run the app by
-invoking `xref:AUTO-GENERATED:bash-docs/src/main/go/jiracli-sh.adoc[src/main/go/jiracli.sh]`.
+The script starts and stops the docker compose stack used for the local jira
+instance. This stack is used for automated tests against a running Jira system. This stack
+also builds the `local/jiracli:dev` image to run tests based on `src/main/Dockerfile`.
 
 === Script Arguments
 
-* _$@_ (...): The same parameters as `jiracli` app (see `./jiracli.sh --help`)
+* _$1_ (string): Command (`start`, `logs`, `stop`)
 
 === Script Example
 
 [source, bash]
 
 ----
-./jiracli.sh
+./start.sh
 ----
-
-== Index
-
-* <<_build,build>>
-
-=== build
-
-Build the app.

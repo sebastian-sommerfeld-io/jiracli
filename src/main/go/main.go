@@ -1,7 +1,19 @@
 package main
 
-import "github.com/sebastian-sommerfeld-io/jiracli/commands/jiracli"
+import (
+	"log"
+
+	"github.com/sebastian-sommerfeld-io/jiracli/commands/jiracli"
+)
+
+func init() {
+	log.SetPrefix("main - ")
+}
 
 func main() {
-	jiracli.Execute()
+	err := jiracli.Execute()
+
+	if err != nil {
+		log.Fatal(err)
+	}
 }

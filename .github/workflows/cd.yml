@@ -1,0 +1,102 @@
+---
+name: CD
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: read
+
+jobs:
+  update-antora-yml:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Todo
+        run: |
+          echo "Todo ..."
+          echo "Is this really the place to do this? Isn't it too late already?"
+          echo "The tag already got created locally with the wrong antora-yml setting and got pushed to Github."
+
+  release-tests:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Todo
+        run: echo "Run some automated tests to check if the application is in a releaseable state ..."
+
+  github-release:
+    runs-on: ubuntu-latest
+    needs: ['update-antora-yml', 'release-tests']
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Todo
+        run: echo "Create a Github Release ..."
+
+  dockerhub-deploy:
+    runs-on: ubuntu-latest
+    needs: ['update-antora-yml', 'release-tests']
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Todo
+        run: echo "Deploy to Dockerhub ..."
+
+  dockerhub-desc:
+    runs-on: ubuntu-latest
+    needs: ['dockerhub-deploy']
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Todo
+        run: echo "Update DockerHub description ..."
+
+  validate-deployment:
+    runs-on: ubuntu-latest
+    needs: ['dockerhub-deploy']
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Todo
+        run: echo "Validate that the latest image is present and usable on DockerHub ..."
+
+  scan-image:
+    runs-on: ubuntu-latest
+    needs: ['validate-deployment']
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Todo
+        run: echo "Scan deployed image (Snyk) ..."
+
+  on-failure:
+    runs-on: ubuntu-latest
+    needs: ['update-antora-yml', 'release-tests', 'github-release', 'dockerhub-deploy', 'dockerhub-desc', 'validate-deployment', 'scan-image']
+    if: failure()
+    steps:
+      - name: Send Pipeline Status to Google Chat
+        if: always()
+        uses: Co-qn/google-chat-notification@releases/v1
+        with:
+          name: ${{ github.workflow }}
+          url: ${{ secrets.GOOGLE_CHAT_WEBHOOK }}
+          status: failure

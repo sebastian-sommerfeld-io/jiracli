@@ -1,7 +1,8 @@
 19+1 project to learn about Go and TDD plus start automating some jira-tasks through a CLI. 
 
 image:{github-actions-url}/{job-generate-docs}/{badge}[Github Badge, link={github-actions-url}/{job-generate-docs}]
-image:{github-actions-url}/{job-ci}/{badge}[Github Badge, link={github-actions-url}/{job-cicd}]
+image:{github-actions-url}/{job-ci}/{badge}[Github Badge, link={github-actions-url}/{job-ci}]
+image:{github-actions-url}/{job-cd}/{badge}[Github Badge, link={github-actions-url}/{job-cd}]
 
 * Github Repository -> {url-project}
 * Documentation -> https://www.sommerfeld.io/docs/docker-images/{project-name}-docs/main
