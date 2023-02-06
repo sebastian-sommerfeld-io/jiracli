@@ -3,7 +3,8 @@ Sebastian Sommerfeld <sebastian@sommerfeld.io>
 :project-name: jiracli
 :url-project: https://github.com/sebastian-sommerfeld-io/{project-name}
 :github-actions-url: {url-project}/actions/workflows
-:job-cicd: cicd.yml
+:job-ci: ci.yml
+:job-cd: cd.yml
 :job-generate-docs: auto-generate-docs.yml
 :badge: badge.svg
 
@@ -19,7 +20,8 @@ Sebastian Sommerfeld <sebastian@sommerfeld.io>
 19+1 project to learn about Go and TDD plus start automating some jira-tasks through a CLI. 
 
 image:{github-actions-url}/{job-generate-docs}/{badge}[Github Badge, link={github-actions-url}/{job-generate-docs}]
-image:{github-actions-url}/{job-ci}/{badge}[Github Badge, link={github-actions-url}/{job-cicd}]
+image:{github-actions-url}/{job-ci}/{badge}[Github Badge, link={github-actions-url}/{job-ci}]
+image:{github-actions-url}/{job-cd}/{badge}[Github Badge, link={github-actions-url}/{job-cd}]
 
 * Github Repository -> {url-project}
 * Documentation -> https://www.sommerfeld.io/docs/docker-images/{project-name}-docs/main
