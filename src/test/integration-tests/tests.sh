@@ -1,5 +1,5 @@
 #!/bin/bash
-# @file run.sh
+# @file tests.sh
 # @brief Start the docker stack and run tests or stop the docker stack.
 #
 # @description The script starts and stops the docker compose stack used for the local jira
