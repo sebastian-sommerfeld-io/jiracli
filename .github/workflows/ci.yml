@@ -106,7 +106,6 @@ jobs:
             cd src/test/integration-tests || exit
             ./tests.sh start
             ./tests.sh logs
-            ./tests.sh stop
           )
         shell: bash
       - name: Login to DockerHub
@@ -125,6 +124,18 @@ jobs:
             docker image tag "$IMAGE_DEV" "$IMAGE_CI"
             docker push "$IMAGE_CI"
           )
+        shell: bash
+      - name: Stop containers and remove Docker images
+        run: |
+          (
+            cd src/test/integration-tests || exit
+            ./tests.sh stop
+          )
+        shell: bash
+      - name: Verify deployment to DockerHub
+        run: |
+          IMAGE_CI="sommerfeldio/jiracli:ci"
+          docker pull "$IMAGE_CI"
         shell: bash
 
   on-failure:

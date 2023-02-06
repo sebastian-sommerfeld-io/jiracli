@@ -20,6 +20,7 @@
 
 readonly START="start"
 readonly LOGS="logs"
+readonly LOGS_F="logs_f"
 readonly STOP="stop"
 
 ARG="$1"
@@ -48,6 +49,10 @@ case "$ARG" in
     docker-compose up --build -d
   ;;
   "$LOGS" )
+    LOG_HEADER "Show logs"
+    docker-compose logs
+  ;;
+  "$LOGS_F" )
     LOG_HEADER "Show logs"
     docker-compose logs -f
   ;;
