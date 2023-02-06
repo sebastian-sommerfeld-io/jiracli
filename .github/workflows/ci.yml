@@ -135,6 +135,7 @@ jobs:
       - name: Verify deployment to DockerHub
         run: |
           IMAGE_CI="sommerfeldio/jiracli:ci"
+          docker image rm "$IMAGE_CI"
           docker pull "$IMAGE_CI"
         shell: bash
 
