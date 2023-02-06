@@ -1,9 +1,5 @@
 package users
 
-import (
-	"encoding/json"
-)
-
 // User represents a user from a Jira instance to further work with in the CLI app. A user is
 // retrieved from a Jira instance through a service function which calls the Jira API.
 type User struct {
