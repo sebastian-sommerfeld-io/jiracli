@@ -100,10 +100,7 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
-      - name: Build Docker image
-        run: echo "Todo"
-        shell: bash
-      - name: Run integration tests
+      - name: Build Docker image and run integration tests
         run: echo "Todo from docker-compose"
         shell: bash
 
