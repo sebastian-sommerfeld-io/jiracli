@@ -5,7 +5,7 @@ import (
 	"github.com/spf13/cobra"
 	"log"
 
-	"github.com/sebastian-sommerfeld-io/jiracli/services/user"
+	"github.com/sebastian-sommerfeld-io/jiracli/services/users"
 )
 
 var (
@@ -22,16 +22,16 @@ var (
 )
 
 func init() {
-	log.SetPrefix("user_commands - ")
+	log.SetPrefix("commands/user - ")
 
 	userCmd.AddCommand(userViewCmd)
 }
 
-func viewUser(needle string) user.User {
-	user, e := user.FindByUsername(needle)
+func viewUser(needle string) users.User {
+	user, err := users.FindByUsername(needle)
 
-	if e != nil {
-		log.Fatal(e)
+	if err != nil {
+		log.Fatal(err)
 	}
 
 	return user

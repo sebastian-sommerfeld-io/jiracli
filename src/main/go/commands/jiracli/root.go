@@ -12,6 +12,7 @@ var (
 	}
 )
 
+// Execute acts as the entrypoint for the command line interface.
 func Execute() error {
 	return rootCmd.Execute()
 }
