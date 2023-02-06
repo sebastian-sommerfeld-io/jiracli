@@ -2,6 +2,7 @@ Sebastian Sommerfeld <sebastian@sommerfeld.io>
 :project-name: jiracli
 :url-project: https://github.com/sebastian-sommerfeld-io/{project-name}
 :github-actions-url: {url-project}/actions/workflows
-:job-cicd: cicd.yml
+:job-ci: ci.yml
+:job-cd: cd.yml
 :job-generate-docs: auto-generate-docs.yml
 :badge: badge.svg

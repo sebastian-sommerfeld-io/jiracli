@@ -1,5 +1,5 @@
 ---
-name: CICD
+name: CI
 
 on:
   push:
@@ -94,19 +94,9 @@ jobs:
           )
         shell: bash
 
-  cd:
-    runs-on: ubuntu-latest
-    needs: ['ci']
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-      - name: Todo
-        run: echo "todo ..."
-        shell: bash
-
   on-failure:
     runs-on: ubuntu-latest
-    needs: ['lint-yaml', 'lint-env-files', 'lint-folders', 'lint-filenames', 'shellcheck', 'sonar', 'lint-dockerfile', 'ci', 'cd']
+    needs: ['lint-yaml', 'lint-env-files', 'lint-folders', 'lint-filenames', 'shellcheck', 'sonar', 'lint-dockerfile', 'ci']
     if: failure()
     steps:
       - name: Send Pipeline Status to Google Chat
