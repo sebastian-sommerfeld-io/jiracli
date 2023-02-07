@@ -3,7 +3,7 @@ package main
 import (
 	"log"
 
-	"jiracli/commands/jiracli"
+	"github.com/sebastian-sommerfeld-io/jiracli/commands/jiracli"
 )
 
 func init() {

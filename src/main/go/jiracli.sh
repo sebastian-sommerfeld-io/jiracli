@@ -58,7 +58,7 @@ function run() {
 
 
 if [ ! -f go.mod ]; then
-  readonly MODULE="jiracli"
+  readonly MODULE="github.com/sebastian-sommerfeld-io/jiracli"
 
   LOG_INFO "Initialize $MODULE"
   go mod init "$MODULE"
