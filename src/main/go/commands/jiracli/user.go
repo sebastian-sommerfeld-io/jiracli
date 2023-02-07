@@ -14,7 +14,7 @@ var (
 )
 
 func init() {
-	log.SetPrefix("user_commands - ")
+	log.SetPrefix("commands/user - ")
 
 	rootCmd.AddCommand(userCmd)
 }

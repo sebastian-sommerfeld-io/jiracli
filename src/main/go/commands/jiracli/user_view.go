@@ -22,7 +22,7 @@ var (
 )
 
 func init() {
-	log.SetPrefix("commands/user - ")
+	log.SetPrefix("commands/user/view - ")
 
 	userCmd.AddCommand(userViewCmd)
 }
