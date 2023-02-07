@@ -6,7 +6,7 @@
 # analyzers. The script is intended to run on your local machine.
 #
 # TODO * Sonarlint
-# * link:https://www.jetbrains.com/de-de/qodana[Qodana] -> Docker image ``link:https://hub.docker.com/r/jetbrains/qodana[jetbrains/qodana]``
+# * link:https://www.jetbrains.com/de-de/qodana[Qodana] -> Docker image link:https://hub.docker.com/r/jetbrains/qodana[``jetbrains/qodana``]
 #
 # === Script Arguments
 #

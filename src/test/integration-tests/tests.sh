@@ -8,7 +8,7 @@
 #
 # This tests are also triggered from the CI pipeline. The ``local/jiracli:dev`` image that is
 # built from this Docker Compose configuration is also deployed to DockerHub as
-# ``link:https://hub.docker.com/r/sommerfeldio/jiracli[sommerfeldio/jiracli:ci]``. This
+# link:https://hub.docker.com/r/sommerfeldio/jiracli[``sommerfeldio/jiracli:ci``]. This
 # ``sommerfeldio/jiracli:ci`` image acts as the foundation for the CD pipeline and is re-tagged
 # as ``sommerfeldio/jiracli:latest`` and ``sommerfeldio/jiracli:<version>``. This way it is
 # ensured, that all releases are based on the image which was tested previously and that only
