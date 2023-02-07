@@ -28,14 +28,7 @@ one image build takes place.
 
 === Script Arguments
 
-* {blank}
-+
-[cols=3*]
-|===
-| _$1_ (string): Command (`start`
-| `logs`
-| `stop`)
-|===
+* _$1_ (string): Command (`start`, `logs`, `stop`)
 
 === Script Example
 
