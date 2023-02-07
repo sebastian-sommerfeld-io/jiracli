@@ -6,7 +6,7 @@ import (
 
 // FindByUsername reads a single user from a Jira instance through the Jira API.
 func FindByUsername(username string) (User, error) {
-	for _, user := range userList {
+	for _, user := range dummyUserList {
 		if user.Username == username {
 			return user, nil
 		}
@@ -17,7 +17,7 @@ func FindByUsername(username string) (User, error) {
 
 // FindByEmail reads a single user from a Jira instance through the Jira API.
 func FindByEmail(email string) (User, error) {
-	for _, user := range userList {
+	for _, user := range dummyUserList {
 		if user.Email == email {
 			return user, nil
 		}

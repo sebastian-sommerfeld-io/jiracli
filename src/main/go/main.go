@@ -7,7 +7,7 @@ import (
 )
 
 func init() {
-	log.SetPrefix("main - ")
+	log.SetPrefix("[jiracli] ")
 }
 
 func main() {

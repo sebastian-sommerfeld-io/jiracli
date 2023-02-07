@@ -2,7 +2,10 @@
 # @file integration-tests.sh
 # @brief Integration tests triggered from Docker Compose.
 #
-# @description Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. 
+# @description This script contains intergration test cases that are run against the Jira
+# instance defined in the docker-compose.yml from this test setup. The ``local/jiracli:dev``
+# Docker image is started in a container and executes the testcases from this script against
+# a running Jira instance.
 #
 # IMPORTANT: This script is intended to run inside a ``jiracli`` container from Docker Compose.
 # Don't run this script directly!
@@ -11,7 +14,7 @@
 #
 # The script does not accept any parameters.
 
-# todo ... use in container instead of single command ... this way I can do some assertions here
+
 set -o errexit
 set -o pipefail
 set -o nounset
@@ -22,3 +25,4 @@ which jiracli
 
 jiracli user view admin.admin
 jiracli user view jim.panse
+jiracli user view homer.simpson

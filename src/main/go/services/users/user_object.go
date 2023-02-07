@@ -10,12 +10,12 @@ type User struct {
 	Email     string
 }
 
-var userList []User
+var dummyUserList []User
 
 func init() {
 	// Todo: Temporary ... Remove once I can read users from a Jira instance
 
-	userList = []User{
+	dummyUserList = []User{
 		{
 			Id:        1,
 			Firstname: "Admin",
