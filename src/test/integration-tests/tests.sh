@@ -16,7 +16,7 @@
 #
 # === Script Arguments
 #
-# * *$1* (string): Command (``start`` | ``logs`` | ``stop``)
+# * *$1* (string): Command (``start``, ``logs``, ``stop``)
 #
 # === Script Example
 #
