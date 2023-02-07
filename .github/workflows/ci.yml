@@ -67,36 +67,30 @@ jobs:
         with:
           dockerfile: src/main/Dockerfile
 
-  sonar:
+  test-and-scan-go-app:
     runs-on: ubuntu-latest
+    needs: ['lint-yaml', 'lint-env-files', 'lint-folders', 'lint-filenames', 'shellcheck', 'lint-dockerfile']
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
         with:
-          fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
+          fetch-depth: 0
+      - name: Build and run
+        run: |
+          (
+            cd src/main/go || exit
+            ./jiracli.sh user view admin.admin
+          )
+        shell: bash
       - name: SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@v1.8
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
           SONAR_TOKEN: ${{ secrets.SONARCLOUD_TOKEN }}
 
-  build-go-app:
-    runs-on: ubuntu-latest
-    needs: ['lint-yaml', 'lint-env-files', 'lint-folders', 'lint-filenames', 'shellcheck', 'sonar', 'lint-dockerfile']
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-      - name: Build and run
-        run: |
-          (
-            cd src/main/go || exit
-            ./jiracli.sh
-          )
-        shell: bash
-
   build-and-deploy-docker-image:
     runs-on: ubuntu-latest
-    needs: ['build-go-app']
+    needs: ['test-and-scan-go-app']
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -141,7 +135,7 @@ jobs:
 
   on-failure:
     runs-on: ubuntu-latest
-    needs: ['lint-yaml', 'lint-env-files', 'lint-folders', 'lint-filenames', 'shellcheck', 'sonar', 'lint-dockerfile', 'build-go-app', 'build-and-deploy-docker-image']
+    needs: ['lint-yaml', 'lint-env-files', 'lint-folders', 'lint-filenames', 'shellcheck', 'lint-dockerfile', 'test-and-scan-go-app', 'build-and-deploy-docker-image']
     if: failure()
     steps:
       - name: Send Pipeline Status to Google Chat

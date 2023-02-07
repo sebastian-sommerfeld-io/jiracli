@@ -35,10 +35,13 @@ function format() {
 }
 
 
-# @description Run all test cases.
+# @description Run all test cases and security scanner.
 function test() {
   LOG_HEADER "Run tests"
-  go test ./...
+  
+  COVERAGE_REPORT="go-code-coverage.out"
+  go test -coverprofile="./$COVERAGE_REPORT" ./...
+  mv "$COVERAGE_REPORT" "../../../target/$COVERAGE_REPORT"
 }
 
 
