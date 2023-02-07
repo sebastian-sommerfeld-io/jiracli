@@ -5,7 +5,7 @@ import (
 	"github.com/spf13/cobra"
 	"log"
 
-	"github.com/sebastian-sommerfeld-io/jiracli/services/users"
+	"jiracli/services/users"
 )
 
 var (

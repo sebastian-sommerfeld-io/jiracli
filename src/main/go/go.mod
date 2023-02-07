@@ -1,4 +1,4 @@
-module github.com/sebastian-sommerfeld-io/jiracli
+module jiracli
 
 go 1.20
 
