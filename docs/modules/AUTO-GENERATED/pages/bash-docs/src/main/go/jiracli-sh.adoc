@@ -42,7 +42,7 @@ Format go source code.
 
 === test
 
-Run all test cases.
+Run all test cases and security scanner.
 
 === run
 
