@@ -138,38 +138,25 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
-      - name: Download AsciiDoc plugin for AsciiDoc checks
-        run: |
-          VERSION="0.38.10"
-          curl -L -o asciidoctor-intellij-plugin.zip "https://github.com/asciidoctor/asciidoctor-intellij-plugin/releases/download/$VERSION/asciidoctor-intellij-plugin-$VERSION.zip"
-          unzip asciidoctor-intellij-plugin.zip
-        shell: bash
-      - name: Download Grazie plugin for grammar checks
-        # https://plugins.jetbrains.com/plugin/12175-grazie/versions
-        run: |
-          VERSION=""
-          curl -L -o grazie.zip 'https://plugins.jetbrains.com/plugin/download?rel=true&updateId=288191'
-          unzip grazie.zip
-        shell: bash
-      - name: Get one more commit so Qodana we can identify the changes
-        run: git fetch --deepen=1
-        shell: bash
-      - name: Qodana for Docs
-        uses: JetBrains/qodana-action@v2022.3.2
+
+  validate-links:
+    runs-on: ubuntu-latest
+    needs: ['validate-docs']
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Setup Node
+        uses: actions/setup-node@v3
         with:
-          # https://hub.docker.com/r/jetbrains/qodana-jvm-community/tags
-          # this disables the Gradle plugin to avoid the Gradle initializiation and the dependency download
-          # as that is not necessary for the Grazie and AsciiDoc plugins to check spelling and links.
-          args: >
-            --linter,jetbrains/qodana-jvm-community:2022.3,
-            --property=idea.suppressed.plugins.id=com.intellij.gradle,
-            -v,${{ github.workspace }}/grazie:/opt/idea/plugins/grazie,
-            -v,${{ github.workspace }}/grazie-pro:/opt/idea/plugins/grazie-pro,
-            -v,${{ github.workspace }}/asciidoctor-intellij-plugin:/opt/idea/plugins/asciidoctor-intellij-plugin
+          node-version: 16
+      - name: Install asciidoc-link-check
+        run: npm install --location=global asciidoc-link-check@1.0.15
+      - name: Validate links in all adoc files
+        run: find . -name '*.adoc' -exec asciidoc-link-check -c .adoc-links.json -p {} \;
 
   on-failure:
     runs-on: ubuntu-latest
-    needs: ['lint-yaml', 'lint-env-files', 'lint-folders', 'lint-filenames', 'shellcheck', 'lint-dockerfile', 'test-and-scan-go-app', 'build-and-deploy-docker-image', 'validate-docs']
+    needs: ['lint-yaml', 'lint-env-files', 'lint-folders', 'lint-filenames', 'shellcheck', 'lint-dockerfile', 'test-and-scan-go-app', 'build-and-deploy-docker-image', 'validate-docs', 'validate-links']
     if: failure()
     steps:
       - name: Send Pipeline Status to Google Chat
