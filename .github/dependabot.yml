@@ -1,15 +1,19 @@
 ---
 version: 2
 updates:
-  - package-ecosystem: "github-actions"
-    directory: "/"
+  - package-ecosystem: github-actions
+    directory: /
     schedule:
-      interval: "weekly"
-  - package-ecosystem: "docker"
-    directory: "src/main"
+      interval: weekly
+  - package-ecosystem: docker
+    directory: src/main
     schedule:
-      interval: "weekly"
+      interval: weekly
   - package-ecosystem: gomod
     directory: src/main/go
     schedule:
       interval: daily
+  - package-ecosystem: docker
+    directory: src/util/code-analyzer
+    schedule:
+      interval: weekly

@@ -11,7 +11,6 @@
 # === Script Arguments
 #
 # The script does not accept any parameters.
-# * *$1* (string): Some var
 #
 # === Script Example
 #
@@ -30,6 +29,11 @@ set -o nounset
 source "../bash-modules/log.sh"
 
 
+readonly IMAGE="local/qodana-go:dev"
+
+LOG_HEADER "Build analyzer image"
+docker build -t "$IMAGE" .
+
 (
   cd ../../../ || exit
 
@@ -43,15 +47,12 @@ source "../bash-modules/log.sh"
   readonly PORT="9080"
   LOG_HEADER "Run jetbrains/qodana on http://localhost:$PORT"
   mkdir -p "$TARGET_DIR"
+  mkdir -p "$TARGET_DIR/cache"
 
-#   docker run --rm -it -p 9080:8080 \
-#     --volume "$(pwd):/data/project" \
-#     --volume "$(pwd)/$TARGET_DIR:/data/results" \
-#     --volume "$(pwd)/$TARGET_DIR/cache:/data/cache" \
-#     jetbrains/qodana:2022.2-eap --show-report
   docker run --rm -it -p 9080:8080 \
+    --user "$(id -u):$(id -g)" \
     --volume "$(pwd):/data/project" \
     --volume "$(pwd)/$TARGET_DIR:/data/results" \
     --volume "$(pwd)/$TARGET_DIR/cache:/data/cache" \
-    jetbrains/qodana-go:2022.3-eap --show-report
+    "$IMAGE" --show-report
 )
