@@ -146,11 +146,10 @@ jobs:
             ./analyze.sh --save-report
           )
         shell: bash
-      - name: Upload to Github pages
-        run: |
-          echo "Todo ... CREATE A FOLDER FOR THE BRANCH ... don't delete other folderes ... how to clean up old folders?"
-          echo "Or use sarif report instead? How would I handle snyk? Combine both sarifs? Do I still need snyk when I use sonarqube? Guess so because Sonarqube scans code, Snyk scans images."
-        shell: bash
+      - name: Upload qodana result to Github Code Scanning
+        uses: github/codeql-action/upload-sarif@v2
+        with:
+          sarif_file: target/qodana/report/results/qodana.sarif.json
 
   on-failure:
     runs-on: ubuntu-latest
