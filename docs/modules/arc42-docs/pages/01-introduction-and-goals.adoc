@@ -1,4 +1,5 @@
 = 01 - Introduction and Goals
+:description: Describes the relevant requirements and the driving forces that software architects and development team must consider. 
 
 Jira CLI is a command line interface to automate tasks otherwise done through the Jira web interface. The project encapsulates the link:https://developer.atlassian.com/server/jira/platform/rest-apis[Jira Rest API] through a command line and provides simple ways to automate (or at least dramatically speed up) recurring tasks.
 

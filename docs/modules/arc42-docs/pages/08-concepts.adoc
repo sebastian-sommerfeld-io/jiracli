@@ -1,4 +1,5 @@
 = 08 - Cross-cutting Concepts
+:description: This section describes overall, principal regulations and solution ideas that are relevant in multiple parts (= cross-cutting) of your system.
 
 // .Content
 // This section describes overall, principal regulations and solution ideas that are relevant in multiple parts (= cross-cutting) of your system.

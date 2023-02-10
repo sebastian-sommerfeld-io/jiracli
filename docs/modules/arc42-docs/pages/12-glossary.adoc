@@ -1,4 +1,5 @@
 = 12 - Glossary
+:description: The most important domain and technical terms that your stakeholders use when discussing the system.
 
 // .Contents
 // The most important domain and technical terms that your stakeholders use when discussing the system.

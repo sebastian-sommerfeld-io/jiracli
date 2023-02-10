@@ -1,4 +1,5 @@
 = 10 - Quality Requirements
+:description: This section contains all quality requirements with scenarios.
 
 // .Content
 // This section contains all quality requirements as quality tree with scenarios. The most important ones have already been described in section 1.2. (quality goals)

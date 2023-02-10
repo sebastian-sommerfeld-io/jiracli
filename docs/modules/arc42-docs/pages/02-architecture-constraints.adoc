@@ -1,4 +1,5 @@
 = 02 - Architecture Constraints
+:description: Any requirement that constraints software architects in their freedom of design and implementation decisions or decision about the development process.
 
 To develop and run the application you need a Linux environment with Docker installed. A local link:https://go.dev[Go] installation is not needed because everything related to go is delegated to a Docker container. So a link:https://docs.docker.com/engine/install/ubuntu/[Docker and Docker Compose installation] is mandatory. Development takes place on link:https://www.ubuntu.com[Ubuntu].
 

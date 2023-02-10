@@ -1,4 +1,5 @@
 = 07 - Deployment View
+:description: Describe technical infrastructure used to execute your system and mappings of (software) building blocks to that infrastructure elements
 
 // .Content
 // The deployment view describes:

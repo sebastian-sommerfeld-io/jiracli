@@ -1,4 +1,5 @@
 = 09 - Architecture Decisions
+:description: Important, expensive, large scale or risky architecture decisions including rationales.
 
 // .Contents
 // Important, expensive, large scale or risky architecture decisions including rationales. With "decisions" we mean selecting one alternative based on given criteria.
