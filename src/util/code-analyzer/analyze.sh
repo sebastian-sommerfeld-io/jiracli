@@ -47,7 +47,7 @@ docker build -t "$IMAGE" .
 
   readonly TARGET_DIR="target/qodana"
   readonly PORT="9080"
-  LOG_HEADER "Run jetbrains/qodana on http://localhost:$PORT"
+  LOG_HEADER "Run jetbrains/qodana"
   mkdir -p "$TARGET_DIR"
   mkdir -p "$TARGET_DIR/cache"
 
@@ -62,9 +62,9 @@ docker build -t "$IMAGE" .
       "$IMAGE" --save-report \
         --property=idea.suppressed.plugins.id=com.intellij.gradle
   else
-    LOG_INFO "Run locally (http://localhost:8080)"
+    LOG_INFO "Run locally (http://localhost:$PORT)"
 
-    docker run --rm -it -p 9080:8080\
+    docker run --rm -it -p "$PORT:8080" \
       --user "$(id -u):$(id -g)" \
       --volume "$(pwd):/data/project" \
       --volume "$(pwd)/$TARGET_DIR:/data/results" \
