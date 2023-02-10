@@ -135,7 +135,7 @@ jobs:
 
   qodana:
     runs-on: ubuntu-latest
-    needs: ['lint-yaml']
+    needs: ['lint-yaml', 'lint-env-files', 'lint-folders', 'lint-filenames', 'shellcheck', 'lint-dockerfile']
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -145,6 +145,11 @@ jobs:
             cd src/util/code-analyzer || exit
             ./analyze.sh --save-report
           )
+        shell: bash
+      - name: Upload to Github pages
+        run: |
+          echo "Todo ... CREATE A FOLDER FOR THE BRANCH ... don't delete other folderes ... how to clean up old folders?"
+          echo "Or use sarif report instead? How would I handle snyk? Combine both sarifs? Do I still need snyk when I use sonarqube? Guess so because Sonarqube scans code, Snyk scans images."
         shell: bash
 
   on-failure:
