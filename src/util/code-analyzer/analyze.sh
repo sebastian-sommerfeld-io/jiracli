@@ -10,7 +10,7 @@
 #
 # === Script Arguments
 #
-# The script does not accept any parameters.
+# * *$1* (string): Use ``--save-report`` to run in pipelines. When omitting this option a webserver starts at link:http://localhost:9080[localhost:9080].
 #
 # === Script Example
 #
@@ -18,6 +18,14 @@
 # ```
 # ./analyze.sh
 # ```
+
+
+readonly PIPELINE_MODE="--save-report"
+MODE="--save-report"
+if [ "$1" = "$PIPELINE_MODE" ]; then
+  MODE="$1"
+fi
+readonly MODE
 
 
 set -o errexit
@@ -37,22 +45,31 @@ docker build -t "$IMAGE" .
 (
   cd ../../../ || exit
 
-  LOG_HEADER "Run yamllint"
-  docker run -it --rm \
-    --volume "$(pwd):$(pwd)" \
-    --workdir "$(pwd)" \
-    cytopia/yamllint:latest .
-
   readonly TARGET_DIR="target/qodana"
   readonly PORT="9080"
   LOG_HEADER "Run jetbrains/qodana on http://localhost:$PORT"
   mkdir -p "$TARGET_DIR"
   mkdir -p "$TARGET_DIR/cache"
 
-  docker run --rm -it -p 9080:8080 \
-    --user "$(id -u):$(id -g)" \
-    --volume "$(pwd):/data/project" \
-    --volume "$(pwd)/$TARGET_DIR:/data/results" \
-    --volume "$(pwd)/$TARGET_DIR/cache:/data/cache" \
-    "$IMAGE" --show-report --property=idea.suppressed.plugins.id=com.intellij.gradle
+  if [ "$MODE" = "$PIPELINE_MODE" ]; then
+    LOG_INFO "Run in pipeline mode"
+
+    docker run --rm \
+      --user "$(id -u):$(id -g)" \
+      --volume "$(pwd):/data/project" \
+      --volume "$(pwd)/$TARGET_DIR:/data/results" \
+      --volume "$(pwd)/$TARGET_DIR/cache:/data/cache" \
+      "$IMAGE" --save-report \
+        --property=idea.suppressed.plugins.id=com.intellij.gradle
+  else
+    LOG_INFO "Run locally (http://localhost:8080)"
+
+    docker run --rm -it -p 9080:8080\
+      --user "$(id -u):$(id -g)" \
+      --volume "$(pwd):/data/project" \
+      --volume "$(pwd)/$TARGET_DIR:/data/results" \
+      --volume "$(pwd)/$TARGET_DIR/cache:/data/cache" \
+      "$IMAGE" --show-report \
+        --property=idea.suppressed.plugins.id=com.intellij.gradle
+  fi
 )
