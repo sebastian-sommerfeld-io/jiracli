@@ -1,4 +1,4 @@
-19+1 project to learn about Go and TDD plus start automating some jira-tasks through a CLI. 
+{description}
 
 image:{github-actions-url}/{job-generate-docs}/{badge}[Github Badge, link={github-actions-url}/{job-generate-docs}]
 image:{github-actions-url}/{job-ci}/{badge}[Github Badge, link={github-actions-url}/{job-ci}]

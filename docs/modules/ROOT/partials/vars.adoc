@@ -1,4 +1,5 @@
 Sebastian Sommerfeld <sebastian@sommerfeld.io>
+:description: 19+1 project to learn about Go and TDD plus start automating some jira-tasks through a CLI. 
 :project-name: jiracli
 :url-project: https://github.com/sebastian-sommerfeld-io/{project-name}
 :github-actions-url: {url-project}/actions/workflows

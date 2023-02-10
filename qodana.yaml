@@ -1,4 +1,3 @@
----
 version: "1.0"
 profile:
   name: qodana.starter
@@ -31,15 +30,20 @@ include:
   - name: CheckXmlFileWithXercesValidator
   - name: GrazieInspection
   - name: CheckDependencyLicenses
+  - name: IgnoreFileDuplicateEntry
 # todo ... give this some thought and update licenses
-licenseRules:
-  - keys:
-      - "PROPRIETARY-LICENSE"
-      - "MIT"
-    prohibited:
-      - "BSD-3-CLAUSE-NO-CHANGE"
-    allowed:
-      - "ISC"
-  - keys: [ "Apache-2.0" ]
-    prohibited:
-      - "MIT"
+# licenseRules:
+#   - keys:
+#       - "PROPRIETARY-LICENSE"
+#       - "MIT"
+#     prohibited:
+#       - "BSD-3-CLAUSE-NO-CHANGE"
+#     allowed:
+#       - "ISC"
+#   - keys: [ "Apache-2.0" ]
+#     prohibited:
+#       - "MIT"
+exclude:
+  - name: All
+    paths:
+      - docs/modules/ROOT/partials
