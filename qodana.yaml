@@ -1,0 +1,31 @@
+version: "1.0"
+profile:
+  name: qodana.starter
+include:
+  - name: AsciiDocLinkResolve
+  - name: AsciiDocDescriptionExists
+  - name: AsciiDocReferencePattern
+  - name: AsciiDocHeadingStyle
+  - name: AsciiDocHorizontalRule
+  - name: AsciiDocInlineMacroShouldBeBlockOrPreprocessorMacro
+  - name: AsciiDocDescriptionLength
+  - name: AsciiDocXrefWithNaturalCrossReference
+  - name: AsciiDocUnresolvedAntoraModule
+  - name: AsciiDocObsoletePassthrough
+  - name: AsciiDocBlockMacroShouldBeInlineMacro
+  - name: AsciiDocPageBreak
+  - name: AsciiDocXrefWithFileExtension
+  - name: AsciiDocListingStyle
+  - name: AsciiDocAttributeContinuation
+  - name: XmlHighlighting
+  - name: XmlDuplicatedId
+  - name: XmlInvalidId
+  - name: XmlUnboundNsPrefix
+  - name: XmlUnusedNamespaceDeclaration
+  - name: XmlWrongRootElement
+  - name: XmlPathReference
+  - name: XmlDeprecatedElement
+  - name: XmlDefaultAttributeValue
+  - name: CheckDtdRefs
+  - name: CheckXmlFileWithXercesValidator
+  - name: GrazieInspection

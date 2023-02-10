@@ -1,2 +1,12 @@
 FROM jetbrains/qodana-go:2022.3-eap
 LABEL maintainer="sebastian@sommerfeld.io"
+
+# Download AsciiDoc plugin for AsciiDoc checks
+RUN curl -L -o asciidoctor-intellij-plugin.zip https://github.com/asciidoctor/asciidoctor-intellij-plugin/releases/download/0.38.2/asciidoctor-intellij-plugin-0.38.2.zip \
+    && unzip asciidoctor-intellij-plugin.zip \
+    && cp -a asciidoctor-intellij-plugin /opt/idea/plugins/asciidoctor-intellij-plugin
+
+# Download Grazie plugin for grammar checks
+RUN curl -L -o grazie.zip 'https://plugins.jetbrains.com/plugin/download?rel=true&updateId=257026' \
+    && unzip grazie.zip \
+    && cp -a grazie /opt/idea/plugins/grazie

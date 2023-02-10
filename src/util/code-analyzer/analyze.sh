@@ -54,5 +54,5 @@ docker build -t "$IMAGE" .
     --volume "$(pwd):/data/project" \
     --volume "$(pwd)/$TARGET_DIR:/data/results" \
     --volume "$(pwd)/$TARGET_DIR/cache:/data/cache" \
-    "$IMAGE" --show-report
+    "$IMAGE" --show-report --property=idea.suppressed.plugins.id=com.intellij.gradle
 )
