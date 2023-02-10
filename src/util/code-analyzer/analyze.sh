@@ -20,12 +20,16 @@
 # ```
 
 
+readonly PORT="9080"
 readonly PIPELINE_MODE="--save-report"
-MODE="--save-report"
+MODE="--show-report"
+FLAGS="--rm -it -p $PORT:8080"
 if [ "$1" = "$PIPELINE_MODE" ]; then
   MODE="$1"
+  FLAGS=""
 fi
 readonly MODE
+readonly FLAGS
 
 
 set -o errexit
@@ -46,30 +50,17 @@ docker build -t "$IMAGE" .
   cd ../../../ || exit
 
   readonly TARGET_DIR="target/qodana"
-  readonly PORT="9080"
   LOG_HEADER "Run jetbrains/qodana"
   mkdir -p "$TARGET_DIR"
   mkdir -p "$TARGET_DIR/cache"
 
-  if [ "$MODE" = "$PIPELINE_MODE" ]; then
-    LOG_INFO "Run in pipeline mode"
-
-    docker run --rm \
-      --user "$(id -u):$(id -g)" \
-      --volume "$(pwd):/data/project" \
-      --volume "$(pwd)/$TARGET_DIR:/data/results" \
-      --volume "$(pwd)/$TARGET_DIR/cache:/data/cache" \
-      "$IMAGE" --save-report \
-        --property=idea.suppressed.plugins.id=com.intellij.gradle
-  else
-    LOG_INFO "Run locally (http://localhost:$PORT)"
-
-    docker run --rm -it -p "$PORT:8080" \
-      --user "$(id -u):$(id -g)" \
-      --volume "$(pwd):/data/project" \
-      --volume "$(pwd)/$TARGET_DIR:/data/results" \
-      --volume "$(pwd)/$TARGET_DIR/cache:/data/cache" \
-      "$IMAGE" --show-report \
-        --property=idea.suppressed.plugins.id=com.intellij.gradle
-  fi
+  LOG_INFO "Run Qodana (mode = '$MODE', flags = '$FLAGS')"
+  # shellcheck disable=SC2086
+  docker run $FLAGS \
+    --user "$(id -u):$(id -g)" \
+    --volume "$(pwd):/data/project" \
+    --volume "$(pwd)/$TARGET_DIR:/data/results" \
+    --volume "$(pwd)/$TARGET_DIR/cache:/data/cache" \
+    "$IMAGE" "$MODE" \
+      --property=idea.suppressed.plugins.id=com.intellij.gradle
 )
