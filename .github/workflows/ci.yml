@@ -133,7 +133,7 @@ jobs:
           docker pull "$IMAGE_CI"
         shell: bash
 
-  qodana:
+  qodana-analysis:
     runs-on: ubuntu-latest
     needs: ['lint-yaml', 'lint-env-files', 'lint-folders', 'lint-filenames', 'shellcheck', 'lint-dockerfile']
     permissions:
@@ -155,7 +155,7 @@ jobs:
 
   on-failure:
     runs-on: ubuntu-latest
-    needs: ['lint-yaml', 'lint-env-files', 'lint-folders', 'lint-filenames', 'shellcheck', 'lint-dockerfile', 'test-and-scan-go-app', 'build-and-deploy-docker-image', 'qodana']
+    needs: ['lint-yaml', 'lint-env-files', 'lint-folders', 'lint-filenames', 'shellcheck', 'lint-dockerfile', 'test-and-scan-go-app', 'build-and-deploy-docker-image', 'qodana-analysis']
     if: failure()
     steps:
       - name: Send Pipeline Status to Google Chat
