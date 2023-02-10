@@ -23,7 +23,7 @@ TODO * Sonarlint
 
 === Script Arguments
 
-The script does not accept any parameters.
+* _$1_ (string): Use `--save-report` to run in pipelines. When omitting this option a webserver starts at link:http://localhost:9080[localhost:9080].
 
 === Script Example
 
