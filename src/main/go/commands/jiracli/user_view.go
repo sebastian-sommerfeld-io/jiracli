@@ -8,7 +8,7 @@ import (
 	"github.com/sebastian-sommerfeld-io/jiracli/services/users"
 )
 
-type ViewOptions struct {
+type userViewOptions struct {
 	ByEmail    bool
 	ByUsername bool
 	Search     string
@@ -16,7 +16,7 @@ type ViewOptions struct {
 
 // NewCmdUserView initializes the `user view` command and its flags.
 func NewCmdUserView() *cobra.Command {
-	opts := &ViewOptions{}
+	opts := &userViewOptions{}
 
 	cmd := &cobra.Command{
 		Use:   "view",
@@ -43,7 +43,7 @@ func NewCmdUserView() *cobra.Command {
 	return cmd
 }
 
-func viewUser(opts *ViewOptions) (users.User, error) {
+func viewUser(opts *userViewOptions) (users.User, error) {
 	if opts.ByEmail {
 		// todo validate email input
 		return users.FindByEmail(opts.Search)
