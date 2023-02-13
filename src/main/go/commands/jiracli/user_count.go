@@ -7,8 +7,9 @@ import (
 	"github.com/sebastian-sommerfeld-io/jiracli/services/users"
 )
 
-var (
-	userCountCmd = &cobra.Command{
+// NewCmdUserCount initializes the `user count` command and its flags.
+func NewCmdUserCount() *cobra.Command {
+	cmd := &cobra.Command{
 		Use:   "count",
 		Short: "Count all Jira users",
 		Long:  "Count all users from a Jira instance.",
@@ -18,8 +19,6 @@ var (
 			fmt.Println(users.CountUsers())
 		},
 	}
-)
 
-func init() {
-	userCmd.AddCommand(userCountCmd)
+	return cmd
 }
