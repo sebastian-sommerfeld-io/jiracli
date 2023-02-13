@@ -13,6 +13,17 @@ var (
 	}
 )
 
+func init() {
+	userCmd := NewCmdUser()
+	rootCmd.AddCommand(userCmd)
+
+	userCountCmd := NewCmdUserCount()
+	userCmd.AddCommand(userCountCmd)
+
+	userViewCmd := NewCmdUserView()
+	userCmd.AddCommand(userViewCmd)
+}
+
 // Execute acts as the entrypoint for the command line interface.
 func Execute() error {
 	return rootCmd.Execute()

@@ -24,5 +24,13 @@ set -o nounset
 which jiracli
 
 jiracli user view admin.admin
+jiracli user view admin.admin --username
+jiracli user view admin@localhost --email
+
 jiracli user view jim.panse
+jiracli user view jim.panse --username
+jiracli user view jim.panse@localhost --email
+
 jiracli user view homer.simpson
+jiracli user view homer.simpson --username
+jiracli user view homer.simpson@localhost --email
