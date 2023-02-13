@@ -14,7 +14,7 @@ RUN go mod download \
 # ---------------------------------------------------------
 # Run
 # ---------------------------------------------------------
-FROM alpine:3.17.1 AS run
+FROM alpine:3.17.2 AS run
 LABEL maintainer="sebastian@sommerfeld.io"
 
 # To run integration tests with a proper shell
