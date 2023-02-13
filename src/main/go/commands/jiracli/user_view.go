@@ -26,7 +26,13 @@ func NewCmdUserView() *cobra.Command {
 
 		Run: func(cmd *cobra.Command, args []string) {
 			opts.Search = args[0]
-			fmt.Println(viewUser(opts))
+			user, err := viewUser(opts)
+
+			if err != nil {
+				log.Fatal(err)
+			}
+
+			fmt.Println(user)
 		},
 	}
 
@@ -37,16 +43,13 @@ func NewCmdUserView() *cobra.Command {
 	return cmd
 }
 
-func viewUser(opts *ViewOptions) users.User {
+func viewUser(opts *ViewOptions) (users.User, error) {
 	if opts.ByEmail {
-		fmt.Println("----> e")
+		// todo validate email input
+		return users.FindByEmail(opts.Search)
+	} else if opts.ByUsername {
+		return users.FindByUsername(opts.Search)
+	} else {
+		return users.FindByUsername(opts.Search)
 	}
-
-	user, err := users.FindByUsername(opts.Search)
-
-	if err != nil {
-		log.Fatal(err)
-	}
-
-	return user
 }

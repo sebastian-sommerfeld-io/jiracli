@@ -39,8 +39,8 @@ function format() {
 function test() {
   LOG_HEADER "Run tests"
   
-  TARGET_DIR="../../../target"
-  COVERAGE_REPORT="go-code-coverage.out"
+  local TARGET_DIR="../../../target"
+  local COVERAGE_REPORT="go-code-coverage.out"
   mkdir -p "$TARGET_DIR"
 
   go test -coverprofile="./$COVERAGE_REPORT" ./...
