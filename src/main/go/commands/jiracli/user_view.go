@@ -2,8 +2,10 @@ package jiracli
 
 import (
 	"fmt"
-	"github.com/spf13/cobra"
 	"log"
+	"net/mail"
+
+	"github.com/spf13/cobra"
 
 	"github.com/sebastian-sommerfeld-io/jiracli/services/users"
 )
@@ -26,7 +28,7 @@ func NewCmdUserView() *cobra.Command {
 
 		Run: func(cmd *cobra.Command, args []string) {
 			opts.Search = args[0]
-			user, err := viewUser(opts)
+			user, err := getUser(opts)
 
 			if err != nil {
 				log.Fatal(err)
@@ -43,13 +45,23 @@ func NewCmdUserView() *cobra.Command {
 	return cmd
 }
 
-func viewUser(opts *userViewOptions) (users.User, error) {
+func getUser(opts *userViewOptions) (users.User, error) {
 	if opts.ByEmail {
-		// todo validate email input
-		return users.FindByEmail(opts.Search)
+		valid, err := validateEmail(opts.Search)
+		if valid {
+			return users.FindByEmail(opts.Search)
+		} else {
+			user := users.User{}
+			return user, err
+		}
 	} else if opts.ByUsername {
 		return users.FindByUsername(opts.Search)
 	} else {
 		return users.FindByUsername(opts.Search)
 	}
+}
+
+func validateEmail(email string) (bool, error) {
+	_, err := mail.ParseAddress(email)
+	return err == nil, err
 }
