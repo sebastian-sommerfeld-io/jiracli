@@ -3,7 +3,8 @@ version: "3.3"
 services:
 
   jira:
-    image: atlassian/jira-software:8.22.6-ubuntu-jdk11
+    build: .
+    image: local/jira-software:dev
     container_name: jira
     restart: unless-stopped
     ports:

@@ -14,6 +14,10 @@ updates:
     schedule:
       interval: daily
   - package-ecosystem: docker
+    directory: src/test/integration-tests
+    schedule:
+      interval: weekly
+  - package-ecosystem: docker
     directory: src/util/code-analyzer
     schedule:
       interval: weekly
