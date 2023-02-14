@@ -48,7 +48,6 @@ func Test_ShouldGetUserByEmail(t *testing.T) {
 		ByEmail: true,
 		Search:  "jim.panse@localhost",
 	}
-
 	user, err := getUser(opts)
 	userFoundAssertions(t, user, err)
 }
@@ -58,7 +57,15 @@ func Test_ShouldNotGetUserByEmail(t *testing.T) {
 		ByEmail: true,
 		Search:  "non.existing@localhost",
 	}
+	user, err := getUser(opts)
+	userNotFoundAssertions(t, user, err)
+}
 
+func Test_ShouldGetErrorDueToInvalidEmail(t *testing.T) {
+	opts := &userViewOptions{
+		ByEmail: true,
+		Search:  "invalid-email",
+	}
 	user, err := getUser(opts)
 	userNotFoundAssertions(t, user, err)
 }
@@ -68,7 +75,6 @@ func Test_ShouldGetUserByUsername(t *testing.T) {
 		ByUsername: true,
 		Search:     "jim.panse",
 	}
-
 	user, err := getUser(opts)
 	userFoundAssertions(t, user, err)
 }
@@ -78,7 +84,6 @@ func Test_ShouldNotGetUserByUsername(t *testing.T) {
 		ByUsername: true,
 		Search:     "non.existing",
 	}
-
 	user, err := getUser(opts)
 	userNotFoundAssertions(t, user, err)
 }
