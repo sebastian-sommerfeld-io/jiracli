@@ -26,7 +26,7 @@ MODE="--show-report"
 FLAGS="--rm -it -p $PORT:8080"
 if [ "$1" = "$PIPELINE_MODE" ]; then
   MODE="$1"
-  FLAGS=""
+  FLAGS="--rm"
 fi
 readonly MODE
 readonly FLAGS
@@ -40,8 +40,8 @@ set -o nounset
 # Include local bash modules
 source "../bash-modules/log.sh"
 
-
 readonly IMAGE="local/qodana-go:dev"
+
 
 LOG_HEADER "Build analyzer image"
 docker build -t "$IMAGE" .
