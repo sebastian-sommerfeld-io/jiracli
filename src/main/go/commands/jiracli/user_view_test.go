@@ -8,17 +8,17 @@ import (
 )
 
 func Test_EmailShouldBeValid(t *testing.T) {
-	email := "jim.panse@localhost"     // Given
-	valid, err := validateEmail(email) // When
-	assert.Nil(t, err)                 // Then
-	assert.True(t, valid)              // Then
+	email := "jim.panse@localhost"
+	valid, err := validateEmail(email)
+	assert.Nil(t, err)
+	assert.True(t, valid)
 }
 
 func Test_EmailShouldBeInvalid(t *testing.T) {
-	email := "jim.panse"               // Given
-	valid, err := validateEmail(email) // When
-	assert.False(t, valid)             // Then
-	assert.NotNil(t, err)              // Then
+	email := "jim.panse"
+	valid, err := validateEmail(email)
+	assert.False(t, valid)
+	assert.NotNil(t, err)
 }
 
 func userFoundAssertions(t *testing.T, user users.User, err error) {

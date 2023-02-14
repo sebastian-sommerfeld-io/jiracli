@@ -1,13 +1,14 @@
 package users
 
 import (
-	"github.com/stretchr/testify/assert"
 	"testing"
+
+	"github.com/stretchr/testify/assert"
 )
 
 func Test_ShouldCountUsers(t *testing.T) {
 	// Given
-	count := CountUsers()                 // When
-	expectedCount := 7                    // Then
-	assert.Equal(t, expectedCount, count) // Then
+	count := CountUsers()
+	expectedCount := 7
+	assert.Equal(t, expectedCount, count)
 }

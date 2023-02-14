@@ -31,25 +31,25 @@ func userNotFoundAssertions(t *testing.T, user User, err error) {
 }
 
 func Test_ShouldFindByUsername(t *testing.T) {
-	search := "jim.panse"               // Given
-	user, err := FindByUsername(search) // When
-	userFoundAssertions(t, user, err)   // Then
+	search := "jim.panse"
+	user, err := FindByUsername(search)
+	userFoundAssertions(t, user, err)
 }
 
 func Test_ShouldNotFindByUsername(t *testing.T) {
-	search := "non.existing"             // Given
-	user, err := FindByUsername(search)  // When
-	userNotFoundAssertions(t, user, err) // Then
+	search := "non.existing"
+	user, err := FindByUsername(search)
+	userNotFoundAssertions(t, user, err)
 }
 
 func Test_ShouldFindByEmail(t *testing.T) {
-	search := "jim.panse@localhost"   // Given
-	user, err := FindByEmail(search)  // When
-	userFoundAssertions(t, user, err) // Then
+	search := "jim.panse@localhost"
+	user, err := FindByEmail(search)
+	userFoundAssertions(t, user, err)
 }
 
 func Test_ShouldNotFindByEmail(t *testing.T) {
-	search := "non.existing@localhost"   // Given
-	user, err := FindByEmail(search)     // When
-	userNotFoundAssertions(t, user, err) // Then
+	search := "non.existing@localhost"
+	user, err := FindByEmail(search)
+	userNotFoundAssertions(t, user, err)
 }
