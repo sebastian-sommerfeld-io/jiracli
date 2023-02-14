@@ -1,8 +1,9 @@
 package users
 
 import (
-	"github.com/stretchr/testify/assert"
 	"testing"
+
+	"github.com/stretchr/testify/assert"
 )
 
 func userFoundAssertions(t *testing.T, user User, err error) {
