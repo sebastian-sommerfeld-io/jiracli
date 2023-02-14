@@ -36,6 +36,19 @@ To develop and run the application you need a Linux environment with Docker inst
 == How to use this project
 Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
 
+=== IDE Setup
+This project is developed with VSCode and uses Dev Containers. So you need a local VSCode installation with the `Dev Containers` extension.
+
+[source, text]
+----
+Name: Dev Containers
+Id: ms-vscode-remote.remote-containers
+Description: Open any folder or repository inside a Docker container and take advantage of Visual Studio Code's full feature set.
+Version: 0.275.1
+Publisher: Microsoft
+VS Marketplace Link: https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers
+----
+
 == Risks and Technical Debts
 Scale for Probability and Impact: Low, Medium and High
 
