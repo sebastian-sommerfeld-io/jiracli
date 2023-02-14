@@ -18,3 +18,4 @@ logs
 
 # sonarcloud.io
 .scannerwork
+src/main/go/go-code-coverage.out
