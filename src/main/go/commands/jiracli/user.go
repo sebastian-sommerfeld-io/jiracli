@@ -4,7 +4,7 @@ import (
 	"github.com/spf13/cobra"
 )
 
-// NewCmdUser initializes the `user` command.
+// NewCmdUser initializes the `jiracli user` command.
 func NewCmdUser() *cobra.Command {
 	cmd := &cobra.Command{
 		Use:   "user",

@@ -16,7 +16,7 @@ type userViewOptions struct {
 	Search     string
 }
 
-// NewCmdUserView initializes the `user view` command and its flags.
+// NewCmdUserView initializes the `jiracli user view` command and its flags.
 func NewCmdUserView() *cobra.Command {
 	opts := &userViewOptions{}
 
