@@ -1,0 +1,30 @@
+= IDE Setup
+Sebastian Sommerfeld <sebastian@sommerfeld.io>
+:description: Setup your local development environment.
+
+== Prerequisites
+. Install Docker (mandatory)
+. Install VSCode (recommended)
+
+== VSCode Setup
+This project is developed with VSCode and uses Dev Containers. So you need a local VSCode installation with the Dev Containers extension.
+[source, text]
+----
+Name: Dev Containers
+Id: ms-vscode-remote.remote-containers
+Description: Open any folder or repository inside a Docker container and take advantage of Visual Studio Code's full feature set.
+Version: 0.275.1
+Publisher: Microsoft
+VS Marketplace Link: https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers
+----
+
+To properly work with Asciidoc files it is recommended to install the AsciiDoc extension into the Dev Container as well.
+[source, text]
+----
+Name: AsciiDoc
+Id: asciidoctor.asciidoctor-vscode
+Description: Provides rich language support for AsciiDoc.
+Version: 2.9.8
+Publisher: asciidoctor
+VS Marketplace Link: https://marketplace.visualstudio.com/items?itemName=asciidoctor.asciidoctor-vscode
+----
