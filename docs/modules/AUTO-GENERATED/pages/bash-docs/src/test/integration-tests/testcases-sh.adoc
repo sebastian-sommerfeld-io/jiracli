@@ -25,3 +25,27 @@ Don't run this script directly!
 === Script Arguments
 
 The script does not accept any parameters.
+
+== Index
+
+* <<__jiracli,_jiracli>>
+
+=== _jiracli
+
+Wrapper function to not repeat the three mandatory flags for the `jiracli`
+app all the time.
+
+==== Example
+
+[,bash]
+----
+_jiracli user view admin.admin
+----
+
+==== Arguments
+
+* *...* (String): The `jiracli` commands (1-n arguments) - $1 is mandatory
+
+==== Exit codes
+
+* *8*: If param with `jiracli` command is missing
