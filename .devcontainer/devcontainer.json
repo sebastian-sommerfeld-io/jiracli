@@ -11,7 +11,10 @@
 			"extensions": [
 				"streetsidesoftware.code-spell-checker",
 				"asciidoctor.asciidoctor-vscode",
-				"ms-azuretools.vscode-docker"
+				"ms-azuretools.vscode-docker",
+				"aaron-bond.better-comments",
+				"pomdtr.markdown-kroki",
+				"golang.go"
 			]
 		}
 	},
