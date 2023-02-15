@@ -21,16 +21,35 @@ set -o nounset
 # set -o xtrace
 
 
-which jiracli
+# @description Wrapper function to not repeat the three mandatory flags for the ``jiracli``
+# app all the time.
+#
+# @example
+#    _jiracli user view admin.admin
+#
+# @arg $@ String The ``jiracli`` commands (1-n arguments) - $1 is mandatory
+#
+# @exitcode 8 If param with ``jiracli`` command is missing
+function _jiracli() {
+  if [ -z "$1" ]; then
+    LOG_ERROR "No command passed to the jiracli app"
+    LOG_ERROR "exit" && exit 8
+  fi
 
-jiracli user view admin.admin
-jiracli user view admin.admin --username
-jiracli user view admin@localhost --email
+  jiracli "$@" --baseUrl="http://localhost:8080" --user="admin" --pass="admin"
+}
 
-jiracli user view jim.panse
-jiracli user view jim.panse --username
-jiracli user view jim.panse@localhost --email
 
-jiracli user view homer.simpson
-jiracli user view homer.simpson --username
-jiracli user view homer.simpson@localhost --email
+_jiracli user view admin.admin 
+_jiracli user view admin.admin --username
+_jiracli user view admin@localhost --email
+
+_jiracli user view jim.panse
+_jiracli user view jim.panse --username
+_jiracli user view jim.panse@localhost --email
+
+_jiracli user view homer.simpson
+_jiracli user view homer.simpson --username
+_jiracli user view homer.simpson@localhost --email
+
+_jiracli license view

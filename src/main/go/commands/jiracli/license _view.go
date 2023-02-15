@@ -17,9 +17,8 @@ type licenseViewOptions struct {
 // NewCmdUserView initializes the `jiracli license` command.
 func NewCmdLicenseView() *cobra.Command {
 	opts := &licenseViewOptions{
-		BaseURL: "http://localhost:8080",
-		User:    "admin",
-		Pass:    "admin",
+		User: "admin",
+		Pass: "admin",
 	}
 
 	cmd := &cobra.Command{
@@ -29,6 +28,10 @@ func NewCmdLicenseView() *cobra.Command {
 		Args:  cobra.ExactArgs(0),
 
 		Run: func(cmd *cobra.Command, args []string) {
+			opts.BaseURL = GetBaseUrl(cmd)
+			opts.User = GetUsername(cmd)
+			opts.Pass = GetPassword(cmd)
+
 			json, err := getJiraSoftwareLicense(opts)
 
 			if err != nil {
