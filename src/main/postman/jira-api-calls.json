@@ -8,8 +8,29 @@
 		{
 			"name": "get license",
 			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "admin",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						}
+					]
+				},
 				"method": "GET",
-				"header": [],
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "default"
+					}
+				],
 				"url": {
 					"raw": "http://localhost:8080/rest/plugins/applications/1.0/installed/jira-software/license",
 					"protocol": "http",
