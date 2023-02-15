@@ -48,8 +48,12 @@ function callEndpoint() {
   LOG_INFO "User = $USER"
 
   curl --location --request GET "${BASE_URL}${1}" \
-    -u "$USER:$PASS" \
+    --user "$USER:$PASS" \
     --header 'Content-Type: application/json' # | json_pp
+  # curl --location --request GET "${BASE_URL}${1}" \
+  #   --header "Authorization: $USER:$PASS" \
+  #   --header 'Content-Type: application/json' # | json_pp
+
 }
 
 callEndpoint /rest/plugins/applications/1.0/installed/jira-software/license

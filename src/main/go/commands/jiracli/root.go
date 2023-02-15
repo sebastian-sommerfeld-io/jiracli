@@ -21,6 +21,12 @@ var rootCmd *cobra.Command
 func init() {
 	rootCmd = NewCmdRoot()
 
+	licenseCmd := NewCmdLicense()
+	rootCmd.AddCommand(licenseCmd)
+
+	licenseViewCmd := NewCmdLicenseView()
+	licenseCmd.AddCommand(licenseViewCmd)
+
 	userCmd := NewCmdUser()
 	rootCmd.AddCommand(userCmd)
 

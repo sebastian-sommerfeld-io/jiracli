@@ -45,5 +45,6 @@ function go() {
     --volume "/tmp/$USER/.cache:/home/$USER/.cache" \
     --volume "$(pwd):$(pwd)" \
     --workdir "$(pwd)" \
+    --network host \
     golang:1.20-rc-alpine go "$@"
 }
