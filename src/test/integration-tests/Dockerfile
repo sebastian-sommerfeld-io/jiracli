@@ -1,4 +1,4 @@
-FROM atlassian/jira-software:8.22.6-ubuntu-jdk11
+FROM atlassian/jira-software:9.6.0-ubuntu-jdk11
 LABEL maintainer="sebastian@sommerfeld.io"
 
 COPY --chown=jira:jira assets/jira/dbconfig.xml /var/atlassian/application-data/jira/dbconfig.xml
