@@ -79,7 +79,7 @@ jobs:
         run: |
           (
             cd src/main/go || exit
-            ./jiracli.sh user view admin.admin
+            ./jiracli.sh
           )
         shell: bash
       - name: SonarCloud Scan
@@ -97,7 +97,7 @@ jobs:
       - name: Build Docker image and run integration tests
         run: |
           (
-            cd src/test/integration-tests || exit
+            cd src/test/acceptance-tests || exit
             ./tests.sh start
             ./tests.sh logs
           )
@@ -122,7 +122,7 @@ jobs:
       - name: Stop containers and remove Docker images
         run: |
           (
-            cd src/test/integration-tests || exit
+            cd src/test/acceptance-tests || exit
             ./tests.sh stop
           )
         shell: bash

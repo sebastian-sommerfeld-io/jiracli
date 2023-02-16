@@ -1,6 +1,7 @@
-* `xref:AUTO-GENERATED:bash-docs/src/test/integration-tests/testcases-sh.adoc[src/test/integration-tests/testcases.sh]`
-* `xref:AUTO-GENERATED:bash-docs/src/test/integration-tests/tests-sh.adoc[src/test/integration-tests/tests.sh]`
+* `xref:AUTO-GENERATED:bash-docs/src/test/acceptance-tests/testcases-sh.adoc[src/test/acceptance-tests/testcases.sh]`
+* `xref:AUTO-GENERATED:bash-docs/src/test/acceptance-tests/tests-sh.adoc[src/test/acceptance-tests/tests.sh]`
 * `xref:AUTO-GENERATED:bash-docs/src/main/go/jiracli-sh.adoc[src/main/go/jiracli.sh]`
+* `xref:AUTO-GENERATED:bash-docs/src/main/postman/demo-api-calls-sh.adoc[src/main/postman/demo-api-calls.sh]`
 * `xref:AUTO-GENERATED:bash-docs/src/util/code-analyzer/analyze-sh.adoc[src/util/code-analyzer/analyze.sh]`
 * `xref:AUTO-GENERATED:bash-docs/src/util/bash-modules/go-wrapper-sh.adoc[src/util/bash-modules/go-wrapper.sh]`
 * `xref:AUTO-GENERATED:bash-docs/src/util/bash-modules/log-sh.adoc[src/util/bash-modules/log.sh]`

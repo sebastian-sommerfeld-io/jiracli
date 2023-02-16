@@ -8,7 +8,8 @@ import (
 func NewCmdUser() *cobra.Command {
 	cmd := &cobra.Command{
 		Use:   "user",
-		Short: "Interact with a Jira instance and work with Jira users",
+		Short: "Interact with a Jira instance and access Jira user information",
+		Long:  "Interact with a Jira instance and count users or access information about a Jira user",
 		Args:  cobra.ExactArgs(0),
 	}
 
