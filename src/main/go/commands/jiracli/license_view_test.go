@@ -15,6 +15,7 @@ func Test_ShouldGetLicense(t *testing.T) {
 		Pass:    "admin",
 	}
 
+	// todo mock this line
 	result, err := getJiraSoftwareLicense(opts)
 
 	assert.Nil(t, err)
