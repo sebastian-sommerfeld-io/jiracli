@@ -78,7 +78,6 @@ func Test_ShouldGetError(t *testing.T) {
 			expectedResponse: &JiraLicense{},
 			expectedErr:      errors.New("must have permission to access this resource"),
 		},
-		// todo ... add more error case checks
 	}
 
 	for _, tc := range testTable {
