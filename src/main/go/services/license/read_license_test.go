@@ -13,7 +13,7 @@ import (
 func Test_ShouldGetLicense(t *testing.T) {
 	licenseJson := `{"valid":true,"evaluation":true,"maximumNumberOfUsers":-1,"licenseType":"Commercial","creationDateString":"14/Feb/23","expiryDate":1678971600000,"expiryDateString":"16/Mar/23","organizationName":"sebastian@sommerfeld.io","dataCenter":true,"subscription":true,"rawLicense":"THE_ACTUAL_LICENSE","expired":false,"supportEntitlementNumber":"SEN-L19188898","enterprise":false,"active":true,"autoRenewal":false}`
 
-	testTable := []struct {
+	testCases := []struct {
 		name             string
 		server           *httptest.Server
 		expectedResponse *JiraLicense
@@ -49,19 +49,19 @@ func Test_ShouldGetLicense(t *testing.T) {
 		},
 	}
 
-	for _, tc := range testTable {
-		t.Run(tc.name, func(t *testing.T) {
-			defer tc.server.Close()
-			result, err := ReadJiraLicense(tc.server.URL, "", "")
+	for _, testCase := range testCases {
+		t.Run(testCase.name, func(t *testing.T) {
+			defer testCase.server.Close()
+			got, err := ReadJiraLicense(testCase.server.URL, "", "")
 
 			assert.Nil(t, err)
-			assert.True(t, json.Valid([]byte(result.RawJson)), "JSON should be valid")
+			assert.True(t, json.Valid([]byte(got.RawJson)), "JSON should be valid")
 		})
 	}
 }
 
 func Test_ShouldGetError(t *testing.T) {
-	testTable := []struct {
+	testCases := []struct {
 		name             string
 		server           *httptest.Server
 		expectedResponse *JiraLicense
@@ -78,14 +78,14 @@ func Test_ShouldGetError(t *testing.T) {
 		},
 	}
 
-	for _, tc := range testTable {
-		t.Run(tc.name, func(t *testing.T) {
-			defer tc.server.Close()
-			result, err := ReadJiraLicense(tc.server.URL, "", "")
+	for _, testCase := range testCases {
+		t.Run(testCase.name, func(t *testing.T) {
+			defer testCase.server.Close()
+			got, err := ReadJiraLicense(testCase.server.URL, "", "")
 
 			assert.NotNil(t, err)
-			assert.EqualErrorf(t, err, tc.expectedErr.Error(), "Error should be: %v, got: %v", tc.expectedErr.Error(), err)
-			assert.Equal(t, JiraLicense{}, result)
+			assert.EqualErrorf(t, err, testCase.expectedErr.Error(), "Error should be: %v, got: %v", testCase.expectedErr.Error(), err)
+			assert.Equal(t, JiraLicense{}, got)
 		})
 	}
 }
