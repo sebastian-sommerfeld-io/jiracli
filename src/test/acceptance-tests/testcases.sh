@@ -1,5 +1,5 @@
 #!/bin/bash
-# @file integration-tests.sh
+# @file testcases.sh
 # @brief Integration tests triggered from Docker Compose.
 #
 # @description This script contains intergration test cases that are run against the Jira

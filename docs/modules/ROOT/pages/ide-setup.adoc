@@ -39,7 +39,7 @@ To get the current h2db data from the Jira instance, start the container and run
 
 [source, bash]
 ----
-cd src/test/integration-tests/assets/jira || exit
+cd src/test/acceptance-tests/assets/jira || exit
 
 docker cp jira:/var/atlassian/application-data/jira/database/h2db.mv.db ./database
 ----
