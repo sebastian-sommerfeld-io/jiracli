@@ -3,7 +3,7 @@ package license
 import (
 	"encoding/json"
 	"errors"
-	"io/ioutil"
+	"io"
 	"net/http"
 )
 
@@ -55,7 +55,7 @@ func ReadJiraLicense(baseurl string, user string, pass string) (JiraLicense, err
 		return errorObjects(errors.New("must have permission to access this resource"))
 	}
 
-	body, err := ioutil.ReadAll(res.Body)
+	body, err := io.ReadAll(res.Body)
 	if err != nil {
 		return errorObjects(err)
 	}
