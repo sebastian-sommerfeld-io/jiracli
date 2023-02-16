@@ -39,7 +39,7 @@ func ReadJiraLicense(baseurl string, user string, pass string) (JiraLicense, err
 	req, err := http.NewRequest(method, url, nil)
 
 	if err != nil {
-		return JiraLicense{}, err
+		return returnOnError(err)
 	}
 
 	req.Header.Add("Content-Type", "application/json")
@@ -47,27 +47,31 @@ func ReadJiraLicense(baseurl string, user string, pass string) (JiraLicense, err
 
 	res, err := client.Do(req)
 	if err != nil {
-		return JiraLicense{}, err
+		return returnOnError(err)
 	}
 	defer res.Body.Close()
 
 	body, err := ioutil.ReadAll(res.Body)
 	if err != nil {
-		return JiraLicense{}, err
+		return returnOnError(err)
 	}
 
 	bodyString := string(body)
 
 	unauthorizedMsg := "must have permission to access this resource"
 	if strings.Contains(strings.ToLower(bodyString), unauthorizedMsg) {
-		return JiraLicense{}, errors.New(unauthorizedMsg)
+		return returnOnError(errors.New(unauthorizedMsg))
 	}
 
 	result := &JiraLicense{}
 	if err := json.Unmarshal(body, result); err != nil {
-		return JiraLicense{}, err
+		return returnOnError(err)
 	}
 	result.RawJson = bodyString
 
 	return *result, nil
+}
+
+func returnOnError(err error) (JiraLicense, error) {
+	return JiraLicense{}, err
 }
