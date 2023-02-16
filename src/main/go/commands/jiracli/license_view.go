@@ -32,19 +32,19 @@ func NewCmdLicenseView() *cobra.Command {
 			opts.User = GetUsername(cmd)
 			opts.Pass = GetPassword(cmd)
 
-			json, err := getJiraSoftwareLicense(opts)
+			jiraLicense, err := getJiraSoftwareLicense(opts)
 
 			if err != nil {
 				log.Fatal(err)
 			}
 
-			fmt.Println(json)
+			fmt.Println(jiraLicense.RawJson)
 		},
 	}
 
 	return cmd
 }
 
-func getJiraSoftwareLicense(opts *licenseViewOptions) (string, error) {
-	return license.ReadJiraSoftwareLicense(opts.BaseURL, opts.User, opts.Pass)
+func getJiraSoftwareLicense(opts *licenseViewOptions) (license.JiraLicense, error) {
+	return license.ReadJiraLicense(opts.BaseURL, opts.User, opts.Pass)
 }

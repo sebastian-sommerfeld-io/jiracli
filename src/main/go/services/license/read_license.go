@@ -1,15 +1,36 @@
 package license
 
 import (
+	"encoding/json"
 	"errors"
 	"io/ioutil"
 	"net/http"
 	"strings"
 )
 
-// ReadJiraSoftwareLicense reads the license used to allow Jira Software to work. The license
+type JiraLicense struct {
+	Valid                    bool   `json:"valid"`
+	Evaluation               bool   `json:"evaluation"`
+	MaximumNumberOfUsers     int    `json:"maximumNumberOfUsers"`
+	LicenseType              string `json:"licenseType"`
+	CreationDateString       string `json:"creationDateString"`
+	ExpiryDate               int    `json:"expiryDate"`
+	ExpiryDateString         string `json:"expiryDateString"`
+	OrganizationName         string `json:"organizationName"`
+	DataCenter               bool   `json:"dataCenter"`
+	Subscription             bool   `json:"subscription"`
+	RawLicense               string `json:"rawLicense"`
+	Expired                  bool   `json:"expired"`
+	SupportEntitlementNumber string `json:"supportEntitlementNumber"`
+	Enterprise               bool   `json:"enterprise"`
+	Active                   bool   `json:"active"`
+	AutoRenewal              bool   `json:"autoRenewal"`
+	RawJson                  string
+}
+
+// ReadJiraLicense reads the license used to allow Jira Software to work. The license
 // is used for Jira itself, not for any plugin.
-func ReadJiraSoftwareLicense(baseurl string, user string, pass string) (string, error) {
+func ReadJiraLicense(baseurl string, user string, pass string) (JiraLicense, error) {
 	endpoint := "/rest/plugins/applications/1.0/installed/jira-software/license"
 	url := baseurl + endpoint
 	method := "GET"
@@ -18,7 +39,7 @@ func ReadJiraSoftwareLicense(baseurl string, user string, pass string) (string, 
 	req, err := http.NewRequest(method, url, nil)
 
 	if err != nil {
-		return "", err
+		return JiraLicense{}, err
 	}
 
 	req.Header.Add("Content-Type", "application/json")
@@ -26,21 +47,27 @@ func ReadJiraSoftwareLicense(baseurl string, user string, pass string) (string, 
 
 	res, err := client.Do(req)
 	if err != nil {
-		return "", err
+		return JiraLicense{}, err
 	}
 	defer res.Body.Close()
 
 	body, err := ioutil.ReadAll(res.Body)
 	if err != nil {
-		return "", err
+		return JiraLicense{}, err
 	}
 
-	result := string(body)
+	bodyString := string(body)
 
 	unauthorizedMsg := "must have permission to access this resource"
-	if strings.Contains(strings.ToLower(result), unauthorizedMsg) {
-		return "", errors.New(unauthorizedMsg)
+	if strings.Contains(strings.ToLower(bodyString), unauthorizedMsg) {
+		return JiraLicense{}, errors.New(unauthorizedMsg)
 	}
 
-	return result, nil
+	result := &JiraLicense{}
+	if err := json.Unmarshal(body, result); err != nil {
+		return JiraLicense{}, err
+	}
+	result.RawJson = bodyString
+
+	return *result, nil
 }

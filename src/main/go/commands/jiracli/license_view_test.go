@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"testing"
 
+	"github.com/sebastian-sommerfeld-io/jiracli/services/license"
 	"github.com/stretchr/testify/assert"
 )
 
@@ -14,10 +15,10 @@ func Test_ShouldGetLicense(t *testing.T) {
 		Pass:    "admin",
 	}
 
-	jsonResult, err := getJiraSoftwareLicense(opts)
+	result, err := getJiraSoftwareLicense(opts)
 
 	assert.Nil(t, err)
-	assert.True(t, json.Valid([]byte(jsonResult)), "JSON should be valid")
+	assert.True(t, json.Valid([]byte(result.RawJson)), "JSON should be valid")
 }
 
 func Test_ShouldGetUnauthorizedError(t *testing.T) {
@@ -28,11 +29,11 @@ func Test_ShouldGetUnauthorizedError(t *testing.T) {
 	}
 	expectedMessage := "must have permission to access this resource"
 
-	jsonResult, err := getJiraSoftwareLicense(opts)
+	result, err := getJiraSoftwareLicense(opts)
 
 	assert.NotNil(t, err)
 	assert.EqualErrorf(t, err, expectedMessage, "Error should be: %v, got: %v", expectedMessage, err)
-	assert.Equal(t, "", jsonResult)
+	assert.Equal(t, license.JiraLicense{}, result)
 }
 
 func Test_ShouldGetConnectionRefusedError(t *testing.T) {
@@ -43,9 +44,9 @@ func Test_ShouldGetConnectionRefusedError(t *testing.T) {
 	}
 	expectedMessage := "dial tcp 127.0.0.1:8181: connect: connection refused"
 
-	jsonResult, err := getJiraSoftwareLicense(opts)
+	result, err := getJiraSoftwareLicense(opts)
 
 	assert.NotNil(t, err)
 	assert.Contains(t, err.Error(), expectedMessage)
-	assert.Equal(t, "", jsonResult)
+	assert.Equal(t, license.JiraLicense{}, result)
 }

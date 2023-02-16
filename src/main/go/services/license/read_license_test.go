@@ -12,8 +12,8 @@ func Test_ShouldGetLicense(t *testing.T) {
 	user := "admin"
 	pass := "admin"
 
-	jsonResult, err := ReadJiraSoftwareLicense(baseUrl, user, pass)
+	result, err := ReadJiraLicense(baseUrl, user, pass)
 
 	assert.Nil(t, err)
-	assert.True(t, json.Valid([]byte(jsonResult)), "JSON should be valid")
+	assert.True(t, json.Valid([]byte(result.RawJson)), "JSON should be valid")
 }
