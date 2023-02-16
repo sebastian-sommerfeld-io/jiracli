@@ -79,7 +79,7 @@ jobs:
         run: |
           (
             cd src/main/go || exit
-            ./jiracli.sh user view admin.admin
+            ./jiracli.sh
           )
         shell: bash
       - name: SonarCloud Scan
