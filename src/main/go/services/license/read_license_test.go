@@ -2,6 +2,7 @@ package license
 
 import (
 	"encoding/json"
+	"errors"
 	"net/http"
 	"net/http/httptest"
 	"testing"
@@ -23,6 +24,7 @@ func Test_ShouldGetLicense(t *testing.T) {
 		{
 			name: "ShouldGetLicense",
 			server: httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+				r.SetBasicAuth("admin", "admin")
 				w.WriteHeader(http.StatusOK)
 				w.Write([]byte(jsonLicense()))
 			})),
@@ -52,15 +54,41 @@ func Test_ShouldGetLicense(t *testing.T) {
 	for _, tc := range testTable {
 		t.Run(tc.name, func(t *testing.T) {
 			defer tc.server.Close()
-
-			baseUrl := "http://localhost:8080"
-			user := "admin"
-			pass := "admin"
-
-			result, err := ReadJiraLicense(baseUrl, user, pass)
+			result, err := ReadJiraLicense(tc.server.URL, "", "")
 
 			assert.Nil(t, err)
 			assert.True(t, json.Valid([]byte(result.RawJson)), "JSON should be valid")
+		})
+	}
+}
+
+func Test_ShouldGetError(t *testing.T) {
+	testTable := []struct {
+		name             string
+		server           *httptest.Server
+		expectedResponse *JiraLicense
+		expectedErr      error
+	}{
+		{
+			name: "ShouldGetUnauthorizedError",
+			server: httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+				r.SetBasicAuth("cloud", "cloud")
+				w.WriteHeader(http.StatusUnauthorized)
+			})),
+			expectedResponse: &JiraLicense{},
+			expectedErr:      errors.New("must have permission to access this resource"),
+		},
+	}
+
+	for _, tc := range testTable {
+		t.Run(tc.name, func(t *testing.T) {
+			defer tc.server.Close()
+			result, err := ReadJiraLicense(tc.server.URL, "", "")
+
+			assert.NotNil(t, err)
+
+			assert.EqualErrorf(t, err, tc.expectedErr.Error(), "Error should be: %v, got: %v", tc.expectedErr.Error(), err)
+			assert.Equal(t, JiraLicense{}, result)
 		})
 	}
 }

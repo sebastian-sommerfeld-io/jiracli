@@ -5,7 +5,6 @@ import (
 	"errors"
 	"io/ioutil"
 	"net/http"
-	"strings"
 )
 
 type JiraLicense struct {
@@ -51,17 +50,16 @@ func ReadJiraLicense(baseurl string, user string, pass string) (JiraLicense, err
 	}
 	defer res.Body.Close()
 
+	if res.StatusCode == 401 {
+		return returnOnError(errors.New("must have permission to access this resource"))
+	}
+
 	body, err := ioutil.ReadAll(res.Body)
 	if err != nil {
 		return returnOnError(err)
 	}
 
 	bodyString := string(body)
-
-	unauthorizedMsg := "must have permission to access this resource"
-	if strings.Contains(strings.ToLower(bodyString), unauthorizedMsg) {
-		return returnOnError(errors.New(unauthorizedMsg))
-	}
 
 	result := &JiraLicense{}
 	if err := json.Unmarshal(body, result); err != nil {
