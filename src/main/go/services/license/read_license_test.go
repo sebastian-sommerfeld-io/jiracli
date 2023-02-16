@@ -10,11 +10,9 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-func jsonLicense() string {
-	return `{"valid":true,"evaluation":true,"maximumNumberOfUsers":-1,"licenseType":"Commercial","creationDateString":"14/Feb/23","expiryDate":1678971600000,"expiryDateString":"16/Mar/23","organizationName":"sebastian@sommerfeld.io","dataCenter":true,"subscription":true,"rawLicense":"THE_ACTUAL_LICENSE","expired":false,"supportEntitlementNumber":"SEN-L19188898","enterprise":false,"active":true,"autoRenewal":false}`
-}
-
 func Test_ShouldGetLicense(t *testing.T) {
+	licenseJson := `{"valid":true,"evaluation":true,"maximumNumberOfUsers":-1,"licenseType":"Commercial","creationDateString":"14/Feb/23","expiryDate":1678971600000,"expiryDateString":"16/Mar/23","organizationName":"sebastian@sommerfeld.io","dataCenter":true,"subscription":true,"rawLicense":"THE_ACTUAL_LICENSE","expired":false,"supportEntitlementNumber":"SEN-L19188898","enterprise":false,"active":true,"autoRenewal":false}`
+
 	testTable := []struct {
 		name             string
 		server           *httptest.Server
@@ -26,7 +24,7 @@ func Test_ShouldGetLicense(t *testing.T) {
 			server: httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 				r.SetBasicAuth("admin", "admin")
 				w.WriteHeader(http.StatusOK)
-				w.Write([]byte(jsonLicense()))
+				w.Write([]byte(licenseJson))
 			})),
 			expectedResponse: &JiraLicense{
 				Valid:                    true,
@@ -45,7 +43,7 @@ func Test_ShouldGetLicense(t *testing.T) {
 				Enterprise:               false,
 				Active:                   true,
 				AutoRenewal:              false,
-				RawJson:                  jsonLicense(),
+				RawJson:                  licenseJson,
 			},
 			expectedErr: nil,
 		},
