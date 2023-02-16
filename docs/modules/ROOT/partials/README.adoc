@@ -14,8 +14,19 @@ Jira CLI is a command line interface to automate tasks otherwise done through th
 To develop and run the application you need a Linux environment with Docker installed. A local Go installation is not needed because everything related to go is delegated to a Docker container. Development takes place on Ubuntu.
 
 == How to use this project
-Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+To run this container and execute some commands against a running Jira instance use this command:
 
+[source, bash]
+----
+docker run --rm --network=host sommerfeldio/jiracli:latest
+
+# Example commands which do more than just display help-texts
+docker run --rm --network=host sommerfeldio/jiracli:latest license view --baseUrl="http://localhost:8080" --user="<THE_USERNAME>" --pass="<THE_PASSWORD>"
+----
+
+In case you want to access a Jira instance that is not running on your local machine, you need to update the `--baseUrl`. Plus you can probably omit the `--network=host` flag.
+
+=== Local IDE Setup
 For information on how to set up your local development environment, see link:https://www.sommerfeld.io/docs/projects/jiracli/main/index.html[IDE Setup] on www.sommerfeld.io.
 
 == Risks and Technical Debts
