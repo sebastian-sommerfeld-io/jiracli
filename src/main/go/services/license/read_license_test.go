@@ -78,6 +78,7 @@ func Test_ShouldGetError(t *testing.T) {
 			expectedResponse: &JiraLicense{},
 			expectedErr:      errors.New("must have permission to access this resource"),
 		},
+		// todo ... add more error case checks
 	}
 
 	for _, tc := range testTable {
@@ -86,7 +87,6 @@ func Test_ShouldGetError(t *testing.T) {
 			result, err := ReadJiraLicense(tc.server.URL, "", "")
 
 			assert.NotNil(t, err)
-
 			assert.EqualErrorf(t, err, tc.expectedErr.Error(), "Error should be: %v, got: %v", tc.expectedErr.Error(), err)
 			assert.Equal(t, JiraLicense{}, result)
 		})
