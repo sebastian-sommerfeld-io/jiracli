@@ -36,7 +36,7 @@ function _jiracli() {
     LOG_ERROR "exit" && exit 8
   fi
 
-  jiracli "$@" --baseUrl="http://jira:8080" --user="admin" --pass="admin"
+  jiracli --baseUrl="http://jira:8080" --user="admin" --pass="admin" "$@"
 }
 
 
