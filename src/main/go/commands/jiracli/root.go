@@ -18,20 +18,25 @@ func NewCmdRoot() *cobra.Command {
 	return cmd
 }
 
-const FLAG_BASEURL string = "baseUrl"
-const FLAG_USER string = "user"
-const FLAG_PASS string = "pass"
+// FlagBaseUrl contains the name of a mandatory flag
+const FlagBaseUrl string = "baseUrl"
+
+// FlagUser contains the name of a mandatory flag
+const FlagUser string = "user"
+
+// FlagPass contains the name of a mandatory flag
+const FlagPass string = "pass"
 
 var rootCmd *cobra.Command
 
 func init() {
 	rootCmd = NewCmdRoot()
-	rootCmd.PersistentFlags().String(FLAG_BASEURL, "", "Base URL for a Jira instance (e.g. http://localhost:8080)")
-	rootCmd.PersistentFlags().String(FLAG_USER, "", "Jira user used to consume the Rest API")
-	rootCmd.PersistentFlags().String(FLAG_PASS, "", "Password for the Jira user")
-	rootCmd.MarkPersistentFlagRequired(FLAG_BASEURL)
-	rootCmd.MarkPersistentFlagRequired(FLAG_USER)
-	rootCmd.MarkPersistentFlagRequired(FLAG_PASS)
+	rootCmd.PersistentFlags().String(FlagBaseUrl, "", "Base URL for a Jira instance (e.g. http://localhost:8080)")
+	rootCmd.PersistentFlags().String(FlagUser, "", "Jira user used to consume the Rest API")
+	rootCmd.PersistentFlags().String(FlagPass, "", "Password for the Jira user")
+	rootCmd.MarkPersistentFlagRequired(FlagBaseUrl)
+	rootCmd.MarkPersistentFlagRequired(FlagUser)
+	rootCmd.MarkPersistentFlagRequired(FlagPass)
 
 	licenseCmd := NewCmdLicense()
 	rootCmd.AddCommand(licenseCmd)
@@ -56,17 +61,17 @@ func Execute() error {
 
 // GetBaseUrl returns the value for the `--baseUrl` flag as string
 func GetBaseUrl(cmd *cobra.Command) string {
-	return getFlagValue(cmd, FLAG_BASEURL)
+	return getFlagValue(cmd, FlagBaseUrl)
 }
 
-// GetUser returns the value for the `--user` flag as string
+// GetUsername returns the value for the `--user` flag as string
 func GetUsername(cmd *cobra.Command) string {
-	return getFlagValue(cmd, FLAG_USER)
+	return getFlagValue(cmd, FlagUser)
 }
 
 // GetPassword returns the value for the `--pass` flag as string
 func GetPassword(cmd *cobra.Command) string {
-	return getFlagValue(cmd, FLAG_PASS)
+	return getFlagValue(cmd, FlagPass)
 }
 
 func getFlagValue(cmd *cobra.Command, flag string) string {

@@ -15,7 +15,7 @@ type licenseViewOptions struct {
 	Pass    string
 }
 
-// NewCmdUserView initializes the `jiracli license` command.
+// NewCmdLicenseView initializes the `jiracli license` command.
 func NewCmdLicenseView() *cobra.Command {
 	opts := &licenseViewOptions{
 		User: "admin",
