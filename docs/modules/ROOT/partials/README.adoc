@@ -5,7 +5,8 @@ image:{github-actions-url}/{job-ci}/{badge}[Github Badge, link={github-actions-u
 image:{github-actions-url}/{job-cd}/{badge}[Github Badge, link={github-actions-url}/{job-cd}]
 
 * Github Repository -> {url-project}
-* Documentation -> https://www.sommerfeld.io/docs/docker-images/{project-name}-docs/main
+* Container Registry -> https://hub.docker.com/r/sommerfeldio/{project-name}
+* Documentation -> https://www.sommerfeld.io/docs/projects/{project-name}/main
 * Where to file issues -> {url-project}/issues
 
 == About this project
