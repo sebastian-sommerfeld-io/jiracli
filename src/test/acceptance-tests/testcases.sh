@@ -36,9 +36,11 @@ function _jiracli() {
     LOG_ERROR "exit" && exit 8
   fi
 
-  jiracli "$@" --baseUrl="http://localhost:8080" --user="admin" --pass="admin"
+  jiracli "$@" --baseUrl="http://jira:8080" --user="admin" --pass="admin"
 }
 
+
+sleep 5m
 
 _jiracli user view admin.admin 
 _jiracli user view admin.admin --username

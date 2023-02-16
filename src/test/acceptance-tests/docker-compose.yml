@@ -18,19 +18,12 @@ services:
       interval: 30s
       timeout: 10s
       retries: 5
-      start_period: 90s
+      start_period: 300s
 
   jiracli:
     build: ../../main
     image: local/jiracli:dev
     container_name: jiracli
-    environment:
-       # todo ------------------------------------------------------------
-       # not yet used ... still todo (connect to jira instance from above)
-       # make sure jira is up and running completely (not just port up and
-       # listening but server still starting)
-       # todo ------------------------------------------------------------
-      - JIRA_HOST=localhost:8080
     volumes:
       - ./testcases.sh:/testcases.sh
     entrypoint: bash /testcases.sh
