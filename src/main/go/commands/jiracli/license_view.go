@@ -3,6 +3,7 @@ package jiracli
 import (
 	"fmt"
 	"log"
+	"os"
 
 	"github.com/sebastian-sommerfeld-io/jiracli/services/license"
 	"github.com/spf13/cobra"
@@ -32,19 +33,19 @@ func NewCmdLicenseView() *cobra.Command {
 			opts.User = GetUsername(cmd)
 			opts.Pass = GetPassword(cmd)
 
-			jiraLicense, err := getJiraSoftwareLicense(opts)
-
-			if err != nil {
-				log.Fatal(err)
-			}
-
-			fmt.Println(jiraLicense.RawJson)
+			printJiraSoftwareLicense(opts)
 		},
 	}
 
 	return cmd
 }
 
-func getJiraSoftwareLicense(opts *licenseViewOptions) (license.JiraLicense, error) {
-	return license.ReadJiraLicense(opts.BaseURL, opts.User, opts.Pass)
+func printJiraSoftwareLicense(opts *licenseViewOptions) {
+	jiraLicense, err := license.ReadJiraLicense(opts.BaseURL, opts.User, opts.Pass)
+
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	fmt.Fprintf(os.Stdout, jiraLicense.RawJson)
 }
