@@ -34,7 +34,7 @@ Jira CLI is a command line interface to automate tasks otherwise done through th
 To develop and run the application you need a Linux environment with Docker installed. A local Go installation is not needed because everything related to go is delegated to a Docker container. Development takes place on Ubuntu.
 
 == How to use this project
-To run this container and execute some commands against a running Jira instance use this command:
+To use this app and execute some commands against a Jira instance run this command:
 
 [source, bash]
 ----
