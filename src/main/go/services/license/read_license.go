@@ -7,6 +7,7 @@ import (
 	"net/http"
 )
 
+// JiraLicense represents a license object as returned from the Jira Rest API.
 type JiraLicense struct {
 	Valid                    bool   `json:"valid"`
 	Evaluation               bool   `json:"evaluation"`
