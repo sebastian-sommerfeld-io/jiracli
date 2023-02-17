@@ -69,6 +69,8 @@ jobs:
 
   generate-app-info:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     needs: ['lint-yaml', 'lint-env-files', 'lint-folders', 'lint-filenames', 'shellcheck', 'lint-dockerfile']
     steps:
       - name: Checkout code
@@ -104,8 +106,6 @@ jobs:
         shell: bash
       - name: Commit and push
         if: github.event_name != 'pull_request'
-        permissions:
-          contents: write
         uses: EndBug/add-and-commit@v9
         with:
           author_name: sebastian
