@@ -1,4 +1,4 @@
-= run-local.sh
+= jiracli.sh
 
 // +-----------------------------------------------+
 // |                                               |
@@ -26,14 +26,38 @@ testcases, builds a Docker container and runs the app inside the Docker containe
 [source, bash]
 
 ----
-./run-local.sh --help
+./jiracli.sh --help
 ----
 
 == Index
 
+* <<_go,go>>
 * <<_format,format>>
 * <<_test,test>>
-* <<_build_and_run,build_and_run>>
+* <<_build,build>>
+* <<_run,run>>
+
+=== go
+
+Wrapper function to encapsulate `go` in a docker container. All go commands
+run in the link:https://hub.docker.com/_/golang[golang] Docker image.The current working
+directory is mounted into the container and selected as working directory so that all file
+are available to `go`. Paths are preserved. The container runs with the current user.
+
+==== Example
+
+[,bash]
+----
+go version
+----
+
+==== Arguments
+
+* *...* (String): The `go` commands (1-n arguments) - $1 is mandatory
+
+==== Exit codes
+
+* *8*: If param with `go` command is missing
 
 === format
 
@@ -43,9 +67,13 @@ Format go source code.
 
 Run all test cases and security scanner.
 
-=== build_and_run
+=== build
 
-Build Docker image and run the app locally.
+Build `local/jiracli:dev` Docker image.
+
+=== run
+
+Run `jiracli` app in Docker container.
 
 ==== Arguments
 
