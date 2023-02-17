@@ -1,5 +1,5 @@
 #!/bin/bash
-# @file run-local.sh
+# @file jiracli.sh
 # @brief Build, test and run the  Jira CLI locally.
 #
 # @description The script builds, tests and runs the `jiracli` app locally. The script runs all
@@ -13,9 +13,8 @@
 #
 # [source, bash]
 # ```
-# ./run-local.sh --help
+# ./jiracli.sh --help
 # ```
-
 
 set -o errexit
 set -o pipefail
@@ -24,7 +23,40 @@ set -o nounset
 
 # Include local bash modules
 source "../util/bash-modules/log.sh"
-source "../util/bash-modules/go-wrapper.sh"
+
+readonly JIRACLI_IMAGE="local/jiracli:dev"
+
+
+# @description Wrapper function to encapsulate ``go`` in a docker container. All go commands
+# run in the link:https://hub.docker.com/_/golang[golang] Docker image.The current working
+# directory is mounted into the container and selected as working directory so that all file
+# are available to ``go``. Paths are preserved. The container runs with the current user.
+#
+# @example
+#    go version
+#
+# @arg $@ String The ``go`` commands (1-n arguments) - $1 is mandatory
+#
+# @exitcode 8 If param with ``go`` command is missing
+function go() {
+  if [ -z "$1" ]; then
+    LOG_ERROR "No command passed to the go container"
+    LOG_ERROR "exit" && exit 8
+  fi
+
+  mkdir -p "/tmp/$USER/.cache"
+
+  docker run --rm \
+    --volume /etc/passwd:/etc/passwd:ro \
+    --volume /etc/group:/etc/group:ro \
+    --user "$(id -u):$(id -g)" \
+    --volume "/tmp/$USER/.cache:/home/$USER/.cache" \
+    --volume "$(pwd):$(pwd)" \
+    --workdir "$(pwd)" \
+    --network host \
+    golang:1.20-rc-alpine go "$@"
+}
+
 
 
 # @description Format go source code.
@@ -57,15 +89,19 @@ function test() {
 }
 
 
-# @description Build Docker image and run the app locally.
+# @description Build ``local/jiracli:dev`` Docker image.
+function build() {
+  LOG_HEADER "Build $JIRACLI_IMAGE Docker image"
+  docker build -t "$JIRACLI_IMAGE" .
+}
+
+# @description Run ``jiracli`` app in Docker container.
 #
 # @arg $@ String The go commands (1-n arguments) - $1 is mandatory
-function build_and_run() {
-  LOG_HEADER "Build Docker image and run app locally"
-  readonly IMAGE="local/jiracli:dev"
-
-  docker build -t "$IMAGE" .
-  docker run --rm --network=host "$IMAGE" "$@"
+function run() {
+  LOG_HEADER "Run app in Docker container" "$@"
+  docker run --rm --network=host "$JIRACLI_IMAGE" "$@"
+  echo
 }
 
 
@@ -85,4 +121,5 @@ function build_and_run() {
 
 format
 test
-build_and_run "$@"
+build
+run "$@"
