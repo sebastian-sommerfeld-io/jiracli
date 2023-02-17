@@ -3,9 +3,8 @@ package jiracli
 import (
 	"fmt"
 
-	"github.com/spf13/cobra"
-
 	"github.com/sebastian-sommerfeld-io/jiracli/services/users"
+	"github.com/spf13/cobra"
 )
 
 // NewCmdUserCount initializes the `jiracli user count` command and its flags.
