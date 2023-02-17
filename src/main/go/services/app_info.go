@@ -16,9 +16,9 @@ type JiracliAppInfo struct {
 // the actual path to the file in the respective container (dev container, go wrapper container
 // and jiracli image) is `/app/app-info.yml`.
 func (info *JiracliAppInfo) Read() (JiracliAppInfo, error) {
-	devContainerPath := "/app/app-info.yml"
+	path := "/app/app-info.yml"
 
-	yamlFile, err := os.ReadFile(devContainerPath)
+	yamlFile, err := os.ReadFile(path)
 	if err != nil {
 		return JiracliAppInfo{}, err
 	}
