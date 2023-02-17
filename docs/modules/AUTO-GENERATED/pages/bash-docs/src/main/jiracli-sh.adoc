@@ -36,6 +36,7 @@ testcases, builds a Docker container and runs the app inside the Docker containe
 * <<_test,test>>
 * <<_build,build>>
 * <<_run,run>>
+* <<_init,init>>
 
 === go
 
@@ -78,3 +79,7 @@ Run `jiracli` app in Docker container.
 ==== Arguments
 
 * *...* (String): The go commands (1-n arguments) - $1 is mandatory
+
+=== init
+
+Initialize the go application in needed.
