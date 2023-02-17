@@ -8,5 +8,5 @@
 # |                                             |
 # +---------------------------------------------+
 
-version: refs/heads/26-show-version-information
+version: test
 
