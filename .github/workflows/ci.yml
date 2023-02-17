@@ -67,9 +67,22 @@ jobs:
         with:
           dockerfile: src/main/Dockerfile
 
-  test-and-scan:
+  generate-app-info-yml:
     runs-on: ubuntu-latest
     needs: ['lint-yaml', 'lint-env-files', 'lint-folders', 'lint-filenames', 'shellcheck', 'lint-dockerfile']
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Generate app-info.yml
+        run: |
+          (
+            echo "REF = ${{github.ref}}"
+          )
+        shell: bash
+
+  test-and-scan:
+    runs-on: ubuntu-latest
+    needs: ['generate-app-info-yml']
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -141,7 +154,7 @@ jobs:
   qodana-analysis:
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/main'
-    needs: ['lint-yaml', 'lint-env-files', 'lint-folders', 'lint-filenames', 'shellcheck', 'lint-dockerfile']
+    needs: ['generate-app-info-yml']
     permissions:
       security-events: write
     steps:
