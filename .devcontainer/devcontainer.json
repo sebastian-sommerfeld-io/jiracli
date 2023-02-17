@@ -14,7 +14,9 @@
 				"ms-azuretools.vscode-docker",
 				"aaron-bond.better-comments",
 				"pomdtr.markdown-kroki",
-				"golang.go"
+				"jebbs.plantuml",
+				"golang.go",
+				"timonwong.shellcheck"
 			]
 		}
 	},
