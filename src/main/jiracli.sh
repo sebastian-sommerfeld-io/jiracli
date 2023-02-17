@@ -112,7 +112,7 @@ function init() {
     if [ ! -f go.mod ]; then
       local readonly MODULE="github.com/sebastian-sommerfeld-io/jiracli"
 
-      LOG_INFO "Initialize $MODULE"
+      LOG_HEADER "Initialize $MODULE"
       go mod init "$MODULE"
       go mod tidy
 

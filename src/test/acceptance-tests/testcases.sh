@@ -42,6 +42,8 @@ function _jiracli() {
 
 sleep 5m
 
+_jiracli --version
+
 _jiracli user view admin.admin 
 _jiracli user view admin.admin --username
 _jiracli user view admin@localhost --email

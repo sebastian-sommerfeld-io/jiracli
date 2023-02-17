@@ -95,12 +95,12 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
-      - name: Build Docker image and run integration tests
+      - name: Build Docker image and run acceptance tests
         run: |
           (
             cd src/test/acceptance-tests || exit
             ./tests.sh start
-            ./tests.sh logs
+            docker-compose logs | grep jiracli
           )
         shell: bash
       - name: Login to DockerHub
