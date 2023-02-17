@@ -1,6 +1,8 @@
 package jiracli
 
 import (
+	"bytes"
+	"io"
 	"testing"
 
 	"github.com/spf13/cobra"
@@ -19,4 +21,21 @@ func Test_ShouldCreateCmdRoot(t *testing.T) {
 	assert.NotEmpty(t, got.Short)
 	assert.NotEmpty(t, got.Long)
 	assert.False(t, got.Runnable(), "Command should NOT be runnable")
+}
+
+func Test_ShouldPrintHelpText(t *testing.T) {
+	got := NewCmdRoot()
+	outputStream := bytes.NewBufferString("")
+	got.SetOut(outputStream)
+	got.SetErr(outputStream)
+
+	assert.NotNil(t, got)
+
+	got.Execute()
+	out, err := io.ReadAll(outputStream)
+	if err != nil {
+		t.Fatal(err)
+	}
+	assert.NotEmpty(t, string(out))
+	assert.Contains(t, string(out), got.Long)
 }

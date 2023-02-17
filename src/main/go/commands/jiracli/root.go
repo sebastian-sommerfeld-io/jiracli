@@ -18,14 +18,16 @@ func NewCmdRoot() *cobra.Command {
 	return cmd
 }
 
-// FlagBaseUrl contains the name of a mandatory flag
-const FlagBaseUrl string = "baseUrl"
+const (
+	// FlagBaseUrl contains the name of a mandatory flag
+	FlagBaseUrl string = "baseUrl"
 
-// FlagUser contains the name of a mandatory flag
-const FlagUser string = "user"
+	// FlagUser contains the name of a mandatory flag
+	FlagUser string = "user"
 
-// FlagPass contains the name of a mandatory flag
-const FlagPass string = "pass"
+	// FlagPass contains the name of a mandatory flag
+	FlagPass string = "pass"
+)
 
 var rootCmd *cobra.Command
 
@@ -34,36 +36,28 @@ func init() {
 	addDefaultFlags(rootCmd)
 
 	licenseCmd := NewCmdLicense()
-	addDefaultFlags(licenseCmd)
 	rootCmd.AddCommand(licenseCmd)
 
 	licenseViewCmd := NewCmdLicenseView()
-	addDefaultFlags(licenseViewCmd)
 	licenseCmd.AddCommand(licenseViewCmd)
 
 	userCmd := NewCmdUser()
-	addDefaultFlags(userCmd)
 	rootCmd.AddCommand(userCmd)
 
 	userCountCmd := NewCmdUserCount()
-	addDefaultFlags(userCountCmd)
 	userCmd.AddCommand(userCountCmd)
 
 	userViewCmd := NewCmdUserView()
-	addDefaultFlags(userViewCmd)
 	userCmd.AddCommand(userViewCmd)
-
-	versionCmd := NewCmdVersion()
-	rootCmd.AddCommand(versionCmd)
 }
 
 func addDefaultFlags(cmd *cobra.Command) {
-	cmd.Flags().String(FlagBaseUrl, "", "Base URL for a Jira instance (e.g. http://localhost:8080)")
-	cmd.Flags().String(FlagUser, "", "Jira user used to consume the Rest API")
+	cmd.PersistentFlags().String(FlagBaseUrl, "", "Base URL for a Jira instance (e.g. http://localhost:8080)")
+	cmd.PersistentFlags().String(FlagUser, "", "Jira user used to consume the Rest API")
 	cmd.Flags().String(FlagPass, "", "Password for the Jira user")
-	cmd.MarkFlagRequired(FlagBaseUrl)
-	cmd.MarkFlagRequired(FlagUser)
-	cmd.MarkFlagRequired(FlagPass)
+	cmd.MarkPersistentFlagRequired(FlagBaseUrl)
+	cmd.MarkPersistentFlagRequired(FlagUser)
+	cmd.MarkPersistentFlagRequired(FlagPass)
 }
 
 // Execute acts as the entrypoint for the command line interface.
