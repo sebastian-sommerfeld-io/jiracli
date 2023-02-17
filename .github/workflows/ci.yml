@@ -70,11 +70,12 @@ jobs:
   generate-app-info:
     runs-on: ubuntu-latest
     needs: ['lint-yaml', 'lint-env-files', 'lint-folders', 'lint-filenames', 'shellcheck', 'lint-dockerfile']
-    if: github.event_name != 'pull_request'
     steps:
       - name: Checkout code
+        if: github.event_name != 'pull_request'
         uses: actions/checkout@v3
       - name: Generate app-info.yml
+        if: github.event_name != 'pull_request'
         run: |
           (
             readonly TARGET_FILE="src/main/app-info.yml"
@@ -102,12 +103,13 @@ jobs:
           )
         shell: bash
       - name: Commit and push
+        if: github.event_name != 'pull_request'
         uses: EndBug/add-and-commit@v9
         with:
           author_name: sebastian
           author_email: sebastian@sommerfeld.io
-          message: "[Actions Bot] docs: auto-generated bash script documentation from *.sh files"
-          add: docs/modules
+          message: "[Actions Bot] auto-generated app-info"
+          add: src/main/app-info.yml
 
   test-and-scan:
     runs-on: ubuntu-latest
