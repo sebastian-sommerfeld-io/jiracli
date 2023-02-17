@@ -1,4 +1,4 @@
-= jiracli.sh
+= build-and-run.sh
 
 // +-----------------------------------------------+
 // |                                               |
@@ -26,7 +26,7 @@ testcases, builds a Docker container and runs the app inside the Docker containe
 [source, bash]
 
 ----
-./jiracli.sh --help
+./build-and-run.sh --help
 ----
 
 == Index

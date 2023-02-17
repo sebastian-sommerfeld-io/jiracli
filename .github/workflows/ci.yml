@@ -130,7 +130,7 @@ jobs:
         run: |
           (
             cd src/main || exit
-            ./jiracli.sh --version
+            ./build-and-run.sh --version
           )
         shell: bash
       - name: SonarCloud Scan

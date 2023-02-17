@@ -1,5 +1,5 @@
 #!/bin/bash
-# @file jiracli.sh
+# @file build-and-run.sh
 # @brief Build, test and run the  Jira CLI locally.
 #
 # @description The script builds, tests and runs the `jiracli` app locally. The script runs all
@@ -13,7 +13,7 @@
 #
 # [source, bash]
 # ```
-# ./jiracli.sh --help
+# ./build-and-run.sh --help
 # ```
 
 set -o errexit
