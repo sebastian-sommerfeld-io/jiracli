@@ -105,20 +105,24 @@ function run() {
 }
 
 
-(
-  cd go || exit
-  if [ ! -f go.mod ]; then
-    readonly MODULE="github.com/sebastian-sommerfeld-io/jiracli"
+# @description Initialize the go application in needed.
+function init() {
+  (
+    cd go || exit
+    if [ ! -f go.mod ]; then
+      local readonly MODULE="github.com/sebastian-sommerfeld-io/jiracli"
 
-    LOG_INFO "Initialize $MODULE"
-    go mod init "$MODULE"
-    go mod tidy
+      LOG_INFO "Initialize $MODULE"
+      go mod init "$MODULE"
+      go mod tidy
 
-    go get -u github.com/spf13/cobra@latest
-  fi
-)
+      go get -u github.com/spf13/cobra@latest
+    fi
+  )
+}
 
 
+init
 format
 test
 build
