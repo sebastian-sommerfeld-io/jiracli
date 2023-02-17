@@ -9,10 +9,11 @@ import (
 // NewCmdRoot initializes the `jiracli` root command.
 func NewCmdRoot() *cobra.Command {
 	cmd := &cobra.Command{
-		Use:   "jiracli",
-		Short: "A command line interface to access Jira and automate recurring tasks",
-		Long:  "The Jira CLI interacts with a Jira instance through the command line. The app wraps Jira Rest API calls into simple commands.",
-		Args:  cobra.ExactArgs(0),
+		Use:     "jiracli",
+		Version: "DEV",
+		Short:   "A command line interface to access Jira and automate recurring tasks",
+		Long:    "The Jira CLI interacts with a Jira instance through the command line. The app wraps Jira Rest API calls into simple commands.",
+		Args:    cobra.ExactArgs(0),
 	}
 
 	return cmd
@@ -54,7 +55,7 @@ func init() {
 func addDefaultFlags(cmd *cobra.Command) {
 	cmd.PersistentFlags().String(FlagBaseUrl, "", "Base URL for a Jira instance (e.g. http://localhost:8080)")
 	cmd.PersistentFlags().String(FlagUser, "", "Jira user used to consume the Rest API")
-	cmd.Flags().String(FlagPass, "", "Password for the Jira user")
+	cmd.PersistentFlags().String(FlagPass, "", "Password for the Jira user")
 	cmd.MarkPersistentFlagRequired(FlagBaseUrl)
 	cmd.MarkPersistentFlagRequired(FlagUser)
 	cmd.MarkPersistentFlagRequired(FlagPass)

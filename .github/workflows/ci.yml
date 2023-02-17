@@ -88,9 +88,30 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
           SONAR_TOKEN: ${{ secrets.SONARCLOUD_TOKEN }}
 
+  test-and-scan:
+    runs-on: ubuntu-latest
+    needs: ['lint-yaml', 'lint-env-files', 'lint-folders', 'lint-filenames', 'shellcheck', 'lint-dockerfile']
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - name: Build and run
+        run: |
+          (
+            cd src/main || exit
+            ./run-local.sh
+          )
+        shell: bash
+      # - name: SonarCloud Scan
+      #   uses: SonarSource/sonarcloud-github-action@v1.8
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
+      #     SONAR_TOKEN: ${{ secrets.SONARCLOUD_TOKEN }}
+
   build-and-deploy-docker-image:
     runs-on: ubuntu-latest
-    needs: ['test-and-scan-go-app']
+    needs: ['test-and-scan-go-app', 'test-and-scan']
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -112,7 +133,7 @@ jobs:
         if: ${{ github.actor != 'dependabot[bot]' }}
         run: |
           (
-            IMAGE_DEV="local/jiracli:dev"
+            IMAGE_DEV="local/jiracli:test"
             IMAGE_CI="sommerfeldio/jiracli:ci"
 
             docker image tag "$IMAGE_DEV" "$IMAGE_CI"
@@ -156,7 +177,7 @@ jobs:
 
   on-failure:
     runs-on: ubuntu-latest
-    needs: ['lint-yaml', 'lint-env-files', 'lint-folders', 'lint-filenames', 'shellcheck', 'lint-dockerfile', 'test-and-scan-go-app', 'build-and-deploy-docker-image', 'qodana-analysis']
+    needs: ['lint-yaml', 'lint-env-files', 'lint-folders', 'lint-filenames', 'shellcheck', 'lint-dockerfile', 'test-and-scan-go-app', 'test-and-scan', 'build-and-deploy-docker-image', 'qodana-analysis']
     if: failure()
     steps:
       - name: Send Pipeline Status to Google Chat

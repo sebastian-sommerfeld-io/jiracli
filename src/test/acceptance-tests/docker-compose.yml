@@ -4,7 +4,7 @@ services:
 
   jira:
     build: .
-    image: local/jira-software:dev
+    image: local/jira-software:test
     container_name: jira
     restart: unless-stopped
     ports:
@@ -22,7 +22,7 @@ services:
 
   jiracli:
     build: ../../main
-    image: local/jiracli:dev
+    image: local/jiracli:test
     container_name: jiracli
     volumes:
       - ./testcases.sh:/testcases.sh

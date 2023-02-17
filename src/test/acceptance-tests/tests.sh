@@ -37,7 +37,6 @@ readonly ARG
 
 # Include local bash modules
 source "../../util/bash-modules/log.sh"
-source "../../util/bash-modules/go-wrapper.sh"
 
 
 if [ -z "$ARG" ]; then
