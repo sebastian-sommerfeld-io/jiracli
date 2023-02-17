@@ -3,7 +3,7 @@ version: "3.3"
 services:
 
   jira:
-    build: .
+    build: jira-runtime
     image: local/jira-software:test
     container_name: jira
     restart: unless-stopped
