@@ -110,7 +110,8 @@ function init() {
   (
     cd go || exit
     if [ ! -f go.mod ]; then
-      local readonly MODULE="github.com/sebastian-sommerfeld-io/jiracli"
+      local MODULE="github.com/sebastian-sommerfeld-io/jiracli"
+      readonly MODULE
 
       LOG_HEADER "Initialize $MODULE"
       go mod init "$MODULE"
