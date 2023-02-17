@@ -39,7 +39,7 @@ app all the time.
 
 [,bash]
 ----
-_jiracli user view admin.admin
+_jiracli --version
 ----
 
 ==== Arguments
