@@ -130,7 +130,6 @@ jobs:
         run: |
           (
             cd src/main || exit
-            ./jiracli.sh
             ./jiracli.sh --version
           )
         shell: bash
