@@ -26,6 +26,6 @@
 		"--network=host"
 	],
 	"mounts": [
-		"source=${localEnv:HOME}/work/repos/sebastian-sommerfeld-io/jiracli/src/main/app-info.yml,target=/tmp/app-info.yml,type=bind"
+		"source=${localEnv:HOME}/work/repos/sebastian-sommerfeld-io/jiracli/src/main/app-info.yml,target=/app/app-info.yml,type=bind"
 	]
 }

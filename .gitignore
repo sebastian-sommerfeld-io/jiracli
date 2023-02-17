@@ -19,3 +19,6 @@ logs
 # sonarcloud.io
 .scannerwork
 src/main/go/go-code-coverage.out
+
+# project specific
+src/main/go/app-info.yml

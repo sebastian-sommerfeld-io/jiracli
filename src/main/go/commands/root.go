@@ -3,6 +3,7 @@ package commands
 import (
 	"log"
 
+	"github.com/sebastian-sommerfeld-io/jiracli/services"
 	"github.com/spf13/cobra"
 )
 
@@ -21,7 +22,7 @@ const (
 func NewCmdRoot() *cobra.Command {
 	cmd := &cobra.Command{
 		Use:     "jiracli",
-		Version: "DEV",
+		Version: appVersion(),
 		Short:   "A command line interface to access Jira and automate recurring tasks",
 		Long:    "The Jira CLI interacts with a Jira instance through the command line. The app wraps Jira Rest API calls into simple commands.",
 		Args:    cobra.ExactArgs(0),
@@ -90,4 +91,15 @@ func getFlagValue(cmd *cobra.Command, flag string) string {
 		log.Fatal(err)
 	}
 	return value
+}
+
+func appVersion() string {
+	info := services.JiracliAppInfo{}
+	info, err := info.Read()
+
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	return info.Version
 }

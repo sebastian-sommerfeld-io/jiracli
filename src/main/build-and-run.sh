@@ -27,15 +27,23 @@ source "../util/bash-modules/log.sh"
 readonly JIRACLI_IMAGE="local/jiracli:dev"
 
 
-# @description Wrapper function to encapsulate ``go`` in a docker container. All go commands
-# run in the link:https://hub.docker.com/_/golang[golang] Docker image.The current working
-# directory is mounted into the container and selected as working directory so that all file
-# are available to ``go``. Paths are preserved. The container runs with the current user.
+# @description Wrapper function to encapsulate ``go`` in a Docker container (``go`` commands
+# are delegated to the link:https://hub.docker.com/_/golang[golang] Docker image).
+#
+# The current working directory is mounted into the container and selected as working directory
+# so all files are available to ``go``. Paths are not preserved. The working directory is placed
+# in ``/app`` (in the container) to make sure paths to the go app are the same everywhere (Go
+# wrapper container, Dev Container and all images built from ``src/main/Dockerfile``). Keep in
+# mind that most functions in this script (which call this ``go`` wrapper function) first ``cd``
+# into the ``go`` folder. So most of the time the current working direktory is not ``src/main``
+# (where this script is placed) but ``src/main/go``.
+#
+# The go wrapper container runs with the current user.
 #
 # @example
 #    go version
 #
-# @arg $@ String The ``go`` commands (1-n arguments) - $1 is mandatory
+# @arg $@ String The ``jiracli`` commands (1-n arguments) - $1 is mandatory
 #
 # @exitcode 8 If param with ``go`` command is missing
 function go() {
@@ -51,15 +59,15 @@ function go() {
     --volume /etc/group:/etc/group:ro \
     --user "$(id -u):$(id -g)" \
     --volume "/tmp/$USER/.cache:/home/$USER/.cache" \
-    --volume "$(pwd):$(pwd)" \
-    --workdir "$(pwd)" \
+    --volume "$(pwd):/app" \
+    --workdir "/app" \
     --network host \
     golang:1.20-rc-alpine go "$@"
 }
 
 
-
-# @description Format go source code.
+# @description Format go source code. Before formatting, the function ``cd``s into the
+# ``go`` folder.
 function format() {
   LOG_HEADER "Format code"
   (
@@ -69,9 +77,17 @@ function format() {
 }
 
 
-# @description Run all test cases and security scanner.
+# @description Run all test cases and security scanner. The function copies the
+# ``src/main/app-info.yml`` into the ``go`` folder to make sure it is mounted to the
+# same location for all containers (go wrapper container, dev container, jiracli images).
+# The temporairy ``src/main/go/app-info.yml`` is deleted when the tests are finished.
+#
+# Before testing, the function ``cd``s into the ``go`` folder.
 function test() {
   LOG_HEADER "Run tests"
+  
+  cp app-info.yml go/app-info.yml
+  
   (
     cd go || exit
   
@@ -86,6 +102,8 @@ function test() {
     sed -i "s|$old|$new|g" "$COVERAGE_REPORT"
     mv "$COVERAGE_REPORT" "$TARGET_DIR/$COVERAGE_REPORT"
   )
+
+  rm go/app-info.yml
 }
 
 
@@ -97,7 +115,7 @@ function build() {
 
 # @description Run ``jiracli`` app in Docker container.
 #
-# @arg $@ String The go commands (1-n arguments) - $1 is mandatory
+# @arg $@ String The ``jiracli`` commands (1-n arguments) - $1 is mandatory
 function run() {
   LOG_HEADER "Run app in Docker container" "$@"
   docker run --rm --network=host "$JIRACLI_IMAGE" "$@"
@@ -105,7 +123,8 @@ function run() {
 }
 
 
-# @description Initialize the go application in needed.
+# @description Initialize the go application in needed. Before initializing, the function
+# ``cd``s into the ``go`` folder.
 function init() {
   (
     cd go || exit

@@ -5,7 +5,7 @@ FROM golang:1.20-rc-alpine AS build
 LABEL maintainer="sebastian@sommerfeld.io"
 
 COPY go /app
-COPY app-info.yml /tmp/app-info.yml
+COPY app-info.yml /app/app-info.yml
 WORKDIR /app
 
 RUN go mod download \
@@ -22,7 +22,7 @@ LABEL maintainer="sebastian@sommerfeld.io"
 RUN apk add --no-cache bash=5.2.15-r0
 
 COPY --from=build /app/target/jiracli /usr/bin/jiracli
-COPY --from=build /tmp/app-info.yml /tmp/app-info.yml
+COPY --from=build /app/app-info.yml /app/app-info.yml
 
 ARG USER=jiracli
 RUN adduser -D $USER
