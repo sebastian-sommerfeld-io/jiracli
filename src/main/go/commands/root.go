@@ -6,6 +6,17 @@ import (
 	"github.com/spf13/cobra"
 )
 
+const (
+	// FlagBaseUrl contains the name of a mandatory flag
+	FlagBaseUrl string = "baseUrl"
+
+	// FlagUser contains the name of a mandatory flag
+	FlagUser string = "user"
+
+	// FlagPass contains the name of a mandatory flag
+	FlagPass string = "pass"
+)
+
 // NewCmdRoot initializes the `jiracli` root command.
 func NewCmdRoot() *cobra.Command {
 	cmd := &cobra.Command{
@@ -19,22 +30,10 @@ func NewCmdRoot() *cobra.Command {
 	return cmd
 }
 
-const (
-	// FlagBaseUrl contains the name of a mandatory flag
-	FlagBaseUrl string = "baseUrl"
-
-	// FlagUser contains the name of a mandatory flag
-	FlagUser string = "user"
-
-	// FlagPass contains the name of a mandatory flag
-	FlagPass string = "pass"
-)
-
 var rootCmd *cobra.Command
 
 func init() {
 	rootCmd = NewCmdRoot()
-	addDefaultFlags(rootCmd)
 
 	licenseCmd := NewCmdLicense()
 	rootCmd.AddCommand(licenseCmd)
@@ -50,15 +49,19 @@ func init() {
 
 	userViewCmd := NewCmdUserView()
 	userCmd.AddCommand(userViewCmd)
+
+	rootCmd.CompletionOptions.HiddenDefaultCmd = true
 }
 
-func addDefaultFlags(cmd *cobra.Command) {
-	cmd.PersistentFlags().String(FlagBaseUrl, "", "Base URL for a Jira instance (e.g. http://localhost:8080)")
-	cmd.PersistentFlags().String(FlagUser, "", "Jira user used to consume the Rest API")
-	cmd.PersistentFlags().String(FlagPass, "", "Password for the Jira user")
-	cmd.MarkPersistentFlagRequired(FlagBaseUrl)
-	cmd.MarkPersistentFlagRequired(FlagUser)
-	cmd.MarkPersistentFlagRequired(FlagPass)
+// AddMandatoryFlags adds a set of flags to the given command. These flags are mandatory for all
+// commands, that actually connect to a Jira instance.
+func AddMandatoryFlags(cmd *cobra.Command) {
+	cmd.Flags().String(FlagBaseUrl, "", "An URL to a Jira instance without any path information (e.g. http://localhost:8080)")
+	cmd.Flags().String(FlagUser, "", "Name of the Jira user to consume the Rest API")
+	cmd.Flags().String(FlagPass, "", "Password of the Jira user to consume the Rest API")
+	cmd.MarkFlagRequired(FlagBaseUrl)
+	cmd.MarkFlagRequired(FlagUser)
+	cmd.MarkFlagRequired(FlagPass)
 }
 
 // Execute acts as the entrypoint for the command line interface.

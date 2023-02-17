@@ -20,5 +20,7 @@ func NewCmdUserCount() *cobra.Command {
 		},
 	}
 
+	AddMandatoryFlags(cmd)
+
 	return cmd
 }

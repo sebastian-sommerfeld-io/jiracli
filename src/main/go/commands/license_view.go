@@ -37,6 +37,8 @@ func NewCmdLicenseView() *cobra.Command {
 		},
 	}
 
+	AddMandatoryFlags(cmd)
+
 	return cmd
 }
 
