@@ -3,7 +3,7 @@ package commands
 import (
 	"fmt"
 
-	"github.com/sebastian-sommerfeld-io/jiracli/services/users"
+	"github.com/sebastian-sommerfeld-io/jiracli/services/jira/users"
 	"github.com/spf13/cobra"
 )
 

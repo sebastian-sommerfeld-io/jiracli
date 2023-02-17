@@ -14,9 +14,9 @@
 				"ms-azuretools.vscode-docker",
 				"aaron-bond.better-comments",
 				"pomdtr.markdown-kroki",
+				"timonwong.shellcheck",
 				"jebbs.plantuml",
-				"golang.go",
-				"timonwong.shellcheck"
+				"golang.go"
 			]
 		}
 	},
@@ -24,5 +24,8 @@
 	// Set docker network mode
 	"runArgs": [
 		"--network=host"
+	],
+	"mounts": [
+		"source=${localEnv:HOME}/work/repos/sebastian-sommerfeld-io/jiracli/src/main/app-info.yml,target=/tmp/app-info.yml,type=bind"
 	]
 }

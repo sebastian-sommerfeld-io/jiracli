@@ -5,7 +5,7 @@ import (
 	"log"
 	"os"
 
-	"github.com/sebastian-sommerfeld-io/jiracli/services/license"
+	"github.com/sebastian-sommerfeld-io/jiracli/services/jira/license"
 	"github.com/spf13/cobra"
 )
 
