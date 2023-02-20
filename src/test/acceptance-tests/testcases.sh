@@ -21,11 +21,16 @@ set -o nounset
 # set -o xtrace
 
 
+readonly FLAG_BASE_URL="--baseUrl=http://jira:8080"
+readonly FLAG_USER="--user=admin"
+readonly FLAG_PASS="--pass=admin"
+
+
 # @description Wrapper function to not repeat the three mandatory flags for the ``jiracli``
 # app all the time.
 #
 # @example
-#    _jiracli user view admin.admin
+#    _jiracli --version
 #
 # @arg $@ String The ``jiracli`` commands (1-n arguments) - $1 is mandatory
 #
@@ -36,22 +41,24 @@ function _jiracli() {
     LOG_ERROR "exit" && exit 8
   fi
 
-  jiracli --baseUrl="http://jira:8080" --user="admin" --pass="admin" "$@"
+  jiracli "$@"
 }
 
 
 sleep 5m
 
-_jiracli user view admin.admin 
-_jiracli user view admin.admin --username
-_jiracli user view admin@localhost --email
+_jiracli --version
 
-_jiracli user view jim.panse
-_jiracli user view jim.panse --username
-_jiracli user view jim.panse@localhost --email
+_jiracli user view admin.admin "$FLAG_BASE_URL" "$FLAG_USER" "$FLAG_PASS"
+_jiracli user view admin.admin --by-username "$FLAG_BASE_URL" "$FLAG_USER" "$FLAG_PASS"
+_jiracli user view admin@localhost --by-email "$FLAG_BASE_URL" "$FLAG_USER" "$FLAG_PASS"
 
-_jiracli user view homer.simpson
-_jiracli user view homer.simpson --username
-_jiracli user view homer.simpson@localhost --email
+_jiracli user view jim.panse "$FLAG_BASE_URL" "$FLAG_USER" "$FLAG_PASS"
+_jiracli user view jim.panse --by-username "$FLAG_BASE_URL" "$FLAG_USER" "$FLAG_PASS"
+_jiracli user view jim.panse@localhost --by-email "$FLAG_BASE_URL" "$FLAG_USER" "$FLAG_PASS"
 
-_jiracli license view
+_jiracli user view homer.simpson "$FLAG_BASE_URL" "$FLAG_USER" "$FLAG_PASS"
+_jiracli user view homer.simpson --by-username "$FLAG_BASE_URL" "$FLAG_USER" "$FLAG_PASS"
+_jiracli user view homer.simpson@localhost --by-email "$FLAG_BASE_URL" "$FLAG_USER" "$FLAG_PASS"
+
+_jiracli license view "$FLAG_BASE_URL" "$FLAG_USER" "$FLAG_PASS"

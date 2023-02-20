@@ -1,11 +1,11 @@
-package jiracli
+package commands
 
 import (
 	"fmt"
 	"log"
 	"os"
 
-	"github.com/sebastian-sommerfeld-io/jiracli/services/license"
+	"github.com/sebastian-sommerfeld-io/jiracli/services/jira/license"
 	"github.com/spf13/cobra"
 )
 
@@ -36,6 +36,8 @@ func NewCmdLicenseView() *cobra.Command {
 			printJiraSoftwareLicense(opts)
 		},
 	}
+
+	AddMandatoryFlags(cmd)
 
 	return cmd
 }

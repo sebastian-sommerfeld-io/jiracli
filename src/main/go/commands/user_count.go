@@ -1,11 +1,10 @@
-package jiracli
+package commands
 
 import (
 	"fmt"
 
+	"github.com/sebastian-sommerfeld-io/jiracli/services/jira/users"
 	"github.com/spf13/cobra"
-
-	"github.com/sebastian-sommerfeld-io/jiracli/services/users"
 )
 
 // NewCmdUserCount initializes the `jiracli user count` command and its flags.
@@ -20,6 +19,8 @@ func NewCmdUserCount() *cobra.Command {
 			fmt.Println(users.CountUsers())
 		},
 	}
+
+	AddMandatoryFlags(cmd)
 
 	return cmd
 }

@@ -1,4 +1,4 @@
-package jiracli
+package commands
 
 import (
 	"testing"

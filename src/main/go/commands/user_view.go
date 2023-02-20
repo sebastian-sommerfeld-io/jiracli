@@ -1,4 +1,4 @@
-package jiracli
+package commands
 
 import (
 	"fmt"
@@ -7,7 +7,7 @@ import (
 
 	"github.com/spf13/cobra"
 
-	"github.com/sebastian-sommerfeld-io/jiracli/services/users"
+	"github.com/sebastian-sommerfeld-io/jiracli/services/jira/users"
 )
 
 type userViewOptions struct {
@@ -15,6 +15,14 @@ type userViewOptions struct {
 	ByUsername bool
 	Search     string
 }
+
+const (
+	// FlagByEmail contains the name of the flag
+	FlagByEmail string = "by-email"
+
+	// FlagByUsername contains the name of the flag
+	FlagByUsername string = "by-username"
+)
 
 // NewCmdUserView initializes the `jiracli user view` command and its flags.
 func NewCmdUserView() *cobra.Command {
@@ -38,9 +46,11 @@ func NewCmdUserView() *cobra.Command {
 		},
 	}
 
-	cmd.Flags().BoolVarP(&opts.ByEmail, "email", "e", false, "Find user by email")
-	cmd.Flags().BoolVarP(&opts.ByUsername, "username", "u", false, "Find user by username (default)")
-	cmd.MarkFlagsMutuallyExclusive("email", "username")
+	AddMandatoryFlags(cmd)
+
+	cmd.Flags().BoolVarP(&opts.ByEmail, FlagByEmail, "", false, "Find user by email")
+	cmd.Flags().BoolVarP(&opts.ByUsername, FlagByUsername, "", false, "Find user by username (default)")
+	cmd.MarkFlagsMutuallyExclusive(FlagByEmail, FlagByUsername)
 
 	return cmd
 }

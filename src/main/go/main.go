@@ -3,7 +3,7 @@ package main
 import (
 	"log"
 
-	"github.com/sebastian-sommerfeld-io/jiracli/commands/jiracli"
+	"github.com/sebastian-sommerfeld-io/jiracli/commands"
 )
 
 func init() {
@@ -11,7 +11,7 @@ func init() {
 }
 
 func main() {
-	err := jiracli.Execute()
+	err := commands.Execute()
 
 	if err != nil {
 		log.Fatal(err)
