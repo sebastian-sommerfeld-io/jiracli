@@ -12,24 +12,6 @@ services:
     volumes:
       - jiraVolume:/var/atlassian/application-data/jira
       - /etc/timezone:/etc/timezone:ro
-    healthcheck:
-      # test: ["CMD", "curl", "--fail", "http://localhost:8080"]
-      test: curl --fail http://localhost:8080 || exit 1
-      interval: 30s
-      timeout: 10s
-      retries: 5
-      start_period: 300s
-
-  indexer:
-    build: jira-indexer
-    image: local/jira-indexer:test
-    container_name: indexer
-    volumes:
-      - ./jira-indexer/reindex.sh:/reindex.sh
-    entrypoint: bash /reindex.sh
-    depends_on:
-      jira:
-        condition: service_healthy
 
   jiracli:
     build: ../../main
@@ -39,8 +21,7 @@ services:
       - ./testcases.sh:/testcases.sh
     entrypoint: bash /testcases.sh
     depends_on:
-      indexer:
-        condition: service_completed_successfully
+      - jira
 
 volumes:
   jiraVolume:

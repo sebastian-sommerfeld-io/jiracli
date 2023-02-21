@@ -7,7 +7,6 @@ COPY --chown=jira:jira assets/jira/database /var/atlassian/application-data/jira
 ENV JVM_MINIMUM_MEMORY=1024m
 ENV JVM_MAXIMUM_MEMORY=4096m
 
-
 # See "Shared directory and user IDs" (https://hub.docker.com/r/atlassian/jira-software)
 # By default the Jira application runs as the user jira, with a UID and GID of `2001`.
 # Consequently this UID must have write access to the shared filesystem.

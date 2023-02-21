@@ -26,34 +26,17 @@ set -o nounset
 source "../../util/bash-modules/log.sh"
 
 
-# @description Wrapper function to not repeat myself when calling the Jira API.
-#
-# @example
-#    callEndpoint /rest/plugins/applications/1.0/installed/jira-software/license
-#
-# @arg $@ String The API endpoint - mandatory
-#
-# @exitcode 8 If param API endpoint string is missing
-function callEndpoint() {
-  if [ -z "$1" ]; then
-    LOG_ERROR "API endpoint missing"
-    LOG_ERROR "exit" && exit 8
-  fi
+readonly BASE_URL="http://localhost:8080"
+readonly USER="admin"
+readonly PASS="admin"
 
-  readonly USER="admin"
-  readonly PASS="admin"
-  readonly BASE_URL="http://localhost:8080"
 
-  LOG_HEADER "Call API endpoint $1"
-  LOG_INFO "User = $USER"
+# curl --location --request GET "$BASE_URL/rest/plugins/applications/1.0/installed/jira-software/license" \
+#   --user "$USER:$PASS" \
+#   --header 'Content-Type: application/json'
 
-  curl --location --request GET "${BASE_URL}${1}" \
-    --user "$USER:$PASS" \
-    --header 'Content-Type: application/json' # | json_pp
-  # curl --location --request GET "${BASE_URL}${1}" \
-  #   --header "Authorization: $USER:$PASS" \
-  #   --header 'Content-Type: application/json' # | json_pp
-
-}
-
-callEndpoint /rest/plugins/applications/1.0/installed/jira-software/license
+httpCode=$(curl --location --request GET "$BASE_URL/rest/api/2/serverInfo?doHealthCheck=true" \
+  -s -o /dev/null -w "%{http_code}" \
+  --user "$USER:$PASS" \
+  --header 'Content-Type: application/json')
+echo "$httpCode"

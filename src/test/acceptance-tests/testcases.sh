@@ -7,6 +7,9 @@
 # Docker image is started in a container and executes the testcases from this script against
 # a running Jira instance.
 #
+# Before running the tests, the script checks if Jira is up-and-running and triggers a re-index
+# to make sure Jira exposes all data as intended.
+#
 # IMPORTANT: This script is intended to run inside a ``jiracli`` container from Docker Compose.
 # Don't run this script directly!
 #
@@ -21,13 +24,88 @@ set -o nounset
 # set -o xtrace
 
 
-readonly FLAG_BASE_URL="--baseUrl=http://jira:8080"
-readonly FLAG_USER="--user=admin"
-readonly FLAG_PASS="--pass=admin"
+readonly BASE_URL="http://jira:8080"
+readonly USER="admin"
+readonly PASS="admin"
+
+readonly FLAG_BASE_URL="--baseUrl=$BASE_URL"
+readonly FLAG_USER="--user=$USER"
+readonly FLAG_PASS="--pass=$PASS"
 
 
-# @description Wrapper function to not repeat the three mandatory flags for the ``jiracli``
-# app all the time.
+# @description Wrapper function to sleep for a given interval.
+#
+# @example
+#    _sleep 30s
+#    _sleep 1m
+#
+# @arg $@ int The interval to sleep - Mandatory
+#
+# @exitcode 8 If interval param is missing
+function _sleep() {
+  if [ -z "$1" ]; then
+    LOG_ERROR "No interval passed"
+    LOG_ERROR "exit" && exit 8
+  fi
+
+  echo "sleep $1"
+  sleep "$1"
+}
+
+
+# @description This function checks whether Jira is up-and-running and responding to requests.
+#
+# @example
+#    isStartupComplete
+function isStartupComplete() {
+  _sleep "1m"
+
+  while true; do
+    httpCode=$(curl --location --request GET "$BASE_URL/rest/api/2/serverInfo?doHealthCheck=true" \
+      -s -o /dev/null -w "%{http_code}" \
+      --user "$USER:$PASS" \
+      --header 'Content-Type: application/json')
+    
+    echo "Jira answered with $httpCode"
+    if [[ "$httpCode" == "200" ]]; then
+      echo "Jira is up-and-running"
+      break
+    fi
+    
+    _sleep "10s"
+  done
+}
+
+
+# @description When starting the Jira instance it is provided with a h2db and is populated with a
+# license, users and projects so there is no need re-run the setup wizard all the time. This data
+# defines a baseline which is the same everytime this test-stack starts.
+#
+# The only issue is, that there is no data visible in the UI after starting up because  there is
+# no (or at least no uncorrupted) index. A new index must be created in the foreground triggered
+# through the link:https://docs.atlassian.com/software/jira/docs/api/REST/8.22.6[Jira REST API].
+#
+# @example
+#    buildIndex
+function buildIndex() {
+  echo "Trigger re-index"
+  response=$(curl -s --location --request POST "$BASE_URL/rest/api/2/reindex?type=FOREGROUND" \
+    --user "$USER:$PASS" \
+    --header 'Accept: application/json')
+  echo "$response"
+  
+  sleep "10s"
+
+  echo "Check re-index"
+  response=$(curl -s --location --request GET "$BASE_URL/rest/api/2/reindex" \
+    --user "$USER:$PASS" \
+    --header 'Content-Type: application/json')
+  echo "$response"
+}
+
+
+# @description Wrapper function to not repeat the mandatory flags when running ``jiracli``
+# commands.
 #
 # @example
 #    _jiracli --version
@@ -43,6 +121,11 @@ function _jiracli() {
 
   jiracli "$@"
 }
+
+
+isStartupComplete
+buildIndex
+
 
 _jiracli --version
 

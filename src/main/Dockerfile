@@ -18,8 +18,10 @@ RUN go mod download \
 FROM alpine:3.17.2 AS run
 LABEL maintainer="sebastian@sommerfeld.io"
 
-# To run integration tests with a proper shell
-RUN apk add --no-cache bash=5.2.15-r0
+# To run integration tests with a proper shell and tools
+RUN apk add --no-cache bash=5.2.15-r0 \
+    && apk add --no-cache curl=7.87.0-r2
+    # && apk add --no-cache jq=1.6-r2
 
 COPY --from=build /app/target/jiracli /usr/bin/jiracli
 COPY --from=build /app/app-info.yml /app/app-info.yml
