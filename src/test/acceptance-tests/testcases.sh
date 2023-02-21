@@ -44,9 +44,6 @@ function _jiracli() {
   jiracli "$@"
 }
 
-
-sleep 5m
-
 _jiracli --version
 
 _jiracli user view admin.admin "$FLAG_BASE_URL" "$FLAG_USER" "$FLAG_PASS"

@@ -20,6 +20,17 @@ services:
       retries: 5
       start_period: 300s
 
+  indexer:
+    build: jira-indexer
+    image: local/jira-indexer:test
+    container_name: indexer
+    volumes:
+      - ./jira-indexer/reindex.sh:/reindex.sh
+    entrypoint: bash /reindex.sh
+    depends_on:
+      jira:
+        condition: service_healthy
+
   jiracli:
     build: ../../main
     image: local/jiracli:test
@@ -28,8 +39,8 @@ services:
       - ./testcases.sh:/testcases.sh
     entrypoint: bash /testcases.sh
     depends_on:
-      jira:
-        condition: service_healthy
+      indexer:
+        condition: service_completed_successfully
 
 volumes:
   jiraVolume:

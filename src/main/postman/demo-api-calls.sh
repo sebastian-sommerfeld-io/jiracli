@@ -26,7 +26,7 @@ set -o nounset
 source "../../util/bash-modules/log.sh"
 
 
-# @description Wrapper function to not repeat myself when calling the Jira API lots of times.
+# @description Wrapper function to not repeat myself when calling the Jira API.
 #
 # @example
 #    callEndpoint /rest/plugins/applications/1.0/installed/jira-software/license
