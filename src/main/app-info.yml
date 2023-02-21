@@ -8,4 +8,4 @@
 # |                                             |
 # +---------------------------------------------+
 
-version: refs/heads/main
+version: refs/heads/3-index-on-startup
