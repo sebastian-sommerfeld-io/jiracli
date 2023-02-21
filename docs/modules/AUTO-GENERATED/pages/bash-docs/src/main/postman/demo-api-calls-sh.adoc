@@ -34,7 +34,7 @@ The script does not accept any parameters.
 
 === callEndpoint
 
-Wrapper function to not repeat myself when calling the Jira API lots of times.
+Wrapper function to not repeat myself when calling the Jira API.
 
 ==== Example
 
