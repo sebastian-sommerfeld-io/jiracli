@@ -6,7 +6,104 @@
 	},
 	"item": [
 		{
-			"name": "get license",
+			"name": "index",
+			"item": [
+				{
+					"name": "reindex",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/rest/api/2/reindex?type=FOREGROUND",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"rest",
+								"api",
+								"2",
+								"reindex"
+							],
+							"query": [
+								{
+									"key": "type",
+									"value": "FOREGROUND"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "reindex info",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/rest/api/2/reindex",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"rest",
+								"api",
+								"2",
+								"reindex"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "license",
 			"request": {
 				"auth": {
 					"type": "basic",
@@ -46,6 +143,55 @@
 						"installed",
 						"jira-software",
 						"license"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "server info",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "admin",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/rest/api/2/serverInfo?doHealthCheck=true",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"rest",
+						"api",
+						"2",
+						"serverInfo"
+					],
+					"query": [
+						{
+							"key": "doHealthCheck",
+							"value": "true"
+						}
 					]
 				}
 			},

@@ -19,6 +19,9 @@ instance defined in the docker-compose.yml from this test setup. The `local/jira
 Docker image is started in a container and executes the testcases from this script against
 a running Jira instance.
 
+Before running the tests, the script checks if Jira is up-and-running and triggers a re-index
+to make sure Jira exposes all data as intended.
+
 IMPORTANT: This script is intended to run inside a `jiracli` container from Docker Compose.
 Don't run this script directly!
 
@@ -28,12 +31,63 @@ The script does not accept any parameters.
 
 == Index
 
+* <<__sleep,_sleep>>
+* <<_isstartupcomplete,isStartupComplete>>
+* <<_buildindex,buildIndex>>
 * <<__jiracli,_jiracli>>
+
+=== _sleep
+
+Wrapper function to sleep for a given interval.
+
+==== Example
+
+[,bash]
+----
+_sleep 30s
+_sleep 1m
+----
+
+==== Arguments
+
+* *...* (int): The interval to sleep - Mandatory
+
+==== Exit codes
+
+* *8*: If interval param is missing
+
+=== isStartupComplete
+
+This function checks whether Jira is up-and-running and responding to requests.
+
+==== Example
+
+[,bash]
+----
+isStartupComplete
+----
+
+=== buildIndex
+
+When starting the Jira instance it is provided with a h2db and is populated with a
+license, users and projects so there is no need re-run the setup wizard all the time. This data
+defines a baseline which is the same everytime this test-stack starts.
+
+The only issue is, that there is no data visible in the UI after starting up because  there is
+no (or at least no uncorrupted) index. A new index must be created in the foreground triggered
+through the link:https://docs.atlassian.com/software/jira/docs/api/REST/8.22.6[Jira REST API].
+
+==== Example
+
+[,bash]
+----
+buildIndex
+----
 
 === _jiracli
 
-Wrapper function to not repeat the three mandatory flags for the `jiracli`
-app all the time.
+Wrapper function to not repeat the mandatory flags when running `jiracli`
+commands.
 
 ==== Example
 

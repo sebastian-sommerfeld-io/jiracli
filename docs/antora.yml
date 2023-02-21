@@ -1,7 +1,7 @@
 ---
 name: jiracli
 title: Jira CLI
-version: main
+version: 3-index-on-startup
 start_page: ROOT:index.adoc
 nav:
   - modules/ROOT/nav.adoc
