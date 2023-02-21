@@ -14,10 +14,6 @@ updates:
     schedule:
       interval: daily
   - package-ecosystem: docker
-    directory: src/test/acceptance-tests/jira-indexer
-    schedule:
-      interval: weekly
-  - package-ecosystem: docker
     directory: src/test/acceptance-tests/jira-runtime
     schedule:
       interval: weekly
