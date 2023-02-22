@@ -183,6 +183,7 @@ jobs:
           )
         shell: bash
       - name: Verify deployment to DockerHub
+        if: ${{ github.actor != 'dependabot[bot]' }}
         run: |
           IMAGE_CI="sommerfeldio/jiracli:ci"
           docker image rm "$IMAGE_CI"
