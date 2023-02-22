@@ -1,7 +1,7 @@
 = 01 - Introduction and Goals
 :description: Describes the relevant requirements and the driving forces that software architects and development team must consider. 
 
-Jira CLI is a command line interface to automate tasks otherwise done through the Jira web interface. The project encapsulates the link:https://developer.atlassian.com/server/jira/platform/rest-apis[Jira Rest API] through a command line and provides simple ways to automate (or at least dramatically speed up) recurring tasks.
+Jira CLI is a command line interface for automating and streamlining recurring tasks which are otherwise done through the Jira web interface. Jira CLI encapsulates the link:https://developer.atlassian.com/server/jira/platform/rest-apis[Jira Rest API] through the command line and provides simple ways to automate (or at least dramatically speed up) recurring tasks. This tool is designed to simplify the work and enhance productivity of Jira administrators.
 
 // Describes the relevant requirements and the driving forces that software architects and development team must consider. 
 // These include
@@ -12,7 +12,8 @@ Jira CLI is a command line interface to automate tasks otherwise done through th
 // * quality goals for the architecture and
 // * relevant stakeholders and their expectations
 
-// == Requirements Overview
+== Requirements Overview
+Todo: generate some requirements information based on the github issues.
 
 // .Contents
 // Short description of the functional requirements, driving forces, extract (or abstract)
@@ -50,7 +51,8 @@ Jira CLI is a command line interface to automate tasks otherwise done through th
 // .Form
 // A table with quality goals and concrete scenarios, ordered by priorities
 
-// == Stakeholders
+== Stakeholders
+Since this is a personal project that acts as a training ground with a meaningful purpose the only stakeholder is myself. This may change in the future if I decide to adopt this app for work purposes. But at the moment this is an independent app without any ties to other systems.
 
 // .Contents
 // Explicit overview of stakeholders of the system, i.e. all person, roles or organizations that

@@ -1,22 +1,11 @@
 = 09 - Architecture Decisions
 :description: Important, expensive, large scale or risky architecture decisions including rationales.
 
-// .Contents
-// Important, expensive, large scale or risky architecture decisions including rationales. With "decisions" we mean selecting one alternative based on given criteria.
+== Building and Running Jiracli Command-Line Tool with Docker
+The Jiracli command-line tool can be built and run using Docker without the need for any other installed software. All tools required for building the app, such as Go, run in Docker containers. Additionally, the Jiracli app itself is published as a Docker image, simplifying the build and deployment process.
 
-// Please use your judgement to decide whether an architectural decision should be documented here in this central section or whether you better document it locally (e.g. within the white box template of one building block).
+To build the Jiracli app, the Dockerfile included with the source code is used to build a Docker image. This Docker image includes all the necessary dependencies, such as Go and any required packages, and creates a clean build environment for the app.
 
-// Avoid redundancy.  Refer to section 4, where you already captured the most important decisions of your architecture.
+Once the Docker image is built, it can be used to run the Jiracli command-line tool. The Docker image contains the fully compiled Jiracli app, ready to be executed. Running the app in a Docker container ensures that it runs consistently and reliably, regardless of the underlying host operating system.
 
-// .Motivation
-// Stakeholders of your system should be able to comprehend and retrace your decisions.
-
-// .Form
-// Various options:
-
-// * ADR (https://cognitect.com/blog/2011/11/15/documenting-architecture-decisions[Documenting Architecture Decisions]) for every important decision
-// * List or table, ordered by importance and consequences or:
-// * more detailed in form of separate sections per decision
-
-// .Further Information
-// See https://docs.arc42.org/section-9/[Architecture Decisions] in the arc42 documentation. There you will find links and examples about ADR.
+The Jiracli app is published as a Docker image on DockerHub only. There are no other (binary) build-artifacts available. So you must use the Docker Image. This way the app can be easily  deployed to any environment supporting Docker. This eliminates the need to install the app on each individual host, reducing the risk of incompatibilities and simplifying the overall deployment process.
