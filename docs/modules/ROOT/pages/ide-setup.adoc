@@ -8,6 +8,7 @@ Sebastian Sommerfeld <sebastian@sommerfeld.io>
 
 == VSCode Setup
 This project is developed with VSCode and uses Dev Containers. So you need a local VSCode installation with the Dev Containers extension.
+
 [source, text]
 ----
 Name: Dev Containers
@@ -18,28 +19,17 @@ Publisher: Microsoft
 VS Marketplace Link: https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers
 ----
 
-To properly work with Asciidoc files it is recommended to install the AsciiDoc extension into the Dev Container as well.
-[source, text]
-----
-Name: AsciiDoc
-Id: asciidoctor.asciidoctor-vscode
-Description: Provides rich language support for AsciiDoc.
-Version: 2.9.8
-Publisher: asciidoctor
-VS Marketplace Link: https://marketplace.visualstudio.com/items?itemName=asciidoctor.asciidoctor-vscode
-----
-
 == Local Jira Instance
-This project comes with a local, pre-installed Jira instance. This instance is used for some automated test cases and can additionally be used as a target for the `jiracli` app to read some data from a running Jira instance. 
+This project comes with a local, pre-installed Jira instance. This instance is used for some automated tests and can additionally be used as a target for the `jiracli` app to read some data from a running Jira instance. 
 
-To access this instance, use the XXX and then access http://localhost:8080 from your browser. Log in with user = "admin" and password = "admin".
+To start / stop this instance, use `xref:AUTO-GENERATED:bash-docs/src/test/acceptance-tests/tests-sh.adoc[src/test/acceptance-tests/tests.sh]` and then access http://localhost:8080 from your browser. Log in with user = "admin" and password = "admin".
 
 === Update Jira Baseline (H2DB)
 To get the current h2db data from the Jira instance, start the container and run the following commands.
 
 [source, bash]
 ----
-cd src/test/acceptance-tests/assets/jira || exit
+cd src/test/acceptance-tests/jira-runtime/assets/jira || exit
 
 docker cp jira:/var/atlassian/application-data/jira/database/h2db.mv.db ./database
 ----
