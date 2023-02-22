@@ -31,12 +31,12 @@ The script does not accept any parameters.
 
 == Index
 
-* <<__sleep,_sleep>>
+* <<_waitfor,waitFor>>
 * <<_isstartupcomplete,isStartupComplete>>
 * <<_buildindex,buildIndex>>
-* <<__jiracli,_jiracli>>
+* <<_jiracli,JIRACLI>>
 
-=== _sleep
+=== waitFor
 
 Wrapper function to sleep for a given interval.
 
@@ -44,8 +44,8 @@ Wrapper function to sleep for a given interval.
 
 [,bash]
 ----
-_sleep 30s
-_sleep 1m
+waitFor 30s
+waitFor 1m
 ----
 
 ==== Arguments
@@ -84,7 +84,7 @@ through the link:https://docs.atlassian.com/software/jira/docs/api/REST/8.22.6[J
 buildIndex
 ----
 
-=== _jiracli
+=== JIRACLI
 
 Wrapper function to not repeat the mandatory flags when running `jiracli`
 commands.
@@ -93,7 +93,7 @@ commands.
 
 [,bash]
 ----
-_jiracli --version
+JIRACLI --version
 ----
 
 ==== Arguments
