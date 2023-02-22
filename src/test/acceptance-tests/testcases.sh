@@ -36,13 +36,13 @@ readonly FLAG_PASS="--pass=$PASS"
 # @description Wrapper function to sleep for a given interval.
 #
 # @example
-#    _sleep 30s
-#    _sleep 1m
+#    waitFor 30s
+#    waitFor 1m
 #
 # @arg $@ int The interval to sleep - Mandatory
 #
 # @exitcode 8 If interval param is missing
-function _sleep() {
+function waitFor() {
   if [ -z "$1" ]; then
     LOG_ERROR "No interval passed"
     LOG_ERROR "exit" && exit 8
@@ -58,7 +58,7 @@ function _sleep() {
 # @example
 #    isStartupComplete
 function isStartupComplete() {
-  _sleep "1m"
+  waitFor "1m"
 
   while true; do
     httpCode=$(curl --location --request GET "$BASE_URL/rest/api/2/serverInfo?doHealthCheck=true" \
@@ -72,7 +72,7 @@ function isStartupComplete() {
       break
     fi
     
-    _sleep "10s"
+    waitFor "10s"
   done
 }
 
@@ -108,12 +108,12 @@ function buildIndex() {
 # commands.
 #
 # @example
-#    _jiracli --version
+#    JIRACLI --version
 #
 # @arg $@ String The ``jiracli`` commands (1-n arguments) - $1 is mandatory
 #
 # @exitcode 8 If param with ``jiracli`` command is missing
-function _jiracli() {
+function JIRACLI() {
   if [ -z "$1" ]; then
     LOG_ERROR "No command passed to the jiracli app"
     LOG_ERROR "exit" && exit 8
@@ -127,18 +127,18 @@ isStartupComplete
 buildIndex
 
 
-_jiracli --version
+JIRACLI --version
 
-_jiracli user view admin.admin "$FLAG_BASE_URL" "$FLAG_USER" "$FLAG_PASS"
-_jiracli user view admin.admin --by-username "$FLAG_BASE_URL" "$FLAG_USER" "$FLAG_PASS"
-_jiracli user view admin@localhost --by-email "$FLAG_BASE_URL" "$FLAG_USER" "$FLAG_PASS"
+JIRACLI user view admin.admin "$FLAG_BASE_URL" "$FLAG_USER" "$FLAG_PASS"
+JIRACLI user view admin.admin --by-username "$FLAG_BASE_URL" "$FLAG_USER" "$FLAG_PASS"
+JIRACLI user view admin@localhost --by-email "$FLAG_BASE_URL" "$FLAG_USER" "$FLAG_PASS"
 
-_jiracli user view jim.panse "$FLAG_BASE_URL" "$FLAG_USER" "$FLAG_PASS"
-_jiracli user view jim.panse --by-username "$FLAG_BASE_URL" "$FLAG_USER" "$FLAG_PASS"
-_jiracli user view jim.panse@localhost --by-email "$FLAG_BASE_URL" "$FLAG_USER" "$FLAG_PASS"
+JIRACLI user view jim.panse "$FLAG_BASE_URL" "$FLAG_USER" "$FLAG_PASS"
+JIRACLI user view jim.panse --by-username "$FLAG_BASE_URL" "$FLAG_USER" "$FLAG_PASS"
+JIRACLI user view jim.panse@localhost --by-email "$FLAG_BASE_URL" "$FLAG_USER" "$FLAG_PASS"
 
-_jiracli user view homer.simpson "$FLAG_BASE_URL" "$FLAG_USER" "$FLAG_PASS"
-_jiracli user view homer.simpson --by-username "$FLAG_BASE_URL" "$FLAG_USER" "$FLAG_PASS"
-_jiracli user view homer.simpson@localhost --by-email "$FLAG_BASE_URL" "$FLAG_USER" "$FLAG_PASS"
+JIRACLI user view homer.simpson "$FLAG_BASE_URL" "$FLAG_USER" "$FLAG_PASS"
+JIRACLI user view homer.simpson --by-username "$FLAG_BASE_URL" "$FLAG_USER" "$FLAG_PASS"
+JIRACLI user view homer.simpson@localhost --by-email "$FLAG_BASE_URL" "$FLAG_USER" "$FLAG_PASS"
 
-_jiracli license view "$FLAG_BASE_URL" "$FLAG_USER" "$FLAG_PASS"
+JIRACLI license view "$FLAG_BASE_URL" "$FLAG_USER" "$FLAG_PASS"
