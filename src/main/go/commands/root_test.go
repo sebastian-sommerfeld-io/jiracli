@@ -31,8 +31,14 @@ func Test_ShouldPrintHelpText(t *testing.T) {
 
 	assert.NotNil(t, got)
 
-	got.Execute()
+	err := got.Execute()
+	assert.Nil(t, err)
+	if err != nil {
+		t.Fatal(err)
+	}
+
 	out, err := io.ReadAll(outputStream)
+	assert.Nil(t, err)
 	if err != nil {
 		t.Fatal(err)
 	}

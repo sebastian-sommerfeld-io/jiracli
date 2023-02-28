@@ -24,7 +24,12 @@ func Test_ShouldGetLicense(t *testing.T) {
 			server: httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 				r.SetBasicAuth("admin", "admin")
 				w.WriteHeader(http.StatusOK)
-				w.Write([]byte(licenseJson))
+				_, err := w.Write([]byte(licenseJson))
+
+				assert.Nil(t, err)
+				if err != nil {
+					t.Fatal(err)
+				}
 			})),
 			expectedResponse: &JiraLicense{
 				Valid:                    true,

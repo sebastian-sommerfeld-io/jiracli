@@ -44,10 +44,12 @@ func NewCmdLicenseView() *cobra.Command {
 
 func printJiraSoftwareLicense(opts *licenseViewOptions) {
 	jiraLicense, err := license.ReadJiraLicense(opts.BaseURL, opts.User, opts.Pass)
-
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	fmt.Fprintf(os.Stdout, jiraLicense.RawJson)
+	n, err := fmt.Fprintf(os.Stdout, jiraLicense.RawJson)
+	if err != nil || n <= 0 {
+		log.Fatal(err)
+	}
 }

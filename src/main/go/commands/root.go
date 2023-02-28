@@ -60,9 +60,16 @@ func AddMandatoryFlags(cmd *cobra.Command) {
 	cmd.Flags().String(FlagBaseUrl, "", "An URL to a Jira instance without any path information (e.g. http://localhost:8080)")
 	cmd.Flags().String(FlagUser, "", "Name of the Jira user to consume the Rest API")
 	cmd.Flags().String(FlagPass, "", "Password of the Jira user to consume the Rest API")
-	cmd.MarkFlagRequired(FlagBaseUrl)
-	cmd.MarkFlagRequired(FlagUser)
-	cmd.MarkFlagRequired(FlagPass)
+	markFlagRequired(cmd, FlagBaseUrl)
+	markFlagRequired(cmd, FlagUser)
+	markFlagRequired(cmd, FlagPass)
+}
+
+func markFlagRequired(cmd *cobra.Command, flagName string) {
+	err := cmd.MarkFlagRequired(flagName)
+	if err != nil {
+		log.Fatal(err)
+	}
 }
 
 // Execute acts as the entrypoint for the command line interface.

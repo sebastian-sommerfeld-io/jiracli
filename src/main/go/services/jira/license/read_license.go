@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"errors"
 	"io"
+	"log"
 	"net/http"
 )
 
@@ -37,7 +38,6 @@ func ReadJiraLicense(baseurl string, user string, pass string) (JiraLicense, err
 
 	client := &http.Client{}
 	req, err := http.NewRequest(method, url, nil)
-
 	if err != nil {
 		return errorObjects(err)
 	}
@@ -49,7 +49,12 @@ func ReadJiraLicense(baseurl string, user string, pass string) (JiraLicense, err
 	if err != nil {
 		return errorObjects(err)
 	}
-	defer res.Body.Close()
+	defer func() {
+		err := res.Body.Close()
+		if err != nil {
+			log.Fatal(err)
+		}
+	}()
 
 	if res.StatusCode == 401 {
 		return errorObjects(errors.New("must have permission to access this resource"))
