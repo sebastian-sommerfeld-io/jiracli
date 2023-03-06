@@ -1,4 +1,4 @@
-FROM jetbrains/qodana-go:2022.3-eap
+FROM jetbrains/qodana-go:2023.1-eap
 LABEL maintainer="sebastian@sommerfeld.io"
 
 # Download AsciiDoc plugin for AsciiDoc checks
