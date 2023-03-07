@@ -14,6 +14,11 @@ console.log('v0.1.0-SNAPSHOT');
 console.log(VERSION_DEFINITION);
 console.log('------------------------------------------');
 
-assert.equal(VERSION_DEFINITION.test('v0.1.0'), true);
-assert.equal(VERSION_DEFINITION.test('v0.1.0-SNAPSHOT'), true);
-assert.equal(VERSION_DEFINITION.test('0.1-0'), true);
+// samples for valid versions
+assert.equal(VERSION_DEFINITION.test(true, 'v0.1.0'));
+assert.equal(VERSION_DEFINITION.test(true, 'v0.1.0-SNAPSHOT'));
+
+// samples for invalid versions
+assert.equal(VERSION_DEFINITION.test(false, '0.1'));
+assert.equal(VERSION_DEFINITION.test(false, '0.1.0'));
+assert.equal(VERSION_DEFINITION.test(false, '0-1-0'));
