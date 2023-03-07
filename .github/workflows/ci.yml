@@ -247,7 +247,7 @@ jobs:
 
   on-failure:
     runs-on: ubuntu-latest
-    needs: ['generate-docs', 'validate-links:', 'lint-yaml', 'lint-env-files', 'lint-folders', 'lint-filenames', 'shellcheck', 'lint-dockerfile', 'test-and-scan', 'build-and-deploy-docker-image', 'qodana-analysis']
+    needs: ['generate-docs', 'validate-links', 'lint-yaml', 'lint-env-files', 'lint-folders', 'lint-filenames', 'shellcheck', 'lint-dockerfile', 'test-and-scan', 'build-and-deploy-docker-image', 'qodana-analysis']
     if: failure()
     steps:
       - name: Send Pipeline Status to Google Chat
