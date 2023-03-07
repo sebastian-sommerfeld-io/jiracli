@@ -184,9 +184,6 @@ jobs:
         run: |
           VERSION_TAG="${{ github.event.inputs.version }}"
           IMAGE="sommerfeldio/jiracli"
-          docker image rm "$IMAGE:ci"
-          docker image rm "$IMAGE:latest"
-          docker image rm "$IMAGE:$VERSION_TAG"
 
           docker pull "$IMAGE:latest"
           docker pull "$IMAGE:$VERSION_TAG"
