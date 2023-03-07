@@ -5,6 +5,7 @@ node_modules
 .vagrant
 logs
 *.log
+yamllint-*
 
 # terraform
 .terraform
