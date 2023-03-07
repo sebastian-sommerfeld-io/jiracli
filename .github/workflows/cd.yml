@@ -24,7 +24,11 @@ jobs:
       contents: write
     steps:
       - name: Validate version number
-        run: echo "${{ github.event.inputs.version }}"
+        run: |
+          echo "${{ github.event.inputs.version }}"
+          echo "Check if version follows correct syntax"
+          echo "Check if version already exist"
+          echo "Abort, if pipeline is not running for main branch - best with an if:... at this job below 'runs-on'"
         shell: bash
       - name: Validate publish flag
         run: echo "${{ github.event.inputs.publish }}"
