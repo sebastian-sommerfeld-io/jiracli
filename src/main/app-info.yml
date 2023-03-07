@@ -8,4 +8,4 @@
 # |                                             |
 # +---------------------------------------------+
 
-version: main
+version: refs/heads/main
