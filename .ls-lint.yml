@@ -29,7 +29,6 @@ ls:
 
 ignore:
   - .adoc-links.json
-  - .directoryvalidator.json
   - .ls-lint.yml
   - .terraform-docs.yml
   - .yamllint.yml
