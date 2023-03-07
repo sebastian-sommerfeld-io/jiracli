@@ -20,23 +20,33 @@ jobs:
 
   validate-inputs:
     runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
     permissions:
       contents: write
     steps:
       - name: Info
         run: |
+          echo "Github ref = ${{ github.ref }}"
           echo "Tag with version = ${{ github.event.inputs.version }}"
           echo "Publish Artifacts = ${{ github.event.inputs.publish }}"
         shell: bash
-      - name: Validate version number
+      - name: Checkout code
+        if: github.event_name != 'pull_request'
+        uses: actions/checkout@v3
+      - name: Setup node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - name: Validate version syntax
         run: |
-          echo "${{ github.event.inputs.version }}"
-          echo "Check if version follows correct syntax"
-          echo "Check if version already exist"
-          echo "Abort, if pipeline is not running for main branch - best with an if:... at this job below 'runs-on'"
+          (
+            cd src/util/workflows/cd/validate-version || exit
+            npm install
+            npm run dev
+          )
         shell: bash
-      - name: Validate publish flag
-        run: echo "${{ github.event.inputs.publish }}"
+      - name: Validate version
+        run: echo "Check that version does not already exist and does not skip a version number (not 0.1.2 to 0.1.4 or 0.3.0 or 2.0.0)"
         shell: bash
 
   generate-app-info:
