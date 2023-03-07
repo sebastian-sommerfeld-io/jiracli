@@ -15,10 +15,10 @@ console.log(VERSION_REGEX);
 console.log('------------------------------------------');
 
 // samples for valid versions
-assert.equal(VERSION_REGEX.test(true, 'v0.1.0'));
-assert.equal(VERSION_REGEX.test(true, 'v0.1.0-SNAPSHOT'));
+assert.equal(true, VERSION_REGEX.test('v0.1.0'));
+assert.equal(true, VERSION_REGEX.test('v0.1.0-SNAPSHOT'));
 
 // samples for invalid versions
-assert.equal(VERSION_REGEX.test(false, '0.1'));
-assert.equal(VERSION_REGEX.test(false, '0.1.0'));
-assert.equal(VERSION_REGEX.test(false, '0-1-0'));
+assert.equal(false, VERSION_REGEX.test('0.1'));
+assert.equal(false, VERSION_REGEX.test('0.1.0'));
+assert.equal(false, VERSION_REGEX.test('0-1-0'));
