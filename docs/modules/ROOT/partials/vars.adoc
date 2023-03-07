@@ -5,5 +5,4 @@ Sebastian Sommerfeld <sebastian@sommerfeld.io>
 :github-actions-url: {url-project}/actions/workflows
 :job-ci: ci.yml
 :job-cd: cd.yml
-:job-generate-docs: auto-generate-docs.yml
 :badge: badge.svg

@@ -1,6 +1,5 @@
 {description}
 
-image:{github-actions-url}/{job-generate-docs}/{badge}[Github Badge, link={github-actions-url}/{job-generate-docs}]
 image:{github-actions-url}/{job-ci}/{badge}[Github Badge, link={github-actions-url}/{job-ci}]
 image:{github-actions-url}/{job-cd}/{badge}[Github Badge, link={github-actions-url}/{job-cd}]
 
