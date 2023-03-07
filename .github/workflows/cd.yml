@@ -103,8 +103,10 @@ jobs:
       contents: write
     steps:
       - name: Checkout code
+        if: github.event.inputs.version == true
         uses: actions/checkout@v3
       - name: Todo
+        if: github.event.inputs.version == true
         run: echo "Deploy to DockerHub ..."
 
   dockerhub-desc:
@@ -114,8 +116,10 @@ jobs:
       contents: write
     steps:
       - name: Checkout code
+        if: github.event.inputs.version == true
         uses: actions/checkout@v3
       - name: Todo
+        if: github.event.inputs.version == true
         run: echo "Update DockerHub description ..."
 
   github-release:
@@ -125,8 +129,10 @@ jobs:
       contents: write
     steps:
       - name: Checkout code
+        if: github.event.inputs.version == true
         uses: actions/checkout@v3
       - name: Todo
+        if: github.event.inputs.version == true
         run: echo "Create a Github Release ..."
 
   validate-deployment:
@@ -136,8 +142,10 @@ jobs:
       contents: write
     steps:
       - name: Checkout code
+        if: github.event.inputs.version == true
         uses: actions/checkout@v3
       - name: Todo
+        if: github.event.inputs.version == true
         run: echo "Validate that the latest image is present and usable on DockerHub ..."
 
   scan-image:
@@ -147,8 +155,10 @@ jobs:
       contents: write
     steps:
       - name: Checkout code
+        if: github.event.inputs.version == true
         uses: actions/checkout@v3
       - name: Todo
+        if: github.event.inputs.version == true
         run: echo "Scan deployed image (Snyk) ..."
 
   on-failure:
