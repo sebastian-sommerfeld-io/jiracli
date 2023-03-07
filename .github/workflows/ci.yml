@@ -155,7 +155,7 @@ jobs:
   qodana-analysis:
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/main'
-    needs: ['generate-docs']
+    needs: ['lint-yaml', 'lint-env-files', 'lint-folders', 'lint-filenames', 'shellcheck', 'lint-dockerfile']
     permissions:
       security-events: write
     steps:
