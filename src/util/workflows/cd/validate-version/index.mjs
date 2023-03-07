@@ -8,6 +8,9 @@ const VERSION_REGEX = createRegExp(
     .and(exactly('.').and(oneOrMore(digit).groupedAs('patch')))
 );
 
+console.log('----- given version ----------------------');
+console.log(process.env.CHECK_VERSION);
+console.log('valid = ' + VERSION_REGEX.test(process.env.CHECK_VERSION));
 console.log('----- valid version syntax ---------------');
 console.log('v0.1.0');
 console.log('v0.1.0-SNAPSHOT');
@@ -22,3 +25,6 @@ assert.equal(true, VERSION_REGEX.test('v0.1.0-SNAPSHOT'));
 assert.equal(false, VERSION_REGEX.test('0.1'));
 assert.equal(false, VERSION_REGEX.test('0.1.0'));
 assert.equal(false, VERSION_REGEX.test('0-1-0'));
+
+// validate given version
+assert.equal(true, VERSION_REGEX.test(process.env.CHECK_VERSION));

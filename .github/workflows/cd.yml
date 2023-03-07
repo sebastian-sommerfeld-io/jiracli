@@ -44,6 +44,8 @@ jobs:
             npm install
             npm run dev
           )
+        env:
+          CHECK_VERSION: ${{ github.event.inputs.version }}
         shell: bash
       - name: Validate version
         run: echo "Check that version does not already exist and does not skip a version number (not 0.1.2 to 0.1.4 or 0.3.0 or 2.0.0)"
