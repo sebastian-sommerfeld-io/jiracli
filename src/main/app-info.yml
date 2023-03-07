@@ -8,4 +8,4 @@
 # |                                             |
 # +---------------------------------------------+
 
-version: refs/heads/main
+version: v0.1.2-SNAPSHOT
