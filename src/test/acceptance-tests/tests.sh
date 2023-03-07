@@ -6,8 +6,8 @@
 # instance. This stack is used for automated tests against a running Jira system. This stack
 # also builds the ``local/jiracli:test`` image to run tests based on ``src/main/Dockerfile``.
 #
-# This tests are also triggered from the CI pipeline. The ``local/jiracli:test`` image that is
-# built from this Docker Compose configuration is also deployed to DockerHub as
+# These tests are also triggered from the CI pipeline. The ``local/jiracli:test`` image which
+# is built from this Docker Compose configuration is also deployed to DockerHub as
 # link:https://hub.docker.com/r/sommerfeldio/jiracli[``sommerfeldio/jiracli:ci``]. This
 # ``sommerfeldio/jiracli:ci`` image acts as the foundation for the CD pipeline and is re-tagged
 # as ``sommerfeldio/jiracli:latest`` and ``sommerfeldio/jiracli:<version>``. This way it is
