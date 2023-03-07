@@ -23,6 +23,11 @@ jobs:
     permissions:
       contents: write
     steps:
+      - name: Info
+        run: |
+          echo "Tag with version = ${{ github.event.inputs.version }}"
+          echo "Publish Artifacts = ${{ github.event.inputs.publish }}"
+        shell: bash
       - name: Validate version number
         run: |
           echo "${{ github.event.inputs.version }}"
@@ -107,10 +112,10 @@ jobs:
       contents: write
     steps:
       - name: Checkout code
-        if: github.event.inputs.version == true
+        if: github.event.inputs.publish == true
         uses: actions/checkout@v3
       - name: Todo
-        if: github.event.inputs.version == true
+        if: github.event.inputs.publish == true
         run: echo "Deploy to DockerHub ..."
 
   dockerhub-desc:
@@ -120,10 +125,10 @@ jobs:
       contents: write
     steps:
       - name: Checkout code
-        if: github.event.inputs.version == true
+        if: github.event.inputs.publish == true
         uses: actions/checkout@v3
       - name: Todo
-        if: github.event.inputs.version == true
+        if: github.event.inputs.publish == true
         run: echo "Update DockerHub description ..."
 
   github-tag-and-release:
@@ -133,13 +138,13 @@ jobs:
       contents: write
     steps:
       - name: Checkout code
-        if: github.event.inputs.version == true
+        if: github.event.inputs.publish == true
         uses: actions/checkout@v3
       - name: Create tag
-        if: github.event.inputs.version == true
+        if: github.event.inputs.publish == true
         run: echo "Create a tag ${{ github.event.inputs.version }}"
       - name: Create Github Release
-        if: github.event.inputs.version == true
+        if: github.event.inputs.publish == true
         run: echo "Create a Github Release ..."
 
   validate-deployment:
@@ -149,10 +154,10 @@ jobs:
       contents: write
     steps:
       - name: Checkout code
-        if: github.event.inputs.version == true
+        if: github.event.inputs.publish == true
         uses: actions/checkout@v3
       - name: Todo
-        if: github.event.inputs.version == true
+        if: github.event.inputs.publish == true
         run: echo "Validate that the latest image is present and usable on DockerHub ..."
 
   scan-image:
@@ -162,10 +167,10 @@ jobs:
       contents: write
     steps:
       - name: Checkout code
-        if: github.event.inputs.version == true
+        if: github.event.inputs.publish == true
         uses: actions/checkout@v3
       - name: Todo
-        if: github.event.inputs.version == true
+        if: github.event.inputs.publish == true
         run: echo "Scan deployed image (Snyk) ..."
 
   on-failure:
